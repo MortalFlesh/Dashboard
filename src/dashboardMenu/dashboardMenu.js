@@ -2,9 +2,9 @@ import {List} from 'immutable';
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TemplateRecord from './../template/templateRecord';
-import DropdownMenu from './../dropdown/dropdownMenu';
-import DropdownLink from './../dropdown/dropdownLink';
-import DropdownItem from './../dropdown/dropdownItem';
+import DropdownMenu from './../bootstrap/dropdownMenu';
+import DropdownLink from './../bootstrap/dropdownLink';
+import DropdownItem from './../bootstrap/dropdownItem';
 
 const DashboardMenu = React.createClass({
     mixins: [PureRenderMixin],

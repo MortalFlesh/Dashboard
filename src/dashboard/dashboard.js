@@ -15,7 +15,7 @@ const Dashboard = React.createClass({
 
     style() {
         return {
-            paddingTop: 70,
+            paddingTop: 30,
             paddingBottom: 30,
         };
     },

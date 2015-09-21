@@ -1,6 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TemplateRecord from './../template/templateRecord';
+import Header from './../bootstrap/header';
 import Items from './../items/items';
 
 const Template = React.createClass({
@@ -15,7 +16,7 @@ const Template = React.createClass({
 
         return (
             <div className="container-fluid theme-showcase" role="main">
-                <h1>{template.name}</h1>
+                <Header>{template.name}</Header>
 
                 <Items items={template.items}/>
             </div>
