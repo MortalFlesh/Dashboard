@@ -2,21 +2,50 @@ import {List} from 'immutable';
 import dispatcher from './../lib/dispatcher';
 import * as actions from './actions';
 import {dashboardCursor} from './state';
+import TemplateRecord from './../template/templateRecord';
+import ItemRecord from './../item/itemRecord';
 
 export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
-        case actions.addMessage:
-            let items = new List(getItems());
+        case actions.setSelectedTemplate:
+            setToDashboard('selectedTemplate', data);
+            break;
 
-            items = items.push(new MessageRecord(data));
+        case actions.setTemplateName:
+            setToDashboard('templateName', data);
+            break;
+
+        case actions.setItems:
+            let items = new List();
+
+            data.forEach((item) => {
+                items = items.push(new ItemRecord(item));
+            });
 
             setToDashboard('items', items);
+            break;
+
+        case actions.addItem:
+            // todo implement
+            //let items = new List(getItems());
+
+            //items = items.push(new MessageRecord(data));
+
+            //setToDashboard('items', items);
             break;
     }
 });
 
 function setToDashboard(name, value) {
     dashboardCursor((dashboard) => dashboard.set(name, value));
+}
+
+export function getSelectedTemplate() {
+    return dashboardCursor().get('selectedTemplate');
+}
+
+export function getTemplateName() {
+    return dashboardCursor().get('templateName');
 }
 
 export function getItems() {

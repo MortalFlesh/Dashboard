@@ -12,9 +12,15 @@ const DashboardApp = React.createClass({
     },
 
     render() {
+        const template = new TemplateRecord({
+            id: store.getSelectedTemplate(),
+            name: store.getTemplateName(),
+            items: store.getItems(),
+        });
+
         return (
             <div className="DashboardApp">
-                <Dashboard/>
+                <Dashboard template={template}/>
             </div>
         );
     }

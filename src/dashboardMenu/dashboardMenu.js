@@ -1,9 +1,8 @@
-import {List} from 'immutable';
 import React from 'react';
 import {addons} from 'react/addons';
 import TemplateRecord from './../template/templateRecord';
 
-const Dashboard = React.createClass({
+const DashboardMenu = React.createClass({
     mixins: [addons.PureRenderMixin],
 
     propTypes: {
@@ -11,13 +10,15 @@ const Dashboard = React.createClass({
     },
 
     render() {
+        const template = this.props.template;
+
         return (
-            <div className="Dashboard">
-                <DashboardMenu template={template}/>
-                <Template template={template}/>
+            <div className="DashboardMenu">
+                ... menu ...
+                <span>selected template = {`id: ${template.id} | ${template.name}`}</span>
             </div>
         );
     }
 });
 
-export default Dashboard;
+export default DashboardMenu;
