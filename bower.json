@@ -1,0 +1,25 @@
+{
+  "name": "Dashboard",
+  "version": "1.0.0",
+  "homepage": "https://github.com/MortalFlesh/Dashboard",
+  "authors": [
+    "Petr Chromec <mortal_flesh@seznam.cz>"
+  ],
+  "description": "Customizable Dasboard",
+  "main": "index.html",
+  "keywords": [
+    "react",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
