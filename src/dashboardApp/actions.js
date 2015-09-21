@@ -11,3 +11,8 @@ export function setTemplateName(name: string) {
 export function setItems(items: array) {
     dispatcher.dispatch(setItems, items);
 }
+
+export function setTemplates(templates: array) {
+    dispatcher.dispatch(setTemplates, templates);
+}
+

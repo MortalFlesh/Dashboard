@@ -25,6 +25,16 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             setToDashboard('items', items);
             break;
 
+        case actions.setTemplates:
+            let templates = new List();
+
+            data.forEach((template) => {
+                templates = templates.push(new TemplateRecord(template));
+            });
+
+            setToDashboard('templates', templates);
+            break;
+
         case actions.addItem:
             // todo implement
             //let items = new List(getItems());
@@ -50,4 +60,8 @@ export function getTemplateName() {
 
 export function getItems() {
     return dashboardCursor().get('items');
+}
+
+export function getTemplates() {
+    return dashboardCursor().get('templates');
 }

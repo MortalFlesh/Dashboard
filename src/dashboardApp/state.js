@@ -10,6 +10,9 @@ const basicData = Immutable.fromJS({
         selectedTemplate: defaultTemplate.id,
         templateName: defaultTemplate.name,
         items: defaultTemplate.items,
+        templates: [
+            defaultTemplate.toJS(),
+        ],
     }
 });
 
@@ -39,6 +42,13 @@ const serverData = {    // todo will be loaded from server
             position: 'todo',
             height: 400,
             width: 400,
+        },
+    ],
+    templates: [
+        {
+            id: 1,
+            name: 'Monitoring',
+            items: [],
         },
     ],
 };

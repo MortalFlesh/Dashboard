@@ -1,22 +1,53 @@
+import {List} from 'immutable';
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TemplateRecord from './../template/templateRecord';
+import DropdownMenu from './../dropdown/dropdownMenu';
+import DropdownLink from './../dropdown/dropdownLink';
+import DropdownItem from './../dropdown/dropdownItem';
 
 const DashboardMenu = React.createClass({
     mixins: [PureRenderMixin],
 
     propTypes: {
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
+        templates: React.PropTypes.instanceOf(List).isRequired,
     },
 
     render() {
         const template = this.props.template;
 
+        const templates = this.props.templates.map((t) => {
+            const selected = t.id === template.id;
+
+            return <DropdownItem key={t.id} id={t.id} title={t.name} selected={selected}/>;
+        }).toList();
+
         return (
-            <div className="DashboardMenu">
-                ... menu ...
-                <span>selected template = {`id: ${template.id} | ${template.name}`}</span>
-            </div>
+            <nav className="navbar navbar-inverse navbar-fixed-top">
+                <div className="container">
+
+                    <div className="navbar-header">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+
+                        <a className="navbar-brand" href="#">MF Dashboard</a>
+                    </div>
+
+                    <div id="navbar" className="navbar-collapse collapse">
+                        <ul className="nav navbar-nav">
+                            <li className="dropdown">
+                                <DropdownLink title={`Template - ${template.name}`}/>
+                                <DropdownMenu items={templates}/>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         );
     }
 });

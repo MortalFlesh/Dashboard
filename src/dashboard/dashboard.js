@@ -10,6 +10,7 @@ const Dashboard = React.createClass({
 
     propTypes: {
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
+        templates: React.PropTypes.instanceOf(List).isRequired,
     },
 
     render() {
@@ -17,7 +18,7 @@ const Dashboard = React.createClass({
 
         return (
             <div className="Dashboard">
-                <DashboardMenu template={template}/>
+                <DashboardMenu template={template} templates={this.props.templates}/>
                 <Template template={template}/>
             </div>
         );
