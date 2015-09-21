@@ -10,13 +10,19 @@ const Items = React.createClass({
         items: React.PropTypes.instanceOf(List).isRequired,
     },
 
+    style() {
+        return {
+            position: 'relative',
+        };
+    },
+
     render() {
         const items = this.props.items.map((item) => {
             return <Item key={item.id} item={item}/>;
         });
 
         return (
-            <div className="Items">
+            <div className="Items" style={this.style()}>
                 {items}
             </div>
         );

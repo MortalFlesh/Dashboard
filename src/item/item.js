@@ -10,8 +10,11 @@ const Item = React.createClass({
         item: React.PropTypes.instanceOf(ItemRecord).isRequired,
     },
 
-    style({width, height}) {
+    style({top, left, width, height}) {
         return {
+            position: 'absolute',
+            top,
+            left,
             maxHeight: height + 38,
             maxWidth: width,
         };
