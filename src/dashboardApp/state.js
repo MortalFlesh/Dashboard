@@ -46,7 +46,7 @@ const serverData = {    // todo will be loaded from server
 export function loadServerData() {
     const source = Immutable.fromJS(serverData).toJS();
 
-    basicData.dashboard
+    basicData.get('dashboard')
         .map((k, v) => k)
         .forEach((paramKey) => {
             if (source.hasOwnProperty(paramKey)) {

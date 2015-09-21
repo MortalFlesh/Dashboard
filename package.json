@@ -32,7 +32,8 @@
     "flux": "^2.1.1",
     "immutable": "^3.7.5",
     "react": "^0.14.0-rc1",
-    "react-addons-pure-render-mixin": "^0.14.0-rc1"
+    "react-addons-pure-render-mixin": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
