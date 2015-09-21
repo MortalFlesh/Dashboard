@@ -1,6 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ItemRecord from './itemRecord';
+import ItemHeader from './itemHeader';
 import ItemBody from './itemBody';
 
 const Item = React.createClass({
@@ -27,9 +28,8 @@ const Item = React.createClass({
         return (
             <div className="Item" style={style}>
                 <div className="panel panel-default">
-                    <div className="panel-heading">
-                        <h3 className="panel-title">{item.name}</h3>
-                    </div>
+                    <ItemHeader title={item.name}/>
+
                     <div className="panel-body" style={{padding:0}}>
                         <ItemBody url={item.url} height={item.height} width={item.width}/>
                     </div>
