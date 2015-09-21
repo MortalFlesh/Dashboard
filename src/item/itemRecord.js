@@ -7,4 +7,5 @@ export default new Record({
     position: '',
     height: 300,
     width: 300,
+    refreshRate: 0,
 });
