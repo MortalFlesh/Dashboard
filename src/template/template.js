@@ -13,7 +13,7 @@ const Template = React.createClass({
         const template = this.props.template;
 
         return (
-            <div className="Template">
+            <div className="container-fluid theme-showcase" role="main">
                 ... template - {template.name} ...
             </div>
         );

@@ -13,11 +13,18 @@ const Dashboard = React.createClass({
         templates: React.PropTypes.instanceOf(List).isRequired,
     },
 
+    style() {
+        return {
+            paddingTop: 70,
+            paddingBottom: 30,
+        };
+    },
+
     render() {
         const template = this.props.template;
 
         return (
-            <div className="Dashboard">
+            <div className="Dashboard" style={this.style()}>
                 <DashboardMenu template={template} templates={this.props.templates}/>
                 <Template template={template}/>
             </div>

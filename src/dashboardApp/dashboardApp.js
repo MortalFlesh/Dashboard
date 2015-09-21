@@ -22,9 +22,7 @@ const DashboardApp = React.createClass({
         const templates = store.getTemplates();
 
         return (
-            <div className="DashboardApp">
-                <Dashboard template={template} templates={templates}/>
-            </div>
+            <Dashboard template={template} templates={templates}/>
         );
     }
 });
