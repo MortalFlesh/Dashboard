@@ -47,7 +47,7 @@ export function loadServerData() {
     const source = Immutable.fromJS(serverData).toJS();
 
     basicData.get('dashboard')
-        .map((k, v) => k)
+        .map((v, k) => k)
         .forEach((paramKey) => {
             if (source.hasOwnProperty(paramKey)) {
                 const value = source[paramKey];
@@ -59,6 +59,8 @@ export function loadServerData() {
                 } else {
                     console.log(`ERROR: Property ${paramKey} has no setter implemented!`);
                 }
+            } else {
+                console.log(`ERROR: Source does not contains ${paramKey} property!`);
             }
         });
 }
