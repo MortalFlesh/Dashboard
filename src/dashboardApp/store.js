@@ -1,4 +1,5 @@
 import {List} from 'immutable';
+import './../item/store';
 import dispatcher from './../lib/dispatcher';
 import * as actions from './actions';
 import * as itemActions from './../item/actions';
@@ -36,25 +37,6 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             setToDashboard('templates', templates);
             break;
 
-        case itemActions.setMoving:
-            const {id, isMoving} = data;
-            const currentItems = new List(getItems());
-            let itemsUpdated = new List();
-
-            currentItems.forEach((item) => {
-                let itemUpdated = item;
-                const isItemMoving = (item.id === id ? isMoving : false);
-
-                itemUpdated = itemUpdated.set('isMoving', isItemMoving);
-
-                itemsUpdated = itemsUpdated.push(new ItemRecord(itemUpdated));
-            });
-
-            console.log(currentItems.toJS(), itemsUpdated.toJS());
-
-            setToDashboard('items', itemsUpdated);
-            break;
-
         case actions.addItem:
             // todo implement
             //let items = new List(getItems());
@@ -66,7 +48,7 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
     }
 });
 
-function setToDashboard(name, value) {
+export function setToDashboard(name, value) {
     dashboardCursor((dashboard) => dashboard.set(name, value));
 }
 

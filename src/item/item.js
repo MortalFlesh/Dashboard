@@ -18,6 +18,7 @@ const Item = React.createClass({
             left,
             maxHeight: height + 38,
             maxWidth: width,
+            zIndex: this.props.item.isMoving ? 10000 : 0,
         };
     },
 
@@ -25,10 +26,12 @@ const Item = React.createClass({
         const item = this.props.item;
         const style = this.style(item);
 
+        const className = item.isMoving ? 'panel-primary' : 'panel-default';    // todo cn()
+
         return (
             <div className="Item" style={style}>
-                <div className="panel panel-default">
-                    <ItemHeader id={item.id} title={item.name} isMoving={item.isMoving}/>
+                <div className={`panel ${className}`}>
+                    <ItemHeader item={item}/>
 
                     <div className="panel-body" style={{padding:0}}>
                         <ItemBody url={item.url} height={item.height} width={item.width}/>
