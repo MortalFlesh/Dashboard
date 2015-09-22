@@ -17,11 +17,25 @@ const ItemBody = React.createClass({
         };
     },
 
+    containerStyle({height, width}) {
+        const scrollerHeight = 20;
+        const scrollerWidth = 20;
+
+        return {
+            height: height - scrollerHeight,
+            width: width - scrollerWidth,
+            overflow: 'hidden',
+        };
+    },
+
     render() {
         const style = this.style();
+        const containerStyle = this.containerStyle(style);
 
         return (
-            <iframe src={this.props.url} style={style}/>
+            <div className="ItemBody" style={containerStyle}>
+                <iframe src={this.props.url} style={style}/>
+            </div>
         );
     }
 });
