@@ -10,4 +10,6 @@ export default new Record({
     width: 300,
     refreshRate: 0,
     isMoving: false,
+    innerX: 0,
+    innerY: 0,
 });

@@ -17,15 +17,26 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
 });
 
 function moving(data) {
-    const {id, isMoving} = data;
+    const {id, isMoving, innerX, innerY} = data;
     const currentItems = new List(getItems());
     let itemsUpdated = new List();
 
     currentItems.forEach((item) => {
         let itemUpdated = item;
-        const isItemMoving = (item.id === id ? isMoving : false);
+
+        let isItemMoving = false;
+        let x = 0;
+        let y = 0;
+
+        if (item.id === id) {
+            isItemMoving = isMoving;
+            x = innerX;
+            y = innerY;
+        }
 
         itemUpdated = itemUpdated.set('isMoving', isItemMoving);
+        itemUpdated = itemUpdated.set('innerX', x);
+        itemUpdated = itemUpdated.set('innerY', y);
 
         itemsUpdated = itemsUpdated.push(new ItemRecord(itemUpdated));
     });

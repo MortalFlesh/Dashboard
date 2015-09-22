@@ -16,27 +16,33 @@ const ItemHeader = React.createClass({
         };
     },
 
-    onMouseDown(event) {
-        if (!this.props.item.isMoving) {
-            console.log('mouseDown', event);
-            actions.setMoving({id: this.props.item.id, isMoving: true});
+    onMouseDown({pageX, pageY}) {
+        const item = this.props.item;
+
+        if (!item.isMoving) {
+            const innerX = pageX - item.left;
+            const innerY = pageY - item.top;
+
+            actions.setMoving({id: item.id, isMoving: true, innerX, innerY});
         }
     },
 
-    onMouseMove(event) {
-        if (this.props.item.isMoving) {
-            console.log('mouseMove', event);
-            const top = 30;
-            const left = this.props.item.left + 10;
+    onMouseMove({pageX, pageY}) {
+        const item = this.props.item;
 
-            actions.setItemPosition({id: this.props.item.id, top, left});
+        if (item.isMoving) {
+            const top = pageY - item.innerY;
+            const left = pageX - item.innerX;
+
+            actions.setItemPosition({id: item.id, top, left});
         }
     },
 
     onMouseUp(event) {
-        if (this.props.item.isMoving) {
-            console.log('mouseUp', event);
-            actions.setMoving({id: this.props.item.id, isMoving: false});
+        const item = this.props.item;
+
+        if (item.isMoving) {
+            actions.setMoving({id: item.id, isMoving: false, innerX: 0, innerY: 0});
         }
     },
 
@@ -47,7 +53,7 @@ const ItemHeader = React.createClass({
                  onMouseDown={this.onMouseDown}
                  onMouseMove={this.onMouseMove}
                  onMouseUp={this.onMouseUp}>
-                <h3 className="panel-title">{this.props.item.title}</h3>
+                <h3 className="panel-title">{this.props.item.name}</h3>
             </div>
         );
     }
