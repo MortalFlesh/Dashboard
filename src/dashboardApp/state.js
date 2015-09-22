@@ -36,6 +36,7 @@ const serverData = {    // todo will be loaded from server
             height: 350,
             width: 500,
             refreshRate: 2000,
+            isMoving: false,
         },
         {
             id: 2,
@@ -46,6 +47,7 @@ const serverData = {    // todo will be loaded from server
             height: 450,
             width: 450,
             refreshRate: 2000,
+            isMoving: false,
         },
     ],
     templates: [

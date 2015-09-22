@@ -28,7 +28,7 @@ const Item = React.createClass({
         return (
             <div className="Item" style={style}>
                 <div className="panel panel-default">
-                    <ItemHeader title={item.name}/>
+                    <ItemHeader id={item.id} title={item.name} isMoving={item.isMoving}/>
 
                     <div className="panel-body" style={{padding:0}}>
                         <ItemBody url={item.url} height={item.height} width={item.width}/>

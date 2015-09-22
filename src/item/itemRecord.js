@@ -9,4 +9,5 @@ export default new Record({
     height: 300,
     width: 300,
     refreshRate: 0,
+    isMoving: false,
 });
