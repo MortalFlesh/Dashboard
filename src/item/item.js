@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ItemRecord from './itemRecord';
 import ItemHeader from './itemHeader';
 import ItemBody from './itemBody';
+import ItemFooter from './itemFooter';
 
 const Item = React.createClass({
     mixins: [PureRenderMixin],
@@ -36,6 +37,8 @@ const Item = React.createClass({
                     <div className="panel-body" style={{padding:0}}>
                         <ItemBody url={item.url} height={item.height} width={item.width}/>
                     </div>
+
+                    <ItemFooter item={item}/>
                 </div>
             </div>
         );
