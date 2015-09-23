@@ -19,3 +19,7 @@ export function setAddItemHeight(height: number) {
 export function setAddItemWidth(width: number) {
     dispatcher.dispatch(setAddItemWidth, width);
 }
+
+export function addItem() {
+    dispatcher.dispatch(addItem);
+}

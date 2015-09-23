@@ -43,6 +43,7 @@ const AddItemForm = React.createClass({
     },
     
     saveHandler() {
+        actions.addItem();
     },
 
     render() {

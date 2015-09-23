@@ -5,6 +5,7 @@ import './../addItem/store';
 import dispatcher from './../lib/dispatcher';
 import * as actions from './actions';
 import * as itemActions from './../item/actions';
+import {addItem} from './../addItem/actions';
 import {dashboardCursor} from './state';
 import TemplateRecord from './../template/templateRecord';
 import ItemRecord from './../item/itemRecord';
@@ -39,13 +40,21 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             setToDashboard('templates', templates);
             break;
 
-        case actions.addItem:
-            // todo implement
-            //let items = new List(getItems());
+        case addItem:
+            {
+                const defaultItem = new ItemRecord();
+                let items = new List(getItems());
 
-            //items = items.push(new MessageRecord(data));
+                items = items.push(getAddItem());
 
-            //setToDashboard('items', items);
+                setToDashboard('items', items);
+
+                setToDashboard('addItemName', defaultItem.name);
+                setToDashboard('addItemUrl', defaultItem.url);
+                setToDashboard('addItemRefreshRate', defaultItem.refreshRate);
+                setToDashboard('addItemHeight', defaultItem.height);
+                setToDashboard('addItemWidth', defaultItem.width);
+            }
             break;
     }
 });
