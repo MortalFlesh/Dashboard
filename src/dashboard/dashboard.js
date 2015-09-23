@@ -4,6 +4,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import TemplateRecord from './../template/templateRecord';
 import DashboardMenu from './../dashboardMenu/dashboardMenu';
 import Template from './../template/template';
+import AddItemForm from './../addItem/addItemForm';
 
 const Dashboard = React.createClass({
     mixins: [PureRenderMixin],
@@ -11,6 +12,13 @@ const Dashboard = React.createClass({
     propTypes: {
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
         templates: React.PropTypes.instanceOf(List).isRequired,
+        isShowAddItem: React.PropTypes.bool,
+    },
+
+    getDefaultProps() {
+        return {
+            isShowAddItem: false,
+        }
     },
 
     style() {
@@ -26,7 +34,9 @@ const Dashboard = React.createClass({
         return (
             <div className="Dashboard" style={this.style()}>
                 <DashboardMenu template={template} templates={this.props.templates}/>
-                <Template template={template}/>
+
+                {!this.props.isShowAddItem && <Template template={template}/>}
+                {this.props.isShowAddItem && <AddItemForm/>}
             </div>
         );
     }

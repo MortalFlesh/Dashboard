@@ -29,17 +29,26 @@ const ItemFooter = React.createClass({
     
     render() {
         const item = this.props.item;
-        
-        return (
+
+        const heightId = `item-${item.id}-footer-height`;
+        const widthId = `item-${item.id}-footer-width`;
+
+    return (
             <div className="panel-footer">
                 <InlineForm>
 
-                    <FormItem title="Height:">
-                        <Input type="text" value={item.height.toString()} onChange={this.heightChangeHandler}/>
+                    <FormItem id={heightId} title="Height:">
+                        <Input type="text"
+                               id={heightId}
+                               value={item.height.toString()}
+                               onChange={this.heightChangeHandler}/>
                     </FormItem>
 
-                    <FormItem title="Width:">
-                        <Input type="text" value={item.width.toString()} onChange={this.widthChangeHandler}/>
+                    <FormItem id={widthId} title="Width:">
+                        <Input type="text"
+                               id={widthId}
+                               value={item.width.toString()}
+                               onChange={this.widthChangeHandler}/>
                     </FormItem>
 
                 </InlineForm>

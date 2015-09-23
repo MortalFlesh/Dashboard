@@ -13,16 +13,18 @@ const DashboardApp = React.createClass({
     },
 
     render() {
-        const template = new TemplateRecord({
-            id: store.getSelectedTemplate(),
-            name: store.getTemplateName(),
-            items: store.getItems(),
-        });
-
-        const templates = store.getTemplates();
+        const dashboard = {
+            template: new TemplateRecord({
+                id: store.getSelectedTemplate(),
+                name: store.getTemplateName(),
+                items: store.getItems(),
+            }),
+            templates: store.getTemplates(),
+            isShowAddItem: store.isShowAddItem(),
+        };
 
         return (
-            <Dashboard template={template} templates={templates}/>
+            <Dashboard {...dashboard}/>
         );
     }
 });

@@ -1,5 +1,6 @@
 import {List} from 'immutable';
 import './../item/store';
+import './../template/store';
 import dispatcher from './../lib/dispatcher';
 import * as actions from './actions';
 import * as itemActions from './../item/actions';
@@ -66,4 +67,8 @@ export function getItems() {
 
 export function getTemplates() {
     return dashboardCursor().get('templates');
+}
+
+export function isShowAddItem() {
+    return dashboardCursor().get('showAddItem');
 }

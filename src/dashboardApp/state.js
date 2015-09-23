@@ -26,6 +26,7 @@ export const dashboardCursor = appState.cursor(['dashboard']);
 const serverData = {    // todo will be loaded from server
     selectedTemplate: 1,
     templateName: 'Monitoring',
+    showAddItem: false,
     items: [
         {
             id: 1,
