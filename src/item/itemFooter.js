@@ -1,5 +1,6 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+import * as actions from './actions';
 import ItemRecord from './itemRecord';
 import InlineForm from './../bootstrap/inlineForm';
 import FormItem from './../bootstrap/formItem';
@@ -12,13 +13,18 @@ const ItemFooter = React.createClass({
         item: React.PropTypes.instanceOf(ItemRecord).isRequired,
     },
 
-    heightChangeHandler(height) {
-        // parse
-        console.log('H: ', height);
+    heightChangeHandler(heightString) {
+        const item = this.props.item;
+        const height = parseInt(heightString, 10);
+
+        actions.resizeItem({id: item.id, height, width: item.width});
     },
     
-    widthChangeHandler(width) {
-        console.log('W: ', width);
+    widthChangeHandler(widthString) {
+        const item = this.props.item;
+        const width = parseInt(widthString, 10);
+
+        actions.resizeItem({id: item.id, height: item.height, width});
     },
     
     render() {

@@ -13,6 +13,10 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
         case actions.setItemPosition:
             changingPosition(data);
             break;
+
+        case actions.resizeItem:
+            resize(data);
+            break;
     }
 });
 
@@ -44,8 +48,7 @@ function moving(data) {
     setToDashboard('items', itemsUpdated);
 }
 
-function changingPosition(data) {
-    const {id, top, left} = data;
+function changingPosition({id, top, left}) {
     const currentItems = new List(getItems());
     let itemsUpdated = new List();
 
@@ -55,6 +58,24 @@ function changingPosition(data) {
         if (item.id === id) {
             itemUpdated = itemUpdated.set('top', top);
             itemUpdated = itemUpdated.set('left', left);
+        }
+
+        itemsUpdated = itemsUpdated.push(new ItemRecord(itemUpdated));
+    });
+
+    setToDashboard('items', itemsUpdated);
+}
+
+function resize({id, height, width}) {
+    const currentItems = new List(getItems());
+    let itemsUpdated = new List();
+
+    currentItems.forEach((item) => {
+        let itemUpdated = item;
+
+        if (item.id === id) {
+            itemUpdated = itemUpdated.set('height', height);
+            itemUpdated = itemUpdated.set('width', width);
         }
 
         itemsUpdated = itemsUpdated.push(new ItemRecord(itemUpdated));

@@ -7,3 +7,8 @@ export function setMoving(moving: object) {
 export function setItemPosition(position: object) {
     dispatcher.dispatch(setItemPosition, position);
 }
+
+export function resizeItem(resize: object) {
+    dispatcher.dispatch(resizeItem, resize);
+}
+
