@@ -72,3 +72,13 @@ export function getTemplates() {
 export function isShowAddItem() {
     return dashboardCursor().get('showAddItem');
 }
+
+export function getAddItem() {
+    return new ItemRecord({
+        name: dashboardCursor().get('addItemName'),
+        url: dashboardCursor().get('addItemUrl'),
+        refreshRate: dashboardCursor().get('addItemRefreshRate'),
+        height: dashboardCursor().get('addItemHeight'),
+        width: dashboardCursor().get('addItemWidth'),
+    });
+}

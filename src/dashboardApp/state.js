@@ -2,17 +2,26 @@ import Immutable from 'immutable';
 import State from './../lib/state';
 import * as actions from './actions';
 import TemplateRecord from './../template/templateRecord';
+import ItemRecord from './../item/itemRecord';
 
 const defaultTemplate = new TemplateRecord();
+const defaultItem = new ItemRecord();
 
 const basicData = Immutable.fromJS({
     dashboard: {
         selectedTemplate: defaultTemplate.id,
         templateName: defaultTemplate.name,
         items: defaultTemplate.items,
+        showAddItem: true,
         templates: [
             defaultTemplate.toJS(),
         ],
+
+        addItemName: defaultItem.name,
+        addItemUrl: defaultItem.url,
+        addItemRefreshRate: defaultItem.refreshRate,
+        addItemHeight: defaultItem.height,
+        addItemWidth: defaultItem.width,
     }
 });
 
@@ -26,7 +35,6 @@ export const dashboardCursor = appState.cursor(['dashboard']);
 const serverData = {    // todo will be loaded from server
     selectedTemplate: 1,
     templateName: 'Monitoring',
-    showAddItem: false,
     items: [
         {
             id: 1,
@@ -77,7 +85,7 @@ export function loadServerData() {
                     console.log(`ERROR: Property ${paramKey} has no setter implemented!`);
                 }
             } else {
-                console.log(`ERROR: Source does not contains ${paramKey} property!`);
+                console.log(`WARNING: Source does not contains ${paramKey} property!`);
             }
         });
 }

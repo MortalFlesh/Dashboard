@@ -21,6 +21,7 @@ const DashboardApp = React.createClass({
             }),
             templates: store.getTemplates(),
             isShowAddItem: store.isShowAddItem(),
+            addItem: store.getAddItem(),
         };
 
         return (
