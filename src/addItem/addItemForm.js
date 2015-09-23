@@ -1,8 +1,6 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as templateActions from './../template/actions';
 import * as actions from './actions';
-import Container from './../bootstrap/container';
 import Header from './../bootstrap/header';
 import PrimaryButton from './../bootstrap/primaryButton';
 import Form from './../bootstrap/form';
@@ -16,10 +14,13 @@ const AddItemForm = React.createClass({
 
     propTypes: {
         item: React.PropTypes.instanceOf(ItemRecord).isRequired,
+        isSuccess: React.PropTypes.bool,
     },
 
-    backHandler() {
-        templateActions.showAddItem(false);
+    getDefaultProps() {
+        return {
+            isSuccess: false,
+        };
     },
 
     nameChangeHandler(name) {
@@ -50,11 +51,7 @@ const AddItemForm = React.createClass({
         const item = this.props.item;
 
         return (
-            <Container>
-                <Header>
-                    <PrimaryButton onClick={this.backHandler}>{'< Back'}</PrimaryButton>
-                </Header>
-
+            <div>
                 <h2>Add new item</h2>
 
                 <Form>
@@ -100,7 +97,11 @@ const AddItemForm = React.createClass({
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
-                        <PrimaryButton big={true} onClick={this.saveHandler}>Save item</PrimaryButton>
+                        <PrimaryButton big={true}
+                                       success={this.props.isSuccess}
+                                       onClick={this.saveHandler}>
+                            Save item
+                        </PrimaryButton>
                     </FormItem>
 
                 </Form>
@@ -112,7 +113,7 @@ const AddItemForm = React.createClass({
                 <div style={{position: 'relative'}}>
                     <Item item={item}/>
                 </div>
-            </Container>
+            </div>
         );
     }
 });

@@ -1,6 +1,5 @@
 import {List} from 'immutable';
 import './../item/store';
-import './../template/store';
 import './../addItem/store';
 import dispatcher from './../lib/dispatcher';
 import * as actions from './actions';
@@ -40,6 +39,10 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             setToDashboard('templates', templates);
             break;
 
+        case actions.showAddItem:
+            setToDashboard('showAddItem', data ? true : false);
+            break;
+
         case addItem:
             {
                 const defaultItem = new ItemRecord();
@@ -48,6 +51,11 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
                 items = items.push(getAddItem());
 
                 setToDashboard('items', items);
+
+                setToDashboard('addItemSuccess', true);
+                setTimeout(() => {
+                    setToDashboard('addItemSuccess', false);
+                }, 2200);
 
                 setToDashboard('addItemName', defaultItem.name);
                 setToDashboard('addItemUrl', defaultItem.url);
@@ -81,6 +89,10 @@ export function getTemplates() {
 
 export function isShowAddItem() {
     return dashboardCursor().get('showAddItem');
+}
+
+export function isAddItemSuccess() {
+    return dashboardCursor().get('addItemSuccess');
 }
 
 export function getAddItem() {

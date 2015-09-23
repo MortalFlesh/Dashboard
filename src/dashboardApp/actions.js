@@ -16,3 +16,6 @@ export function setTemplates(templates: array) {
     dispatcher.dispatch(setTemplates, templates);
 }
 
+export function showAddItem(show: bool) {
+    dispatcher.dispatch(showAddItem, show);
+}

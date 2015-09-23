@@ -12,7 +12,8 @@ const basicData = Immutable.fromJS({
         selectedTemplate: defaultTemplate.id,
         templateName: defaultTemplate.name,
         items: defaultTemplate.items,
-        showAddItem: true,
+        showAddItem: false,
+        addItemSuccess: false,
         templates: [
             defaultTemplate.toJS(),
         ],

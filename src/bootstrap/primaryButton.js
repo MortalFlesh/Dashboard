@@ -9,19 +9,22 @@ const PrimaryButton = React.createClass({
         onClick: React.PropTypes.func.isRequired,
         children: React.PropTypes.string.isRequired,
         big: React.PropTypes.bool,
+        success: React.PropTypes.bool,
     },
 
     getDefaultProps() {
         return {
             big: false,
+            success: false,
         };
     },
 
     render() {
-        const className = this.props.big ? 'btn-lg' : 'btn-sm';
+        const size = this.props.big ? 'btn-lg' : 'btn-sm';
+        const type = this.props.success ? 'btn-success' : 'btn-primary';
 
         return (
-            <button type="button" className={cn('btn', 'btn-primary', className)} onClick={this.props.onClick}>
+            <button type="button" className={cn('btn', size, type)} onClick={this.props.onClick}>
                 {this.props.children}
             </button>
         );
