@@ -47,8 +47,11 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             {
                 const defaultItem = new ItemRecord();
                 let items = new List(getItems());
+                let newItem = getAddItem();
 
-                items = items.push(getAddItem());
+                newItem = newItem.set('id', items.length + 1); // todo - temporary
+
+                items = items.push(newItem);
 
                 setToDashboard('items', items);
 
