@@ -31,23 +31,27 @@ const AddItemForm = React.createClass({
                 <Form>
 
                     <FormItem id="add-item-name" title="Name:" sizeLabel={1} size={10}>
-                        <Input type="text" id="add-item-name" onChange={this.handler}/>
+                        <Input type="text" placeholder="Item name" id="add-item-name" onChange={this.handler}/>
                     </FormItem>
 
                     <FormItem id="add-item-url" title="URL:" sizeLabel={1} size={10}>
-                        <Input type="text" id="add-item-url" onChange={this.handler}/>
+                        <Input type="text" placeholder="Item URL" id="add-item-url" onChange={this.handler}/>
                     </FormItem>
 
                     <FormItem id="add-item-refresh-rate" title="Refresh rate:" sizeLabel={1} size={10}>
-                        <Input type="text" id="add-item-refresh-rate" onChange={this.handler}/>
+                        <Input type="text" placeholder="Item refresh rate" id="add-item-refresh-rate" onChange={this.handler}/>
                     </FormItem>
 
                     <FormItem id="add-item-height" title="Height:" sizeLabel={1} size={10}>
-                        <Input type="text" id="add-item-height" onChange={this.handler}/>
+                        <Input type="text" placeholder="Item height" id="add-item-height" onChange={this.handler}/>
                     </FormItem>
 
                     <FormItem id="add-item-width" title="Width:" sizeLabel={1} size={10}>
-                        <Input type="text" id="add-item-width" onChange={this.handler}/>
+                        <Input type="text" placeholder="Item width" id="add-item-width" onChange={this.handler}/>
+                    </FormItem>
+
+                    <FormItem id="" title="" sizeLabel={1} size={10}>
+                        <PrimaryButton onClick={this.handler}>Save item</PrimaryButton>
                     </FormItem>
 
                 </Form>
