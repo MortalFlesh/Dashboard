@@ -1,6 +1,7 @@
 import {List} from 'immutable';
 import './../item/store';
 import './../template/store';
+import './../addItem/store';
 import dispatcher from './../lib/dispatcher';
 import * as actions from './actions';
 import * as itemActions from './../item/actions';
