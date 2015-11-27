@@ -16,13 +16,21 @@ const DashboardMenu = React.createClass({
         addTemplateHandler: React.PropTypes.func.isRequired,
     },
 
+    itemClickHandler(id) {
+        
+    },
+
     render() {
         const template = this.props.template;
 
         const templates = this.props.templates.map((t) => {
             const selected = t.id === template.id;
 
-            return <DropdownItem key={t.id} id={t.id} title={t.name} selected={selected}/>;
+            return <DropdownItem key={t.id}
+                                 id={t.id}
+                                 title={t.name}
+                                 selected={selected}
+                                 onClick={this.itemClickHandler}/>;
         }).toList();
 
         return (
@@ -30,7 +38,12 @@ const DashboardMenu = React.createClass({
                 <div className="container">
 
                     <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <button type="button"
+                                className="navbar-toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#navbar"
+                                aria-expanded="false"
+                                aria-controls="navbar">
                             <span className="sr-only">Toggle navigation</span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
