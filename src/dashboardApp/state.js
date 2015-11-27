@@ -11,18 +11,24 @@ const basicData = Immutable.fromJS({
     dashboard: {
         selectedTemplate: defaultTemplate.id,
         templateName: defaultTemplate.name,
+
         items: defaultTemplate.items,
         showAddItem: false,
-        addItemSuccess: false,
-        templates: [
-            defaultTemplate.toJS(),
-        ],
 
         addItemName: defaultItem.name,
         addItemUrl: defaultItem.url,
         addItemRefreshRate: defaultItem.refreshRate,
         addItemHeight: defaultItem.height,
         addItemWidth: defaultItem.width,
+
+        addItemSuccess: false,
+        templates: [
+            defaultTemplate.toJS(),
+        ],
+        showAddTemplate: false,
+        addTemplateSuccess: false,
+
+        addTemplateName: defaultTemplate.name,
     }
 });
 
@@ -64,6 +70,11 @@ const serverData = {    // todo will be loaded from server
         {
             id: 1,
             name: 'Monitoring',
+            items: [],
+        },
+        {
+            id: 2,
+            name: 'Logy',
             items: [],
         },
     ],

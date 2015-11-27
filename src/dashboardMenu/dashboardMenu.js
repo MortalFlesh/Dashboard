@@ -5,6 +5,7 @@ import TemplateRecord from './../template/templateRecord';
 import DropdownMenu from './../bootstrap/dropdownMenu';
 import DropdownLink from './../bootstrap/dropdownLink';
 import DropdownItem from './../bootstrap/dropdownItem';
+import PrimaryButton from './../bootstrap/primaryButton';
 
 const DashboardMenu = React.createClass({
     mixins: [PureRenderMixin],
@@ -12,6 +13,7 @@ const DashboardMenu = React.createClass({
     propTypes: {
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
         templates: React.PropTypes.instanceOf(List).isRequired,
+        addTemplateHandler: React.PropTypes.func.isRequired,
     },
 
     render() {
@@ -43,6 +45,12 @@ const DashboardMenu = React.createClass({
                             <li className="dropdown">
                                 <DropdownLink title={`Template - ${template.name}`}/>
                                 <DropdownMenu items={templates}/>
+                            </li>
+
+                            <li>
+                                <p className="navbar-btn">
+                                    <PrimaryButton onClick={this.props.addTemplateHandler}>+ Template</PrimaryButton>
+                                </p>
                             </li>
                         </ul>
                     </div>

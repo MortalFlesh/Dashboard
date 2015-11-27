@@ -1,10 +1,13 @@
 import {List} from 'immutable';
 import './../item/store';
 import './../addItem/store';
+import './../addTemplate/store';
 import dispatcher from './../lib/dispatcher';
+
 import * as actions from './actions';
-import * as itemActions from './../item/actions';
 import {addItem} from './../addItem/actions';
+import {addTemplate} from './../addTemplate/actions';
+
 import {dashboardCursor} from './state';
 import TemplateRecord from './../template/templateRecord';
 import ItemRecord from './../item/itemRecord';
@@ -43,13 +46,17 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             setToDashboard('showAddItem', data ? true : false);
             break;
 
+        case actions.showAddTemplate:
+            setToDashboard('showAddTemplate', data ? true : false);
+            break;
+
         case addItem:
             {
                 const defaultItem = new ItemRecord();
                 let items = new List(getItems());
                 let newItem = getAddItem();
 
-                newItem = newItem.set('id', items.length + 1); // todo - temporary
+                newItem = newItem.set('id', items.count() + 1); // todo - temporary
 
                 items = items.push(newItem);
 
@@ -65,6 +72,27 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
                 setToDashboard('addItemRefreshRate', defaultItem.refreshRate);
                 setToDashboard('addItemHeight', defaultItem.height);
                 setToDashboard('addItemWidth', defaultItem.width);
+            }
+            break;
+
+        case addTemplate:
+            {
+                const defaultTemplate = new TemplateRecord();
+                let templates = new List(getTemplates());
+                let newTemplate = getAddTemplate();
+
+                newTemplate = newTemplate.set('id', templates.count() + 1); // todo - temporary
+
+                templates = templates.push(newTemplate);
+
+                setToDashboard('templates', templates);
+
+                setToDashboard('addTemplateSuccess', true);
+                setTimeout(() => {
+                    setToDashboard('addTemplateSuccess', false);
+                }, 2200);
+
+                setToDashboard('addTemplateName', defaultTemplate.name);
             }
             break;
     }
@@ -94,8 +122,16 @@ export function isShowAddItem() {
     return dashboardCursor().get('showAddItem');
 }
 
+export function isShowAddTemplate() {
+    return dashboardCursor().get('showAddTemplate');
+}
+
 export function isAddItemSuccess() {
     return dashboardCursor().get('addItemSuccess');
+}
+
+export function isAddTemplateSuccess() {
+    return dashboardCursor().get('addTemplateSuccess');
 }
 
 export function getAddItem() {
@@ -105,5 +141,11 @@ export function getAddItem() {
         refreshRate: dashboardCursor().get('addItemRefreshRate'),
         height: dashboardCursor().get('addItemHeight'),
         width: dashboardCursor().get('addItemWidth'),
+    });
+}
+
+export function getAddTemplate() {
+    return new TemplateRecord({
+        name: dashboardCursor().get('addTemplateName'),
     });
 }

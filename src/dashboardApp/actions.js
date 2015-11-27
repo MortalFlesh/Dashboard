@@ -19,3 +19,7 @@ export function setTemplates(templates: array) {
 export function showAddItem(show: bool) {
     dispatcher.dispatch(showAddItem, show);
 }
+
+export function showAddTemplate(show: bool) {
+    dispatcher.dispatch(showAddTemplate, show);
+}
