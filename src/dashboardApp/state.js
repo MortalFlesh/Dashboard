@@ -41,7 +41,11 @@ export const dashboardCursor = appState.cursor(['dashboard']);
 
 const serverData = {    // todo will be loaded from server
     selectedTemplate: 1,
+
+    // /template/{id=1}/name/
     templateName: 'Monitoring',
+
+    // /template/{id=1}/item/list/
     items: [
         {
             id: 1,
@@ -66,6 +70,8 @@ const serverData = {    // todo will be loaded from server
             isMoving: false,
         },
     ],
+
+    // /template/list/
     templates: [
         {
             id: 1,

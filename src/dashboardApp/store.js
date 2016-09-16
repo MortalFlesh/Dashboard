@@ -2,6 +2,7 @@ import {List} from 'immutable';
 import './../item/store';
 import './../addItem/store';
 import './../addTemplate/store';
+import api from './../lib/api';
 import dispatcher from './../lib/dispatcher';
 
 import * as actions from './actions';
@@ -23,23 +24,11 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             break;
 
         case actions.setItems:
-            let items = new List();
-
-            data.forEach((item) => {
-                items = items.push(new ItemRecord(item));
-            });
-
-            setToDashboard('items', items);
+            _setItems(data);
             break;
 
         case actions.setTemplates:
-            let templates = new List();
-
-            data.forEach((template) => {
-                templates = templates.push(new TemplateRecord(template));
-            });
-
-            setToDashboard('templates', templates);
+            _setTemplates(data);
             break;
 
         case actions.showAddItem:
@@ -51,52 +40,78 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             break;
 
         case addItem:
-            {
-                const defaultItem = new ItemRecord();
-                let items = new List(getItems());
-                let newItem = getAddItem();
-
-                newItem = newItem.set('id', items.count() + 1); // todo - temporary
-
-                items = items.push(newItem);
-
-                setToDashboard('items', items);
-
-                setToDashboard('addItemSuccess', true);
-                setTimeout(() => {
-                    setToDashboard('addItemSuccess', false);
-                }, 2200);
-
-                setToDashboard('addItemName', defaultItem.name);
-                setToDashboard('addItemUrl', defaultItem.url);
-                setToDashboard('addItemRefreshRate', defaultItem.refreshRate);
-                setToDashboard('addItemHeight', defaultItem.height);
-                setToDashboard('addItemWidth', defaultItem.width);
-            }
+            _addItem();
             break;
 
         case addTemplate:
-            {
-                const defaultTemplate = new TemplateRecord();
-                let templates = new List(getTemplates());
-                let newTemplate = getAddTemplate();
-
-                newTemplate = newTemplate.set('id', templates.count() + 1); // todo - temporary
-
-                templates = templates.push(newTemplate);
-
-                setToDashboard('templates', templates);
-
-                setToDashboard('addTemplateSuccess', true);
-                setTimeout(() => {
-                    setToDashboard('addTemplateSuccess', false);
-                }, 2200);
-
-                setToDashboard('addTemplateName', defaultTemplate.name);
-            }
+            _addTemplate();
             break;
     }
 });
+
+function _setItems(data) {
+    let items = new List();
+
+    data.forEach((item) => {
+        items = items.push(new ItemRecord(item));
+    });
+
+    setToDashboard('items', items);
+}
+
+function _setTemplates(data) {
+    let templates = new List();
+
+    data.forEach((template) => {
+        templates = templates.push(new TemplateRecord(template));
+    });
+
+    setToDashboard('templates', templates);
+}
+
+function _addItem() {
+    const defaultItem = new ItemRecord();
+    let items = new List(getItems());
+    let newItem = getAddItem();
+
+    newItem = newItem.set('id', items.count() + 1); // todo - temporary
+
+    api.saveItem(getSelectedTemplate(), newItem);
+    items = items.push(newItem);
+
+    setToDashboard('items', items);
+
+    setToDashboard('addItemSuccess', true);
+    setTimeout(() => {
+        setToDashboard('addItemSuccess', false);
+    }, 2200);
+
+    setToDashboard('addItemName', defaultItem.name);
+    setToDashboard('addItemUrl', defaultItem.url);
+    setToDashboard('addItemRefreshRate', defaultItem.refreshRate);
+    setToDashboard('addItemHeight', defaultItem.height);
+    setToDashboard('addItemWidth', defaultItem.width);
+}
+
+function _addTemplate() {
+    const defaultTemplate = new TemplateRecord();
+    let templates = new List(getTemplates());
+    let newTemplate = getAddTemplate();
+
+    newTemplate = newTemplate.set('id', templates.count() + 1); // todo - temporary
+
+    api.saveTemplate(newTemplate);
+    templates = templates.push(newTemplate);
+
+    setToDashboard('templates', templates);
+
+    setToDashboard('addTemplateSuccess', true);
+    setTimeout(() => {
+        setToDashboard('addTemplateSuccess', false);
+    }, 2200);
+
+    setToDashboard('addTemplateName', defaultTemplate.name);
+}
 
 export function setToDashboard(name, value) {
     dashboardCursor((dashboard) => dashboard.set(name, value));
