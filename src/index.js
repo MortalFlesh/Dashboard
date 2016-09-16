@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import DashboardApp from './dashboardApp/dashboardApp';
 import {loadServerData} from './dashboardApp/state';
 
-window.tutorial.debug.logStart();
+window.dashboard.debug.logStart();
 
 loadServerData();
 

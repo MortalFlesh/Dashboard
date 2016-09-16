@@ -2,7 +2,7 @@ import {List} from 'immutable';
 import './../item/store';
 import './../addItem/store';
 import './../addTemplate/store';
-import api from './../lib/api';
+import api from './../service/api';
 import dispatcher from './../lib/dispatcher';
 
 import * as actions from './actions';
@@ -74,9 +74,9 @@ function _addItem() {
     let items = new List(getItems());
     let newItem = getAddItem();
 
-    newItem = newItem.set('id', items.count() + 1); // todo - temporary
+    const newItemId = api.saveItem(getSelectedTemplate(), newItem);
+    newItem = newItem.set('id', newItemId);
 
-    api.saveItem(getSelectedTemplate(), newItem);
     items = items.push(newItem);
 
     setToDashboard('items', items);
@@ -98,9 +98,9 @@ function _addTemplate() {
     let templates = new List(getTemplates());
     let newTemplate = getAddTemplate();
 
-    newTemplate = newTemplate.set('id', templates.count() + 1); // todo - temporary
+    const newTemplateId = api.saveTemplate(newTemplate);
+    newTemplate = newTemplate.set('id', newTemplateId);
 
-    api.saveTemplate(newTemplate);
     templates = templates.push(newTemplate);
 
     setToDashboard('templates', templates);
@@ -111,6 +111,10 @@ function _addTemplate() {
     }, 2200);
 
     setToDashboard('addTemplateName', defaultTemplate.name);
+}
+
+export function getApiUrl() {
+    return dashboardCursor().get('apiUrl');
 }
 
 export function setToDashboard(name, value) {

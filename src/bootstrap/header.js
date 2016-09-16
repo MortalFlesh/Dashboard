@@ -5,7 +5,10 @@ const Header = React.createClass({
     mixins: [PureRenderMixin],
 
     propTypes: {
-        children: React.PropTypes.element.isRequired,
+        children: React.PropTypes.oneOfType([
+            React.PropTypes.array,
+            React.PropTypes.element,
+        ]).isRequired,
     },
 
     render() {

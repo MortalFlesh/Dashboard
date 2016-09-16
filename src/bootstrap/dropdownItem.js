@@ -16,7 +16,7 @@ const DropdownItem = React.createClass({
 
     render() {
         return (
-            <li><a onclick={this.clickHandler}>{this.props.title}</a></li>
+            <li><a onClick={this.clickHandler}>{this.props.title}</a></li>
         );
     }
 });
