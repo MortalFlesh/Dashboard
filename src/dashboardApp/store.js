@@ -1,17 +1,16 @@
-import {List} from 'immutable';
-import './../item/store';
-import './../addItem/store';
-import './../addTemplate/store';
-import api from './../service/api';
-import dispatcher from './../lib/dispatcher';
-
-import * as actions from './actions';
-import {addItem} from './../addItem/actions';
-import {addTemplate} from './../addTemplate/actions';
-
-import {dashboardCursor} from './state';
-import TemplateRecord from './../template/templateRecord';
-import ItemRecord from './../item/itemRecord';
+import {List} from "immutable";
+import "./../item/store";
+import "./../addItem/store";
+import "./../addTemplate/store";
+import api from "./../service/api";
+import flashMessage from "./../service/flashMessageService";
+import dispatcher from "./../lib/dispatcher";
+import * as actions from "./actions";
+import {addItem} from "./../addItem/actions";
+import {addTemplate} from "./../addTemplate/actions";
+import {dashboardCursor} from "./state";
+import TemplateRecord from "./../template/templateRecord";
+import ItemRecord from "./../item/itemRecord";
 
 export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
@@ -81,10 +80,14 @@ function _addItem() {
 
     setToDashboard('items', items);
 
-    setToDashboard('addItemSuccess', true);
-    setTimeout(() => {
-        setToDashboard('addItemSuccess', false);
-    }, 2200);
+    flashMessage.show(
+        () => {
+            setToDashboard('addItemSuccess', true);
+        },
+        () => {
+            setToDashboard('addItemSuccess', false);
+        },
+    );
 
     setToDashboard('addItemName', defaultItem.name);
     setToDashboard('addItemUrl', defaultItem.url);
@@ -105,10 +108,14 @@ function _addTemplate() {
 
     setToDashboard('templates', templates);
 
-    setToDashboard('addTemplateSuccess', true);
-    setTimeout(() => {
-        setToDashboard('addTemplateSuccess', false);
-    }, 2200);
+    flashMessage.show(
+        () => {
+            setToDashboard('addTemplateSuccess', true);
+        },
+        () => {
+            setToDashboard('addTemplateSuccess', false);
+        },
+    );
 
     setToDashboard('addTemplateName', defaultTemplate.name);
 }
