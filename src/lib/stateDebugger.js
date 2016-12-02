@@ -1,8 +1,8 @@
 import dispatcher from './dispatcher';
 import state from './../dashboardApp/state';
 
-window.tutorial = window.tutorial || {};
-const debug = window.tutorial.debug = {};
+window.dashboard = window.dashboard || {};
+const debug = window.dashboard.debug = {};
 
 let token;
 debug.logStart = () => {

@@ -1,9 +1,8 @@
-import React from 'react';
-import * as store from './store';
-import * as actions from './actions';
-import state from './state';
-import Dashboard from './../dashboard/dashboard';
-import TemplateRecord from './../template/templateRecord';
+import React from "react";
+import * as store from "./store";
+import state from "./state";
+import Dashboard from "./../dashboard/dashboard";
+import TemplateRecord from "./../template/templateRecord";
 
 const DashboardApp = React.createClass({
     componentDidMount() {

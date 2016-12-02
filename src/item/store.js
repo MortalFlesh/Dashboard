@@ -8,17 +8,25 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
         case actions.setMoving:
             moving(data);
+            showSaveButton();
             break;
 
         case actions.setItemPosition:
             changingPosition(data);
+            showSaveButton();
             break;
 
         case actions.resizeItem:
             resize(data);
+            showSaveButton();
             break;
     }
 });
+
+function showSaveButton() {
+    // todo sets information to global state which show the button (click -> save template items -> API)
+    console.log('showSaveButton');
+}
 
 function moving(data) {
     const {id, isMoving, innerX, innerY} = data;

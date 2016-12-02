@@ -1,7 +1,7 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import TemplateRecord from './../template/templateRecord';
-import Items from './../items/items';
+import React from "react";
+import PureRenderMixin from "react-addons-pure-render-mixin";
+import TemplateRecord from "./../template/templateRecord";
+import Items from "./../items/items";
 
 const Template = React.createClass({
     mixins: [PureRenderMixin],

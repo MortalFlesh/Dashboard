@@ -32,6 +32,7 @@ const ItemFooter = React.createClass({
 
         const heightId = `item-${item.id}-footer-height`;
         const widthId = `item-${item.id}-footer-width`;
+        const refreshRateId = `item-${item.id}-footer-refreshRate`;
 
     return (
             <div className="panel-footer">
@@ -49,6 +50,14 @@ const ItemFooter = React.createClass({
                                id={widthId}
                                value={item.width.toString()}
                                onChange={this.widthChangeHandler}/>
+                    </FormItem>
+
+                    <FormItem id={refreshRateId} title="Refresh rate:">
+                        <Input type="text"
+                               id={refreshRateId}
+                               value={item.refreshRate.toString()}
+                               onChange={() => {}}
+                               disabled={true}/>
                     </FormItem>
 
                 </InlineForm>
