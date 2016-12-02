@@ -18,7 +18,7 @@ class Api {
      * @private
      */
     _getData(path, done) {
-        this.loader.getJson(this._getUrl() + path, done);
+        this.loader.get(this._getUrl() + path, done);
     }
 
     /**
@@ -41,11 +41,17 @@ class Api {
         this._getData(`/template/${templateId}/item/list/`, done)
     }
 
-    saveItem(templateId, item) {
-        // todo saves an item to api POST:template/{id}/item/
-        console.log(`API<POST>: /template/${templateId}/item/`, item);
-
-        return 666;   // todo - new itemId
+    saveItem(templateId, item, done) {
+        this._postData(
+            `/template/${templateId}/item/`,
+            {
+                item: item.toJSON(),
+            },
+            (response) => {
+                // todo - handleError
+                done(response.id);
+            }
+        );
     }
 
     /**
@@ -55,7 +61,7 @@ class Api {
      * @private
      */
     _postData(path, data, done) {
-        this.loader.postJson(this._getUrl() + path, data, done);
+        this.loader.post(this._getUrl() + path, data, done);
     }
 
     saveTemplate(template, done) {
@@ -65,6 +71,7 @@ class Api {
                 name: template.name,
             },
             (response) => {
+                // todo - handleError
                 done(response.id);
             }
         );

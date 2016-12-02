@@ -9,7 +9,7 @@ class Loader {
      * @param url : string
      * @param done : function
      */
-    getJson(url, done) {
+    get(url, done) {
         this.jQuery
             .get(url)
             .done(done);
@@ -20,7 +20,7 @@ class Loader {
      * @param data : object
      * @param done : function
      */
-    postJson(url, data, done) {
+    post(url, data, done) {
         this.jQuery
             .post(url, data)
             .done(done);
