@@ -126,6 +126,10 @@ export function getApiUrl() {
     return dashboardCursor().get('apiUrl');
 }
 
+export function getApiVersion() {
+    return dashboardCursor().get('apiVersion');
+}
+
 export function setToDashboard(name, value) {
     dashboardCursor((dashboard) => dashboard.set(name, value));
 }

@@ -39,6 +39,7 @@ let dashboard = {
 
 let config = {
     apiUrl: 'http://dashboard-api',
+    apiVersion: 'dev',
 };
 let configLocal = {
     apiUrl: 'http://dashboard-api/app_dev.php',
