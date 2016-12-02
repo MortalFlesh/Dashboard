@@ -1,7 +1,9 @@
 import Immutable from "immutable";
 import State from "./../lib/state";
 import api from "./../service/api";
+import templateService from "./../service/templateService";
 import * as actions from "./actions";
+import {getSelectedTemplate} from "./../service/sessionStorage/sessionStorageStore";
 import TemplateRecord from "./../template/templateRecord";
 import ItemRecord from "./../item/itemRecord";
 
@@ -63,20 +65,9 @@ export const state = appState;
 export const dashboardCursor = appState.cursor(['dashboard']);
 
 export function loadServerData() {
-    // todo
-    // - selectedTemplate will be stored in localStorage-like system
-    // - so it will have sessionStorage.getSelectedTemplate()
-    const selectedTemplate = 1;
-
     api.loadTemplates((response) => {
         actions.setTemplates(response.templates)
     });
 
-    api.loadTemplateName(selectedTemplate, (response) => {
-        actions.setTemplateName(response.name)
-    });
-
-    api.loadItems(selectedTemplate, (response) => {
-        actions.setItems(response.items);
-    });
+    templateService.changeTemplate(getSelectedTemplate() || 1);
 }

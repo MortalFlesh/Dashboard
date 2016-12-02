@@ -2,6 +2,8 @@ import {List} from "immutable";
 import React from "react";
 import PureRenderMixin from "react-addons-pure-render-mixin";
 import TemplateRecord from "./../template/templateRecord";
+import templateService from "./../service/templateService";
+
 import DropdownMenu from "./../bootstrap/dropdownMenu";
 import DropdownLink from "./../bootstrap/dropdownLink";
 import DropdownItem from "./../bootstrap/dropdownItem";
@@ -17,8 +19,7 @@ const DashboardMenu = React.createClass({
     },
 
     itemClickHandler(id) {
-        // todo select template
-        console.log(`dashboardMenu - click on ${id}`);
+        templateService.changeTemplate(id);
     },
 
     render() {
