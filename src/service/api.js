@@ -1,10 +1,12 @@
 import Loader from "./loader";
-import {getApiUrl} from "./../dashboardApp/store";
+import {getApiUrl, getApiVersion} from "./../dashboardApp/store";
 
 class Api {
-    constructor(loader, urlGetter) {
+    constructor(loader, urlGetter, versionGetter) {
         this.loader = loader;
         this.urlGetter = urlGetter;
+        this.versionGetter = versionGetter;
+
         this.url = null;
     }
 
@@ -27,7 +29,7 @@ class Api {
      */
     _getUrl() {
         if (!this.url) {
-            this.url = this.url || this.urlGetter();
+            this.url = `${this.urlGetter()}/${this.versionGetter()}`;
         }
 
         return this.url;
@@ -78,4 +80,4 @@ class Api {
     }
 }
 
-export default new Api(Loader, getApiUrl);
+export default new Api(Loader, getApiUrl, getApiVersion);
