@@ -14,6 +14,8 @@ class TemplateService {
         api.loadItems(id, (response) => {
             actions.setItems(response.items);
         });
+
+        actions.showAddTemplate(false);
     }
 }
 

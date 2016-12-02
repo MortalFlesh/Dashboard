@@ -1,5 +1,5 @@
 import Loader from "./loader";
-import {getApiUrl} from './../dashboardApp/store';
+import {getApiUrl} from "./../dashboardApp/store";
 
 class Api {
     constructor(loader, urlGetter) {
@@ -12,10 +12,25 @@ class Api {
         this._getData('/template/list/', done);
     }
 
+    /**
+     * @param path : string
+     * @param done : function
+     * @private
+     */
     _getData(path, done) {
-        this.url = this.url || this.urlGetter();
+        this.loader.getJson(this._getUrl() + path, done);
+    }
 
-        this.loader.loadJson(this.url + path, 'GET', done);
+    /**
+     * @returns {string}
+     * @private
+     */
+    _getUrl() {
+        if (!this.url) {
+            this.url = this.url || this.urlGetter();
+        }
+
+        return this.url;
     }
 
     loadTemplateName(templateId, done) {
@@ -33,11 +48,26 @@ class Api {
         return 666;   // todo - new itemId
     }
 
-    saveTemplate(template) {
-        // todo saves a template to api POST:template/
-        console.log('API<POST>: /template/', template);
+    /**
+     * @param path : string
+     * @param data : object
+     * @param done : function
+     * @private
+     */
+    _postData(path, data, done) {
+        this.loader.postJson(this._getUrl() + path, data, done);
+    }
 
-        return 666;   // todo - new templateId
+    saveTemplate(template, done) {
+        this._postData(
+            `/template/`,
+            {
+                name: template.name,
+            },
+            (response) => {
+                done(response.id);
+            }
+        );
     }
 }
 

@@ -97,27 +97,28 @@ function _addItem() {
 }
 
 function _addTemplate() {
-    const defaultTemplate = new TemplateRecord();
-    let templates = new List(getTemplates());
     let newTemplate = getAddTemplate();
 
-    const newTemplateId = api.saveTemplate(newTemplate);
-    newTemplate = newTemplate.set('id', newTemplateId);
+    api.saveTemplate(newTemplate, (newTemplateId) => {
+        newTemplate = newTemplate.set('id', newTemplateId);
 
-    templates = templates.push(newTemplate);
+        let templates = new List(getTemplates());
+        templates = templates.push(newTemplate);
 
-    setToDashboard('templates', templates);
+        setToDashboard('templates', templates);
 
-    flashMessage.show(
-        () => {
-            setToDashboard('addTemplateSuccess', true);
-        },
-        () => {
-            setToDashboard('addTemplateSuccess', false);
-        },
-    );
+        flashMessage.show(
+            () => {
+                setToDashboard('addTemplateSuccess', true);
+            },
+            () => {
+                setToDashboard('addTemplateSuccess', false);
+            },
+        );
 
-    setToDashboard('addTemplateName', defaultTemplate.name);
+        const defaultTemplate = new TemplateRecord();
+        setToDashboard('addTemplateName', defaultTemplate.name);
+    });
 }
 
 export function getApiUrl() {

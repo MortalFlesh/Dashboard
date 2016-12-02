@@ -1,19 +1,30 @@
 import jQuery from "jquery-browserify";
 
-const Loader = {
-    loadJson(url, method, done) {
-        this.loadJsonWithData(url, method, {}, done);
-    },
+class Loader {
+    constructor(jQuery) {
+        this.jQuery = jQuery;
+    }
 
-    loadJsonWithData(url, method, data, done) {
-        jQuery.ajax({
-            url,
-            data,
-            method,
-            dataType: 'json',
-        })
+    /**
+     * @param url : string
+     * @param done : function
+     */
+    getJson(url, done) {
+        this.jQuery
+            .get(url)
             .done(done);
-    },
-};
+    }
 
-export default Loader;
+    /**
+     * @param url : string
+     * @param data : object
+     * @param done : function
+     */
+    postJson(url, data, done) {
+        this.jQuery
+            .post(url, data)
+            .done(done);
+    }
+}
+
+export default new Loader(jQuery);
