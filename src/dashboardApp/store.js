@@ -69,31 +69,32 @@ function _setTemplates(data) {
 }
 
 function _addItem() {
-    const defaultItem = new ItemRecord();
-    let items = new List(getItems());
     let newItem = getAddItem();
 
-    const newItemId = api.saveItem(getSelectedTemplate(), newItem);
-    newItem = newItem.set('id', newItemId);
+    api.saveItem(getSelectedTemplate(), newItem, (newItemId) => {
+        newItem = newItem.set('id', newItemId);
 
-    items = items.push(newItem);
+        let items = new List(getItems());
+        items = items.push(newItem);
 
-    setToDashboard('items', items);
+        setToDashboard('items', items);
 
-    flashMessage.show(
-        () => {
-            setToDashboard('addItemSuccess', true);
-        },
-        () => {
-            setToDashboard('addItemSuccess', false);
-        },
-    );
+        flashMessage.show(
+            () => {
+                setToDashboard('addItemSuccess', true);
+            },
+            () => {
+                setToDashboard('addItemSuccess', false);
+            },
+        );
 
-    setToDashboard('addItemName', defaultItem.name);
-    setToDashboard('addItemUrl', defaultItem.url);
-    setToDashboard('addItemRefreshRate', defaultItem.refreshRate);
-    setToDashboard('addItemHeight', defaultItem.height);
-    setToDashboard('addItemWidth', defaultItem.width);
+        const defaultItem = new ItemRecord();
+        setToDashboard('addItemName', defaultItem.name);
+        setToDashboard('addItemUrl', defaultItem.url);
+        setToDashboard('addItemRefreshRate', defaultItem.refreshRate);
+        setToDashboard('addItemHeight', defaultItem.height);
+        setToDashboard('addItemWidth', defaultItem.width);
+    });
 }
 
 function _addTemplate() {
