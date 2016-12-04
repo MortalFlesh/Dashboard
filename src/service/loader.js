@@ -14,7 +14,7 @@ class Loader {
             this.jQuery.get(url)
                 .done(resolve)
                 .error((xhr, status, error) => {
-                    reject([status, error]);
+                    reject({status, error});
                 });
         });
     }
@@ -24,10 +24,25 @@ class Loader {
      * @param data : object
      * @param done : function
      */
-    post(url, data, done) {
+    postOld(url, data, done) {
         this.jQuery
             .post(url, data)
             .done(done);
+    }
+
+    /**
+     * @param url : string
+     * @param data : object
+     * @returns {Promise}
+     */
+    post(url, data) {
+        return new Promise((resolve, reject) => {
+            this.jQuery.post(url, data)
+                .done(resolve)
+                .error((xhr, status, error) => {
+                    reject({status, error});
+                })
+        });
     }
 }
 

@@ -47,7 +47,7 @@ class Api {
     }
 
     saveItem(templateId, item, done) {
-        this._postData(
+        this._postDataOld(
             `/template/${templateId}/item/`,
             {
                 item: item.toJSON(),
@@ -65,21 +65,23 @@ class Api {
      * @param done : function
      * @private
      */
-    _postData(path, data, done) {
-        this.loader.post(this._getUrl() + path, data, done);
+    _postDataOld(path, data, done) {
+        this.loader.postOld(this._getUrl() + path, data, done);
     }
 
-    saveTemplate(template, done) {
-        this._postData(
-            `/template/`,
-            {
-                name: template.name,
-            },
-            (response) => {
-                // todo - handleError
-                done(response.id);
-            }
-        );
+    /**
+     * @param path : string
+     * @param data : object
+     * @returns {Promise}
+     * @private
+     */
+    _postData(path, data) {
+        return this.loader.post(this._getUrl() + path, data);
+    }
+
+    saveTemplate(template) {
+        return this._postData('/template/', {name: template.name})
+            .then(({id}) => id);
     }
 }
 

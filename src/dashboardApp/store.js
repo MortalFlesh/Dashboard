@@ -100,7 +100,7 @@ function _addItem() {
 function _addTemplate() {
     let newTemplate = getAddTemplate();
 
-    api.saveTemplate(newTemplate, (newTemplateId) => {
+    api.saveTemplate(newTemplate).then((newTemplateId) => {
         newTemplate = newTemplate.set('id', newTemplateId);
 
         let templates = new List(getTemplates());
