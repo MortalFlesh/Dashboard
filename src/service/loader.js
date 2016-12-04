@@ -7,16 +7,6 @@ class Loader {
 
     /**
      * @param url : string
-     * @param done : function
-     */
-    getOld(url, done) {
-        this.jQuery
-            .get(url)
-            .done(done);
-    }
-
-    /**
-     * @param url : string
      * @returns {Promise}
      */
     get(url) {

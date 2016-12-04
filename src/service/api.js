@@ -17,15 +17,6 @@ class Api {
 
     /**
      * @param path : string
-     * @param done : function
-     * @private
-     */
-    _getDataOld(path, done) {
-        this.loader.getOld(this._getUrl() + path, done);
-    }
-
-    /**
-     * @param path : string
      * @returns {Promise}
      * @private
      */
@@ -50,8 +41,9 @@ class Api {
             .then(({name}) => name);
     }
 
-    loadItems(templateId, done) {
-        this._getDataOld(`/template/${templateId}/item/list/`, done)
+    loadItems(templateId) {
+        return this._getData(`/template/${templateId}/item/list/`)
+            .then(({items}) => items);
     }
 
     saveItem(templateId, item, done) {
