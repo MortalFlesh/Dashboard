@@ -55,7 +55,9 @@ const ItemHeader = React.createClass({
                  onMouseMove={this.onMouseMove}
                  onMouseUp={this.onMouseUp}>
 
-                <ItemButtons/>
+                {this.props.item.isShowSaveButton &&
+                    <ItemButtons/>
+                }
 
                 <h3 className="panel-title">{this.props.item.name}</h3>
             </div>

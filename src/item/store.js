@@ -1,35 +1,46 @@
-import {List} from 'immutable';
-import * as actions from './actions';
-import {setToDashboard, getItems} from './../dashboardApp/store';
-import dispatcher from './../lib/dispatcher';
-import ItemRecord from './../item/itemRecord';
+import {List} from "immutable";
+import * as actions from "./actions";
+import {setToDashboard, getItems} from "./../dashboardApp/store";
+import dispatcher from "./../lib/dispatcher";
+import ItemRecord from "./../item/itemRecord";
 
 export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
         case actions.setMoving:
             moving(data);
-            showSaveButton();
+            showSaveButton(data);
             break;
 
         case actions.setItemPosition:
             changingPosition(data);
-            showSaveButton();
+            showSaveButton(data);
             break;
 
         case actions.resizeItem:
             resize(data);
-            showSaveButton();
+            showSaveButton(data);
             break;
     }
 });
 
-function showSaveButton() {
-    // todo sets information to global state which show the button (click -> save template items -> API)
-    console.log('showSaveButton');
+function showSaveButton({id}) {
+    const currentItems = new List(getItems());
+    let itemsUpdated = new List();
+
+    currentItems.forEach((item) => {
+        let itemUpdated = item;
+
+        if (item.id === id) {
+            itemUpdated = itemUpdated.set('isShowSaveButton', true);
+        }
+
+        itemsUpdated = itemsUpdated.push(new ItemRecord(itemUpdated));
+    });
+
+    setToDashboard('items', itemsUpdated);
 }
 
-function moving(data) {
-    const {id, isMoving, innerX, innerY} = data;
+function moving({id, isMoving, innerX, innerY}) {
     const currentItems = new List(getItems());
     let itemsUpdated = new List();
 
