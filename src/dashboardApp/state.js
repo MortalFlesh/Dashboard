@@ -1,6 +1,7 @@
 import Immutable from "immutable";
 import State from "./../lib/state";
 import api from "./../service/api";
+import config from "./../service/config";
 import templateService from "./../service/templateService";
 import * as actions from "./actions";
 import {getSelectedTemplate} from "./../service/sessionStorage/sessionStorageStore";
@@ -37,24 +38,10 @@ let dashboard = {
     addTemplateName: defaultTemplate.name,
 };
 
-let config = {
-    apiUrl: 'http://dashboard-api',
-    apiVersion: 'dev',
-};
-let configLocal = {
-    apiUrl: 'http://dashboard-api/app_dev.php',
-};
-/**
- * todo
- * - zkusit jeste nacitat config json (prevedeny z yml pri buildu) primo v index.html)
- * - jak vyresit, aby config_local.yml prepsal config ale nemusel existovat
- */
-
 const basicData = Immutable.fromJS({
     dashboard: Immutable
         .fromJS(dashboard)
-        .merge(config)
-        .merge(configLocal || {})
+        .merge(config.getConfig())
         .toJS()
 });
 
