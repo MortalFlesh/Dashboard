@@ -46,27 +46,9 @@ class Api {
             .then(({items}) => items);
     }
 
-    saveItem(templateId, item, done) {
-        this._postDataOld(
-            `/template/${templateId}/item/`,
-            {
-                item: item.toJSON(),
-            },
-            (response) => {
-                // todo - handleError
-                done(response.id);
-            }
-        );
-    }
-
-    /**
-     * @param path : string
-     * @param data : object
-     * @param done : function
-     * @private
-     */
-    _postDataOld(path, data, done) {
-        this.loader.postOld(this._getUrl() + path, data, done);
+    saveItem(templateId, item) {
+        return this._postData(`/template/${templateId}/item/`, {item: item.toJSON()})
+            .then(({id}) => id);
     }
 
     /**

@@ -71,7 +71,7 @@ function _setTemplates(data) {
 function _addItem() {
     let newItem = getAddItem();
 
-    api.saveItem(getSelectedTemplate(), newItem, (newItemId) => {
+    api.saveItem(getSelectedTemplate(), newItem).then((newItemId) => {
         newItem = newItem.set('id', newItemId);
 
         let items = new List(getItems());

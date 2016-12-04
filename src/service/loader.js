@@ -22,17 +22,6 @@ class Loader {
     /**
      * @param url : string
      * @param data : object
-     * @param done : function
-     */
-    postOld(url, data, done) {
-        this.jQuery
-            .post(url, data)
-            .done(done);
-    }
-
-    /**
-     * @param url : string
-     * @param data : object
      * @returns {Promise}
      */
     post(url, data) {
