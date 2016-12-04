@@ -10,24 +10,25 @@ class Api {
         this.url = null;
     }
 
-    loadTemplates(done) {
-        this._getData('/template/list/', done);
+    loadTemplates() {
+        return this.getData('/template/list/')
+            .then(({templates}) => templates);
     }
 
     /**
      * @param path : string
-     * @param done : function
+     * @returns {Promise}
      * @private
      */
-    _getData(path, done) {
-        this.loader.get(this._getUrl() + path, done);
+    getData(path) {
+        return this.loader.get(this.getUrl() + path);
     }
 
     /**
      * @returns {string}
      * @private
      */
-    _getUrl() {
+    getUrl() {
         if (!this.url) {
             this.url = `${this.urlGetter()}/${this.versionGetter()}`;
         }
@@ -35,48 +36,34 @@ class Api {
         return this.url;
     }
 
-    loadTemplateName(templateId, done) {
-        this._getData(`/template/${templateId}/name/`, done);
+    loadTemplateName(templateId) {
+        return this.getData(`/template/${templateId}/name/`)
+            .then(({name}) => name);
     }
 
-    loadItems(templateId, done) {
-        this._getData(`/template/${templateId}/item/list/`, done)
+    loadItems(templateId) {
+        return this.getData(`/template/${templateId}/item/list/`)
+            .then(({items}) => items);
     }
 
-    saveItem(templateId, item, done) {
-        this._postData(
-            `/template/${templateId}/item/`,
-            {
-                item: item.toJSON(),
-            },
-            (response) => {
-                // todo - handleError
-                done(response.id);
-            }
-        );
+    saveItem(templateId, item) {
+        return this.postData(`/template/${templateId}/item/`, {item: item.toJSON()})
+            .then(({id}) => id);
     }
 
     /**
      * @param path : string
      * @param data : object
-     * @param done : function
+     * @returns {Promise}
      * @private
      */
-    _postData(path, data, done) {
-        this.loader.post(this._getUrl() + path, data, done);
+    postData(path, data) {
+        return this.loader.post(this.getUrl() + path, data);
     }
 
-    saveTemplate(template, done) {
-        this._postData(
-            `/template/`,
-            {
-                name: template.name,
-            },
-            (response) => {
-                // todo - handleError
-                done(response.id);
-            }
-        );
+    saveTemplate(template) {
+        return this.postData('/template/', {name: template.name})
+            .then(({id}) => id);
     }
 }
 

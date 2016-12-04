@@ -53,9 +53,7 @@ export const state = appState;
 export const dashboardCursor = appState.cursor(['dashboard']);
 
 export function loadServerData() {
-    api.loadTemplates((response) => {
-        actions.setTemplates(response.templates)
-    });
+    api.loadTemplates().then(actions.setTemplates);
 
     templateService.changeTemplate(getSelectedTemplate() || 1);
 }

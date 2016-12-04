@@ -7,13 +7,8 @@ class TemplateService {
 
         actions.setSelectedTemplate(id);
 
-        api.loadTemplateName(id, (response) => {
-            actions.setTemplateName(response.name)
-        });
-
-        api.loadItems(id, (response) => {
-            actions.setItems(response.items);
-        });
+        api.loadTemplateName(id).then(actions.setTemplateName);
+        api.loadItems(id).then(actions.setItems);
 
         actions.showAddTemplate(false);
     }
