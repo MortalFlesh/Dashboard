@@ -8,22 +8,26 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
         case actions.setMoving:
             moving(data);
-            showSaveButton(data);
+            itemSaveButton(data, true);
             break;
 
         case actions.setItemPosition:
             changingPosition(data);
-            showSaveButton(data);
+            itemSaveButton(data, true);
             break;
 
         case actions.resizeItem:
             resize(data);
-            showSaveButton(data);
+            itemSaveButton(data, true);
+            break;
+
+        case actions.saveItem:
+            itemSaveButton(data, false);
             break;
     }
 });
 
-function showSaveButton({id}) {
+function itemSaveButton({id}, visibility) {
     const currentItems = new List(getItems());
     let itemsUpdated = new List();
 
@@ -31,7 +35,7 @@ function showSaveButton({id}) {
         let itemUpdated = item;
 
         if (item.id === id) {
-            itemUpdated = itemUpdated.set('isShowSaveButton', true);
+            itemUpdated = itemUpdated.set('isShowSaveButton', visibility);
         }
 
         itemsUpdated = itemsUpdated.push(new ItemRecord(itemUpdated));

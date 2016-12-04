@@ -12,3 +12,6 @@ export function resizeItem(resize: object) {
     dispatcher.dispatch(resizeItem, resize);
 }
 
+export function saveItem(item: object) {
+    dispatcher.dispatch(saveItem, item);
+}
