@@ -9,10 +9,24 @@ class Loader {
      * @param url : string
      * @param done : function
      */
-    get(url, done) {
+    getOld(url, done) {
         this.jQuery
             .get(url)
             .done(done);
+    }
+
+    /**
+     * @param url : string
+     * @returns {Promise}
+     */
+    get(url) {
+        return new Promise((resolve, reject) => {
+            this.jQuery.get(url)
+                .done(resolve)
+                .error((xhr, status, error) => {
+                    reject([status, error]);
+                });
+        });
     }
 
     /**

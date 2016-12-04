@@ -10,8 +10,9 @@ class Api {
         this.url = null;
     }
 
-    loadTemplates(done) {
-        this._getData('/template/list/', done);
+    loadTemplates() {
+        return this._getData('/template/list/')
+            .then(({templates}) => templates);
     }
 
     /**
@@ -19,8 +20,17 @@ class Api {
      * @param done : function
      * @private
      */
-    _getData(path, done) {
-        this.loader.get(this._getUrl() + path, done);
+    _getDataOld(path, done) {
+        this.loader.getOld(this._getUrl() + path, done);
+    }
+
+    /**
+     * @param path : string
+     * @returns {Promise}
+     * @private
+     */
+    _getData(path) {
+        return this.loader.get(this._getUrl() + path);
     }
 
     /**
@@ -36,11 +46,11 @@ class Api {
     }
 
     loadTemplateName(templateId, done) {
-        this._getData(`/template/${templateId}/name/`, done);
+        this._getDataOld(`/template/${templateId}/name/`, done);
     }
 
     loadItems(templateId, done) {
-        this._getData(`/template/${templateId}/item/list/`, done)
+        this._getDataOld(`/template/${templateId}/item/list/`, done)
     }
 
     saveItem(templateId, item, done) {
