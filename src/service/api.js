@@ -45,8 +45,9 @@ class Api {
         return this.url;
     }
 
-    loadTemplateName(templateId, done) {
-        this._getDataOld(`/template/${templateId}/name/`, done);
+    loadTemplateName(templateId) {
+        return this._getData(`/template/${templateId}/name/`)
+            .then(({name}) => name);
     }
 
     loadItems(templateId, done) {
