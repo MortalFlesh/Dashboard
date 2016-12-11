@@ -1,3 +1,4 @@
+import React from "react";
 import {List} from "immutable";
 import "./../flashMessage/store";
 import "./../item/store";
@@ -114,7 +115,17 @@ function _addTemplate() {
 }
 
 function _saveItem(item) {
-    api.saveItem(getSelectedTemplate(), item);
+    api.saveItem(getSelectedTemplate(), item)
+        .then(() => {
+            // todo check React warning with `keys` for items (try new version of React?)
+            const message = [
+                'Item ',
+                <strong>{item.name}</strong>,
+                ' was updated successfully.'
+            ];
+
+            addFlashMessage(new FlashMessageRecord({message}));
+        });
 }
 
 export function getApiUrl() {
