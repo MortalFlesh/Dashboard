@@ -27,14 +27,10 @@ let dashboard = {
     addItemUrl: defaultItem.url,
     addItemRefreshRate: defaultItem.refreshRate,
     addItemHeight: defaultItem.height,
-
     addItemWidth: defaultItem.width,
-    addItemSuccess: false,
 
     // add template
     showAddTemplate: false,
-    addTemplateSuccess: false,
-
     addTemplateName: defaultTemplate.name,
 
     // flash messages

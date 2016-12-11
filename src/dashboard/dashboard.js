@@ -20,19 +20,10 @@ const Dashboard = React.createClass({
         flashMessages: React.PropTypes.instanceOf(List).isRequired,
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
         templates: React.PropTypes.instanceOf(List).isRequired,
-        isShowAddItem: React.PropTypes.bool,
-        isAddItemSuccess: React.PropTypes.bool,
+        isShowAddItem: React.PropTypes.bool.isRequired,
         addItem: React.PropTypes.instanceOf(ItemRecord).isRequired,
-        isShowAddTemplate: React.PropTypes.bool,
+        isShowAddTemplate: React.PropTypes.bool.isRequired,
         addTemplate: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-        isAddTemplateSuccess: React.PropTypes.bool,
-    },
-
-    getDefaultProps() {
-        return {
-            isShowAddItem: false,
-            isAddItemSuccess: false,
-        }
     },
 
     style() {
@@ -48,9 +39,9 @@ const Dashboard = React.createClass({
 
     content() {
         if (this.props.isShowAddItem) {
-            return <AddItemForm item={this.props.addItem} isSuccess={this.props.isAddItemSuccess}/>;
+            return <AddItemForm item={this.props.addItem}/>;
         } else if (this.props.isShowAddTemplate) {
-            return <AddTemplateForm template={this.props.addTemplate} isSuccess={this.props.isAddTemplateSuccess}/>;
+            return <AddTemplateForm template={this.props.addTemplate}/>;
         } else {
             return <Template template={this.props.template}/>;
         }
