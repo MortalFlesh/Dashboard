@@ -36,6 +36,9 @@ let dashboard = {
     addTemplateSuccess: false,
 
     addTemplateName: defaultTemplate.name,
+
+    // flash messages
+    flashMessages: [],
 };
 
 const basicData = Immutable.fromJS({

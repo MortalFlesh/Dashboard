@@ -2,7 +2,7 @@ import {List} from "immutable";
 import React from "react";
 import * as actions from "./../dashboardApp/actions";
 import PureRenderMixin from "react-addons-pure-render-mixin";
-import AlertSuccess from "./../bootstrap/alertSuccess";
+import FlashMessages from "./../flashMessages/flashMessages";
 import TemplateRecord from "./../template/templateRecord";
 import ItemRecord from "./../item/itemRecord";
 import DashboardMenu from "./../dashboardMenu/dashboardMenu";
@@ -17,6 +17,7 @@ const Dashboard = React.createClass({
     mixins: [PureRenderMixin],
 
     propTypes: {
+        flashMessages: React.PropTypes.instanceOf(List).isRequired,
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
         templates: React.PropTypes.instanceOf(List).isRequired,
         isShowAddItem: React.PropTypes.bool,
@@ -70,8 +71,8 @@ const Dashboard = React.createClass({
                             isShowAddTemplate={this.props.isShowAddTemplate}/>
                     </Header>
 
-                    {this.props.isAddItemSuccess &&
-                        <AlertSuccess>New item <strong>successfuly saved</strong>!</AlertSuccess>
+                    {this.props.flashMessages.count() > 0 &&
+                        <FlashMessages flashMessages={this.props.flashMessages}/>
                     }
 
                     {this.content()}

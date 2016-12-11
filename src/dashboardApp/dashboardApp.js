@@ -13,6 +13,7 @@ const DashboardApp = React.createClass({
 
     render() {
         const dashboard = {
+            flashMessages: store.getFlashMessages(),
             template: new TemplateRecord({
                 id: store.getSelectedTemplate(),
                 name: store.getTemplateName(),

@@ -1,5 +1,6 @@
-import dispatcher from './dispatcher';
-import state from './../dashboardApp/state';
+import dispatcher from "./dispatcher";
+import state from "./../dashboardApp/state";
+import {addFlashMessage, clearFlashMessages} from "./../flashMessage/actions";
 
 window.dashboard = window.dashboard || {};
 const debug = window.dashboard.debug = {};
@@ -33,4 +34,15 @@ debug.getState = () => {
 
 debug.getRawState = () => {
     return state.get();
+};
+
+debug.flash = {
+    addSuccess(message) {
+        addFlashMessage({type: 'success', message});
+    },
+
+    clearMessages() {
+        clearFlashMessages();
+    }
+
 };

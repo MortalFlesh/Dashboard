@@ -1,4 +1,5 @@
 import {List} from "immutable";
+import "./../flashMessage/store";
 import "./../item/store";
 import "./../addItem/store";
 import "./../addTemplate/store";
@@ -189,4 +190,8 @@ export function getAddTemplate() {
     return new TemplateRecord({
         name: dashboardCursor().get('addTemplateName'),
     });
+}
+
+export function getFlashMessages() {
+    return dashboardCursor().get('flashMessages');
 }
