@@ -128,7 +128,7 @@ function _addTemplate() {
 }
 
 function _saveItem(item) {
-    console.log('save item -> api', item);
+    api.saveItem(getSelectedTemplate(), item);
 }
 
 export function getApiUrl() {
