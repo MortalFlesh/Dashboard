@@ -117,7 +117,6 @@ function _addTemplate() {
 function _saveItem(item) {
     api.saveItem(getSelectedTemplate(), item)
         .then(() => {
-            // todo check React warning with `keys` for items (try new version of React?)
             const message = [
                 'Item ',
                 <strong>{item.name}</strong>,

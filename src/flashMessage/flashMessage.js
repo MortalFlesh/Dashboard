@@ -11,10 +11,16 @@ const FlashMessage = React.createClass({
     },
 
     render() {
+        let message = this.props.flashMessage.message;
+
+        if (message instanceof Array) {
+            message = message.map((item, i) => <span key={i}>{item}</span>);
+        }
+
         if (this.props.flashMessage.type === 'success') {
             return (
                 <AlertSuccess>
-                    {this.props.flashMessage.message}
+                    {message}
                 </AlertSuccess>
             );
         }
