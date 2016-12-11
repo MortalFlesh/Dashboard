@@ -12,4 +12,5 @@ export default new Record({
     isMoving: false,
     innerX: 0,
     innerY: 0,
+    isShowSaveButton: false,
 });

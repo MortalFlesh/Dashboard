@@ -1,9 +1,9 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import ItemRecord from './itemRecord';
-import ItemHeader from './itemHeader';
-import ItemBody from './itemBody';
-import ItemFooter from './itemFooter';
+import React from "react";
+import PureRenderMixin from "react-addons-pure-render-mixin";
+import ItemRecord from "./itemRecord";
+import ItemHeader from "./itemHeader";
+import ItemBody from "./itemBody";
+import ItemFooter from "./itemFooter";
 
 const Item = React.createClass({
     mixins: [PureRenderMixin],
@@ -34,7 +34,7 @@ const Item = React.createClass({
                 <div className={`panel ${className}`}>
                     <ItemHeader item={item}/>
 
-                    <div className="panel-body" style={{padding:0}}>
+                    <div className="panel-body" style={{padding: 0}}>
                         <ItemBody url={item.url} height={item.height} width={item.width}/>
                     </div>
 

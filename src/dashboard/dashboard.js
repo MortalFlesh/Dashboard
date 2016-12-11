@@ -1,17 +1,17 @@
-import {List} from 'immutable';
-import React from 'react';
-import * as actions from './../dashboardApp/actions';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import AlertSuccess from './../bootstrap/alertSuccess';
-import TemplateRecord from './../template/templateRecord';
-import ItemRecord from './../item/itemRecord';
-import DashboardMenu from './../dashboardMenu/dashboardMenu';
-import Template from './../template/template';
-import AddItemForm from './../addItem/addItemForm';
-import AddTemplateForm from './../addTemplate/addTemplateForm';
-import Container from './../bootstrap/container';
-import Header from './../bootstrap/header';
-import PrimaryButton from './../bootstrap/primaryButton';
+import {List} from "immutable";
+import React from "react";
+import * as actions from "./../dashboardApp/actions";
+import PureRenderMixin from "react-addons-pure-render-mixin";
+import AlertSuccess from "./../bootstrap/alertSuccess";
+import TemplateRecord from "./../template/templateRecord";
+import ItemRecord from "./../item/itemRecord";
+import DashboardMenu from "./../dashboardMenu/dashboardMenu";
+import Template from "./../template/template";
+import AddItemForm from "./../addItem/addItemForm";
+import AddTemplateForm from "./../addTemplate/addTemplateForm";
+import Container from "./../bootstrap/container";
+import Header from "./../bootstrap/header";
+import HeaderButtons from "./../headerButtons/headerButtons";
 
 const Dashboard = React.createClass({
     mixins: [PureRenderMixin],
@@ -41,35 +41,15 @@ const Dashboard = React.createClass({
         };
     },
 
-    header() {
-        if (this.props.isShowAddItem || this.props.isShowAddTemplate) {
-            return <PrimaryButton onClick={this.backHandler}>{'< Back'}</PrimaryButton>;
-        } else {
-            return <PrimaryButton onClick={this.addItemHandler}>+ Item</PrimaryButton>;
-        }
-    },
-
-    addItemHandler() {
-        actions.showAddItem(true);
-    },
-
     addTemplateHandler() {
         actions.showAddTemplate(true);
-    },
-
-    backHandler() {
-        if (this.props.isShowAddItem) {
-            actions.showAddItem(false);
-        } else if (this.props.isShowAddTemplate) {
-            actions.showAddTemplate(false);
-        }
     },
 
     content() {
         if (this.props.isShowAddItem) {
             return <AddItemForm item={this.props.addItem} isSuccess={this.props.isAddItemSuccess}/>;
         } else if (this.props.isShowAddTemplate) {
-            return <AddTemplateForm template={this.props.addTemplate} isSuccess={this.props.isAddTemplateSuccess} />;
+            return <AddTemplateForm template={this.props.addTemplate} isSuccess={this.props.isAddTemplateSuccess}/>;
         } else {
             return <Template template={this.props.template}/>;
         }
@@ -85,7 +65,9 @@ const Dashboard = React.createClass({
 
                 <Container>
                     <Header>
-                        {this.header()}
+                        <HeaderButtons
+                            isShowAddItem={this.props.isShowAddItem}
+                            isShowAddTemplate={this.props.isShowAddTemplate}/>
                     </Header>
 
                     {this.props.isAddItemSuccess &&

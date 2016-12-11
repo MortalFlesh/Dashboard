@@ -1,7 +1,8 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as actions from './actions';
-import ItemRecord from './itemRecord';
+import React from "react";
+import PureRenderMixin from "react-addons-pure-render-mixin";
+import * as actions from "./actions";
+import ItemRecord from "./itemRecord";
+import ItemButtons from "./itemButtons";
 
 const ItemHeader = React.createClass({
     mixins: [PureRenderMixin],
@@ -53,6 +54,11 @@ const ItemHeader = React.createClass({
                  onMouseDown={this.onMouseDown}
                  onMouseMove={this.onMouseMove}
                  onMouseUp={this.onMouseUp}>
+
+                {this.props.item.isShowSaveButton &&
+                    <ItemButtons item={this.props.item}/>
+                }
+
                 <h3 className="panel-title">{this.props.item.name}</h3>
             </div>
         );

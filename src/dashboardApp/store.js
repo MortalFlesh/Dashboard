@@ -7,6 +7,7 @@ import flashMessage from "./../service/flashMessageService";
 import dispatcher from "./../lib/dispatcher";
 import * as actions from "./actions";
 import {addItem} from "./../addItem/actions";
+import {saveItem} from "./../item/actions";
 import {addTemplate} from "./../addTemplate/actions";
 import {dashboardCursor} from "./state";
 import TemplateRecord from "./../template/templateRecord";
@@ -40,6 +41,10 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
 
         case addItem:
             _addItem();
+            break;
+
+        case saveItem:
+            _saveItem(data);
             break;
 
         case addTemplate:
@@ -120,6 +125,10 @@ function _addTemplate() {
         const defaultTemplate = new TemplateRecord();
         setToDashboard('addTemplateName', defaultTemplate.name);
     });
+}
+
+function _saveItem(item) {
+    api.saveItem(getSelectedTemplate(), item);
 }
 
 export function getApiUrl() {
