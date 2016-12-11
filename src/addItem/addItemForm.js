@@ -14,13 +14,6 @@ const AddItemForm = React.createClass({
 
     propTypes: {
         item: React.PropTypes.instanceOf(ItemRecord).isRequired,
-        isSuccess: React.PropTypes.bool,
-    },
-
-    getDefaultProps() {
-        return {
-            isSuccess: false,
-        };
     },
 
     nameChangeHandler(name) {
@@ -97,9 +90,7 @@ const AddItemForm = React.createClass({
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
-                        <PrimaryButton big={true}
-                                       success={this.props.isSuccess}
-                                       onClick={this.saveHandler}>
+                        <PrimaryButton big={true} onClick={this.saveHandler}>
                             Save item
                         </PrimaryButton>
                     </FormItem>

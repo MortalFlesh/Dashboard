@@ -1,11 +1,14 @@
+import React from "react";
 import {List} from "immutable";
+import "./../flashMessage/store";
 import "./../item/store";
 import "./../addItem/store";
 import "./../addTemplate/store";
 import api from "./../service/api";
-import flashMessage from "./../service/flashMessageService";
 import dispatcher from "./../lib/dispatcher";
 import * as actions from "./actions";
+import {addFlashMessage} from "./../flashMessage/actions";
+import FlashMessageRecord from "./../flashMessage/flashMessageRecord";
 import {addItem} from "./../addItem/actions";
 import {saveItem} from "./../item/actions";
 import {addTemplate} from "./../addTemplate/actions";
@@ -83,15 +86,7 @@ function _addItem() {
         items = items.push(newItem);
 
         setToDashboard('items', items);
-
-        flashMessage.show(
-            () => {
-                setToDashboard('addItemSuccess', true);
-            },
-            () => {
-                setToDashboard('addItemSuccess', false);
-            },
-        );
+        addFlashMessage(new FlashMessageRecord({message: 'New item successfully saved!'}));
 
         const defaultItem = new ItemRecord();
         setToDashboard('addItemName', defaultItem.name);
@@ -112,15 +107,7 @@ function _addTemplate() {
         templates = templates.push(newTemplate);
 
         setToDashboard('templates', templates);
-
-        flashMessage.show(
-            () => {
-                setToDashboard('addTemplateSuccess', true);
-            },
-            () => {
-                setToDashboard('addTemplateSuccess', false);
-            },
-        );
+        addFlashMessage(new FlashMessageRecord({message: 'New template successfully saved!'}));
 
         const defaultTemplate = new TemplateRecord();
         setToDashboard('addTemplateName', defaultTemplate.name);
@@ -128,7 +115,17 @@ function _addTemplate() {
 }
 
 function _saveItem(item) {
-    api.saveItem(getSelectedTemplate(), item);
+    api.saveItem(getSelectedTemplate(), item)
+        .then(() => {
+            // todo check React warning with `keys` for items (try new version of React?)
+            const message = [
+                'Item ',
+                <strong>{item.name}</strong>,
+                ' was updated successfully.'
+            ];
+
+            addFlashMessage(new FlashMessageRecord({message}));
+        });
 }
 
 export function getApiUrl() {
@@ -167,14 +164,6 @@ export function isShowAddTemplate() {
     return dashboardCursor().get('showAddTemplate');
 }
 
-export function isAddItemSuccess() {
-    return dashboardCursor().get('addItemSuccess');
-}
-
-export function isAddTemplateSuccess() {
-    return dashboardCursor().get('addTemplateSuccess');
-}
-
 export function getAddItem() {
     return new ItemRecord({
         name: dashboardCursor().get('addItemName'),
@@ -189,4 +178,8 @@ export function getAddTemplate() {
     return new TemplateRecord({
         name: dashboardCursor().get('addTemplateName'),
     });
+}
+
+export function getFlashMessages() {
+    return dashboardCursor().get('flashMessages');
 }

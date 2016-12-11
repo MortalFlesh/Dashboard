@@ -12,7 +12,6 @@ const AddTemplateForm = React.createClass({
 
     propTypes: {
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-        isSuccess: React.PropTypes.bool.isRequired,
     },
 
     nameChangeHandler(name) {
@@ -41,9 +40,7 @@ const AddTemplateForm = React.createClass({
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
-                        <PrimaryButton big={true}
-                                       success={this.props.isSuccess}
-                                       onClick={this.saveHandler}>
+                        <PrimaryButton big={true} onClick={this.saveHandler}>
                             Save template
                         </PrimaryButton>
                     </FormItem>

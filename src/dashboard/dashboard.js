@@ -2,7 +2,7 @@ import {List} from "immutable";
 import React from "react";
 import * as actions from "./../dashboardApp/actions";
 import PureRenderMixin from "react-addons-pure-render-mixin";
-import AlertSuccess from "./../bootstrap/alertSuccess";
+import FlashMessages from "./../flashMessages/flashMessages";
 import TemplateRecord from "./../template/templateRecord";
 import ItemRecord from "./../item/itemRecord";
 import DashboardMenu from "./../dashboardMenu/dashboardMenu";
@@ -17,21 +17,13 @@ const Dashboard = React.createClass({
     mixins: [PureRenderMixin],
 
     propTypes: {
+        flashMessages: React.PropTypes.instanceOf(List).isRequired,
         template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
         templates: React.PropTypes.instanceOf(List).isRequired,
-        isShowAddItem: React.PropTypes.bool,
-        isAddItemSuccess: React.PropTypes.bool,
+        isShowAddItem: React.PropTypes.bool.isRequired,
         addItem: React.PropTypes.instanceOf(ItemRecord).isRequired,
-        isShowAddTemplate: React.PropTypes.bool,
+        isShowAddTemplate: React.PropTypes.bool.isRequired,
         addTemplate: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-        isAddTemplateSuccess: React.PropTypes.bool,
-    },
-
-    getDefaultProps() {
-        return {
-            isShowAddItem: false,
-            isAddItemSuccess: false,
-        }
     },
 
     style() {
@@ -47,9 +39,9 @@ const Dashboard = React.createClass({
 
     content() {
         if (this.props.isShowAddItem) {
-            return <AddItemForm item={this.props.addItem} isSuccess={this.props.isAddItemSuccess}/>;
+            return <AddItemForm item={this.props.addItem}/>;
         } else if (this.props.isShowAddTemplate) {
-            return <AddTemplateForm template={this.props.addTemplate} isSuccess={this.props.isAddTemplateSuccess}/>;
+            return <AddTemplateForm template={this.props.addTemplate}/>;
         } else {
             return <Template template={this.props.template}/>;
         }
@@ -70,8 +62,8 @@ const Dashboard = React.createClass({
                             isShowAddTemplate={this.props.isShowAddTemplate}/>
                     </Header>
 
-                    {this.props.isAddItemSuccess &&
-                        <AlertSuccess>New item <strong>successfuly saved</strong>!</AlertSuccess>
+                    {this.props.flashMessages.count() > 0 &&
+                        <FlashMessages flashMessages={this.props.flashMessages}/>
                     }
 
                     {this.content()}
