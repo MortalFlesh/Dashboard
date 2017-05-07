@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
 import TemplateRecord from "./../template/templateRecord";
-import templateService from "./../service/templateService";
 
 import DropdownMenu from "../bootstrap/dropdownMenu";
 import DropdownLink from "./../bootstrap/dropdownLink";
@@ -10,22 +9,20 @@ import DropdownItem from "./../bootstrap/dropdownItem";
 import PrimaryButton from "./../bootstrap/primaryButton";
 
 class DashboardMenu extends React.PureComponent {
-    itemClickHandler(id) {
-        templateService.changeTemplate(id);
-    }
-
     render() {
         const selectedTemplate = this.props.template;
 
-        const templates = this.props.templates.map((t) => {
-            const template = t.toJS();
+        const templates = this.props.templates.map((template) => {
+            // const template = t.toJS(); // todo - check why was that?
             const selected = template.id === selectedTemplate.id;
 
             return <DropdownItem key={template.id}
                                  id={template.id}
                                  title={template.name}
                                  selected={selected}
-                                 onClick={this.itemClickHandler}/>;
+                                 onClick={() => {
+                                     this.props.selectTemplate(template);
+                                 }}/>;
         });
 
         return (
@@ -74,6 +71,7 @@ DashboardMenu.propTypes = {
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
     templates: PropTypes.instanceOf(List).isRequired,
     addTemplateHandler: PropTypes.func.isRequired,
+    selectTemplate: PropTypes.func.isRequired,
 };
 
 export default DashboardMenu;

@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
 
+import DashboardMenu from "./../DashboardMenu";
 import FlashMessages from "./../../flashMessages/flashMessages";
 import TemplateRecord from "./../../template/templateRecord";
 import ItemRecord from "./../../item/itemRecord";
-import DashboardMenu from "./../../dashboardMenu/dashboardMenu";
 import Template from "./../../template/template";
 import AddItemForm from "./../../addItem/addItemForm";
 import AddTemplateForm from "./../../addTemplate/addTemplateForm";
@@ -32,22 +32,24 @@ class Dashboard extends React.PureComponent {
     }
 
     render() {
-        const {template, templates, isShowAddTemplate, isShowAddItem, showAddTemplate, flashMessages} = this.props;
+        const {flashMessages} = this.props;
 
         return (
             <div className="Dashboard" style={this.style()}>
                 <DashboardMenu
                     addTemplateHandler={() => {
-                        showAddTemplate(true)
+                        this.props.showAddTemplate(true)
                     }}
-                    template={template}
-                    templates={templates}/>
+                    template={this.props.template}
+                    templates={this.props.templates}
+                    selectTemplate={this.props.selectTemplate}
+                />
 
                 <Container>
                     <Header>
                         <HeaderButtons
-                            isShowAddItem={isShowAddItem}
-                            isShowAddTemplate={isShowAddTemplate}/>
+                            isShowAddItem={this.props.isShowAddItem}
+                            isShowAddTemplate={this.props.isShowAddTemplate}/>
                     </Header>
 
                     {flashMessages.count() > 0
@@ -73,7 +75,9 @@ Dashboard.propTypes = {
 
     isShowAddTemplate: PropTypes.bool.isRequired,
     addTemplate: PropTypes.instanceOf(TemplateRecord).isRequired,
+
     showAddTemplate: PropTypes.func.isRequired,
+    selectTemplate: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
