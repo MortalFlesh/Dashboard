@@ -1,0 +1,6 @@
+export const SELECT_TEMPLATE = 'SELECT_TEMPLATE';
+export const SET_TEMPLATE_NAME = 'SET_TEMPLATE_NAME';
+export const SET_ITEMS = 'SET_ITEMS';
+export const SET_TEMPLATES = 'SET_TEMPLATES';
+export const SHOW_ADD_ITEM = 'SHOW_ADD_ITEM';
+export const SHOW_ADD_TEMPLATE = 'SHOW_ADD_TEMPLATE';

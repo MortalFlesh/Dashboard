@@ -1,24 +1,42 @@
 import React from "react";
 import {List} from "immutable";
-import "./../flashMessage/store";
-import "./../item/store";
-import "./../addItem/store";
-import "./../addTemplate/store";
-import api from "./../service/api";
-import dispatcher from "./../lib/dispatcher";
+import "./../../flashMessage/store";
+import "./../../item/store";
+import "./../../addItem/store";
+import "./../../addTemplate/store";
+import api from "./../../service/api";
+import dispatcher from "./../../lib/dispatcher";
 import * as actions from "./actions";
-import {addFlashMessage} from "./../flashMessage/actions";
-import FlashMessageRecord from "./../flashMessage/flashMessageRecord";
-import {addItem} from "./../addItem/actions";
-import {saveItem} from "./../item/actions";
-import {addTemplate} from "./../addTemplate/actions";
+import {addFlashMessage} from "./../../flashMessage/actions";
+import FlashMessageRecord from "./../../flashMessage/flashMessageRecord";
+import {addItem} from "./../../addItem/actions";
+import {saveItem} from "./../../item/actions";
+import {addTemplate} from "./../../addTemplate/actions";
 import {dashboardCursor} from "./state";
-import TemplateRecord from "./../template/templateRecord";
-import ItemRecord from "./../item/itemRecord";
+import TemplateRecord from "./../../template/templateRecord";
+import ItemRecord from "./../../item/itemRecord";
+
+import {applyMiddleware, createStore} from "redux";
+import {createEpicMiddleware} from "redux-observable";
+import {rootEpic} from "./action";
+import rootReducer from "./reducer";
+
+export function configureStore(initialState) {
+    const epicMiddleware = createEpicMiddleware(rootEpic);
+    const createStoreWithMiddleware = applyMiddleware(epicMiddleware)(createStore);
+
+    return createStoreWithMiddleware(
+        rootReducer,
+        initialState,
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    );
+}
+
+// ---- deprecated ----
 
 export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
-        case actions.setSelectedTemplate:
+        case actions.selectTemplate:
             setToDashboard('selectedTemplate', data);
             break;
 

@@ -1,12 +1,12 @@
 import Immutable from "immutable";
-import State from "./../lib/state";
-import api from "./../service/api";
-import config from "./../service/config";
-import templateService from "./../service/templateService";
+import State from "./../../lib/state";
+import api from "./../../service/api";
+import config from "./../../service/config";
+import templateService from "./../../service/templateService";
 import * as actions from "./actions";
-import {getSelectedTemplate} from "./../service/sessionStorage/sessionStorageStore";
-import TemplateRecord from "./../template/templateRecord";
-import ItemRecord from "./../item/itemRecord";
+import {getSelectedTemplate} from "./../../service/sessionStorage/sessionStorageStore";
+import TemplateRecord from "./../../template/templateRecord";
+import ItemRecord from "./../../item/itemRecord";
 
 const defaultTemplate = new TemplateRecord();
 const defaultItem = new ItemRecord();

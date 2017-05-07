@@ -1,17 +1,17 @@
-import {List} from "immutable";
 import React from "react";
-import * as actions from "./../dashboardApp/actions";
-import FlashMessages from "./../flashMessages/flashMessages";
-import TemplateRecord from "./../template/templateRecord";
-import ItemRecord from "./../item/itemRecord";
-import DashboardMenu from "./../dashboardMenu/dashboardMenu";
-import Template from "./../template/template";
-import AddItemForm from "./../addItem/addItemForm";
-import AddTemplateForm from "./../addTemplate/addTemplateForm";
-import Container from "./../bootstrap/container";
-import Header from "./../bootstrap/header";
-import HeaderButtons from "./../headerButtons/headerButtons";
 import PropTypes from "prop-types";
+import {List} from "immutable";
+
+import FlashMessages from "./../../flashMessages/flashMessages";
+import TemplateRecord from "./../../template/templateRecord";
+import ItemRecord from "./../../item/itemRecord";
+import DashboardMenu from "./../../dashboardMenu/dashboardMenu";
+import Template from "./../../template/template";
+import AddItemForm from "./../../addItem/addItemForm";
+import AddTemplateForm from "./../../addTemplate/addTemplateForm";
+import Container from "./../../bootstrap/container";
+import Header from "./../../bootstrap/header";
+import HeaderButtons from "./../../headerButtons/headerButtons";
 
 class Dashboard extends React.PureComponent {
     style() {
@@ -19,10 +19,6 @@ class Dashboard extends React.PureComponent {
             paddingTop: 30,
             paddingBottom: 30,
         };
-    }
-
-    addTemplateHandler() {
-        actions.showAddTemplate(true);
     }
 
     content() {
@@ -36,22 +32,26 @@ class Dashboard extends React.PureComponent {
     }
 
     render() {
+        const {template, templates, isShowAddTemplate, isShowAddItem, showAddTemplate, flashMessages} = this.props;
+
         return (
             <div className="Dashboard" style={this.style()}>
                 <DashboardMenu
-                    addTemplateHandler={this.addTemplateHandler}
-                    template={this.props.template}
-                    templates={this.props.templates}/>
+                    addTemplateHandler={() => {
+                        showAddTemplate(true)
+                    }}
+                    template={template}
+                    templates={templates}/>
 
                 <Container>
                     <Header>
                         <HeaderButtons
-                            isShowAddItem={this.props.isShowAddItem}
-                            isShowAddTemplate={this.props.isShowAddTemplate}/>
+                            isShowAddItem={isShowAddItem}
+                            isShowAddTemplate={isShowAddTemplate}/>
                     </Header>
 
-                    {this.props.flashMessages.count() > 0
-                        ? <FlashMessages flashMessages={this.props.flashMessages}/>
+                    {flashMessages.count() > 0
+                        ? <FlashMessages flashMessages={flashMessages}/>
                         : null
                     }
 
@@ -64,12 +64,16 @@ class Dashboard extends React.PureComponent {
 
 Dashboard.propTypes = {
     flashMessages: PropTypes.instanceOf(List).isRequired,
+
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
     templates: PropTypes.instanceOf(List).isRequired,
+
     isShowAddItem: PropTypes.bool.isRequired,
     addItem: PropTypes.instanceOf(ItemRecord).isRequired,
+
     isShowAddTemplate: PropTypes.bool.isRequired,
     addTemplate: PropTypes.instanceOf(TemplateRecord).isRequired,
+    showAddTemplate: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
