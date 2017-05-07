@@ -1,6 +1,6 @@
-import {List} from "immutable";
 import React from "react";
-import PureRenderMixin from "react-addons-pure-render-mixin";
+import PropTypes from "prop-types";
+import {List} from "immutable";
 import TemplateRecord from "./../template/templateRecord";
 import templateService from "./../service/templateService";
 
@@ -9,18 +9,10 @@ import DropdownLink from "./../bootstrap/dropdownLink";
 import DropdownItem from "./../bootstrap/dropdownItem";
 import PrimaryButton from "./../bootstrap/primaryButton";
 
-const DashboardMenu = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-        templates: React.PropTypes.instanceOf(List).isRequired,
-        addTemplateHandler: React.PropTypes.func.isRequired,
-    },
-
+class DashboardMenu extends React.PureComponent {
     itemClickHandler(id) {
         templateService.changeTemplate(id);
-    },
+    }
 
     render() {
         const selectedTemplate = this.props.template;
@@ -76,6 +68,12 @@ const DashboardMenu = React.createClass({
             </nav>
         );
     }
-});
+}
+
+DashboardMenu.propTypes = {
+    template: PropTypes.instanceOf(TemplateRecord).isRequired,
+    templates: PropTypes.instanceOf(List).isRequired,
+    addTemplateHandler: PropTypes.func.isRequired,
+};
 
 export default DashboardMenu;

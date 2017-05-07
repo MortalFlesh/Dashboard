@@ -1,47 +1,29 @@
-import React from 'react';
-import {List} from 'immutable';
-import cn from 'classnames';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
+import {List} from "immutable";
+import cn from "classnames";
 
-const FormItem = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        children: React.PropTypes.oneOfType([
-            React.PropTypes.array,
-            React.PropTypes.element,
-        ]).isRequired,
-        id: React.PropTypes.string.isRequired,
-        title: React.PropTypes.string.isRequired,
-        sizeLabel: React.PropTypes.number,
-        size: React.PropTypes.number,
-    },
-
-    getDefaultProps() {
-        return {
-            sizeLabel: -1,
-            size: -1,
-        };
-    },
-
+class FormItem extends React.PureComponent {
     render() {
+        const {id, title, sizeLabel, size, children} = this.props;
+        
         let classes = new List();
 
-        if (this.props.sizeLabel >= 0) {
-            classes = classes.push(`col-sm-${this.props.sizeLabel}`);
+        if (sizeLabel >= 0) {
+            classes = classes.push(`col-sm-${sizeLabel}`);
         }
 
         classes = classes.toJS();
 
-        if (this.props.size >= 0) {
+        if (size >= 0) {
             return (
                 <div className="form-group">
-                    <label htmlFor={this.props.id} className={cn('control-label', classes)}>
-                        {this.props.title}
+                    <label htmlFor={id} className={cn('control-label', classes)}>
+                        {title}
                     </label>
 
-                    <div className={`col-sm-${this.props.size}`}>
-                        {this.props.children}
+                    <div className={`col-sm-${size}`}>
+                        {children}
                     </div>
                 </div>
             );
@@ -49,13 +31,29 @@ const FormItem = React.createClass({
 
         return (
             <div className="form-group">
-                <label htmlFor={this.props.id} className={cn(classes)}>
-                    {this.props.title}
+                <label htmlFor={id} className={cn(classes)}>
+                    {title}
                 </label>
-                {this.props.children}
+                {children}
             </div>
         );
     }
-});
+}
+
+FormItem.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element,
+    ]).isRequired,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    sizeLabel: PropTypes.number,
+    size: PropTypes.number,
+};
+
+FormItem.defaultProps = {
+    sizeLabel: -1,
+    size: -1,
+};
 
 export default FormItem;

@@ -1,23 +1,16 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import PrimaryButton from './../bootstrap/primaryButton';
-import * as actions from './../dashboardApp/actions';
+import React from "react";
+import PrimaryButton from "./../bootstrap/primaryButton";
+import * as actions from "./../dashboardApp/actions";
+import PropTypes from "prop-types";
 
-const HeaderButtons = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        isShowAddItem: React.PropTypes.bool.isRequired,
-        isShowAddTemplate: React.PropTypes.bool.isRequired,
-    },
-
+class HeaderButtons extends React.PureComponent {
     header() {
         if (this.props.isShowAddItem || this.props.isShowAddTemplate) {
             return <PrimaryButton onClick={this.backHandler}>{'< Back'}</PrimaryButton>;
         } else {
             return <PrimaryButton onClick={this.addItemHandler}>+ Item</PrimaryButton>;
         }
-    },
+    }
 
     backHandler() {
         if (this.props.isShowAddItem) {
@@ -25,11 +18,11 @@ const HeaderButtons = React.createClass({
         } else if (this.props.isShowAddTemplate) {
             actions.showAddTemplate(false);
         }
-    },
+    }
 
     addItemHandler() {
         actions.showAddItem(true);
-    },
+    }
 
     render() {
         return (
@@ -38,6 +31,11 @@ const HeaderButtons = React.createClass({
             </div>
         );
     }
-});
+}
+
+HeaderButtons.propTypes = {
+    isShowAddItem: PropTypes.bool.isRequired,
+    isShowAddTemplate: PropTypes.bool.isRequired,
+};
 
 export default HeaderButtons;

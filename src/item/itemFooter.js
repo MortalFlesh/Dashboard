@@ -1,40 +1,34 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as actions from './actions';
-import ItemRecord from './itemRecord';
-import InlineForm from './../bootstrap/inlineForm';
-import FormItem from './../bootstrap/formItem';
-import Input from './../bootstrap/input';
+import React from "react";
+import PropTypes from "prop-types";
+import * as actions from "./actions";
+import ItemRecord from "./itemRecord";
+import InlineForm from "./../bootstrap/inlineForm";
+import FormItem from "./../bootstrap/formItem";
+import Input from "./../bootstrap/input";
 
-const ItemFooter = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        item: React.PropTypes.instanceOf(ItemRecord).isRequired,
-    },
-
+class ItemFooter extends React.PureComponent {
     heightChangeHandler(heightString) {
-        const item = this.props.item;
+        const {item} = this.props;
         const height = parseInt(heightString, 10);
 
         actions.resizeItem({id: item.id, height, width: item.width});
-    },
-    
+    }
+
     widthChangeHandler(widthString) {
-        const item = this.props.item;
+        const {item} = this.props;
         const width = parseInt(widthString, 10);
 
         actions.resizeItem({id: item.id, height: item.height, width});
-    },
-    
+    }
+
     render() {
-        const item = this.props.item;
+        const {item} = this.props;
 
         const heightId = `item-${item.id}-footer-height`;
         const widthId = `item-${item.id}-footer-width`;
         const refreshRateId = `item-${item.id}-footer-refreshRate`;
 
-    return (
+        return (
             <div className="panel-footer">
                 <InlineForm>
 
@@ -56,7 +50,9 @@ const ItemFooter = React.createClass({
                         <Input type="text"
                                id={refreshRateId}
                                value={item.refreshRate.toString()}
-                               onChange={() => {}}
+                               onChange={() => {
+                                   // todo
+                               }}
                                disabled={true}/>
                     </FormItem>
 
@@ -64,6 +60,10 @@ const ItemFooter = React.createClass({
             </div>
         );
     }
-});
+}
+
+ItemFooter.propTypes = {
+    item: PropTypes.instanceOf(ItemRecord).isRequired,
+};
 
 export default ItemFooter;

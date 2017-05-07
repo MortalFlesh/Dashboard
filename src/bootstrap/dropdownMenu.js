@@ -1,14 +1,8 @@
-import {List} from 'immutable';
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import {List} from "immutable";
+import PropTypes from "prop-types";
 
-const DropdownMenu = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        items: React.PropTypes.instanceOf(List).isRequired,
-    },
-
+class DropdownMenu extends React.PureComponent {
     render() {
         return (
             <ul className="dropdown-menu">
@@ -16,6 +10,10 @@ const DropdownMenu = React.createClass({
             </ul>
         );
     }
-});
+}
+
+DropdownMenu.propTypes = {
+    items: PropTypes.instanceOf(List).isRequired,
+};
 
 export default DropdownMenu;

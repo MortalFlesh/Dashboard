@@ -1,26 +1,21 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as actions from './actions';
-import Form from './../bootstrap/form';
-import FormItem from './../bootstrap/formItem';
-import Input from './../bootstrap/input';
-import PrimaryButton from './../bootstrap/primaryButton';
-import TemplateRecord from './../template/templateRecord';
+import React from "react";
+import * as actions from "./actions";
+import Form from "./../bootstrap/form";
+import FormItem from "./../bootstrap/formItem";
+import Input from "./../bootstrap/input";
+import PrimaryButton from "./../bootstrap/primaryButton";
+import TemplateRecord from "./../template/templateRecord";
+import PropTypes from "prop-types";
 
-const AddTemplateForm = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-    },
+class AddTemplateForm extends React.PureComponent {
 
     nameChangeHandler(name) {
         actions.setAddTemplateName(name);
-    },
+    }
 
     saveHandler() {
         actions.addTemplate();
-    },
+    }
 
     render() {
         const template = this.props.template;
@@ -49,6 +44,10 @@ const AddTemplateForm = React.createClass({
             </div>
         );
     }
-});
+}
+
+AddTemplateForm.propTypes = {
+    template: PropTypes.instanceOf(TemplateRecord).isRequired,
+};
 
 export default AddTemplateForm;

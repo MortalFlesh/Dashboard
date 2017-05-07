@@ -1,15 +1,9 @@
 import React from "react";
-import PureRenderMixin from "react-addons-pure-render-mixin";
-import AlertSuccess from "./../bootstrap/alertSuccess";
+import PropTypes from "prop-types";
 import FlashMessageRecord from "./flashMessageRecord";
+import AlertSuccess from "./../bootstrap/alertSuccess";
 
-const FlashMessage = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        flashMessage: React.PropTypes.instanceOf(FlashMessageRecord).isRequired,
-    },
-
+class FlashMessage extends React.PureComponent {
     render() {
         let message = this.props.flashMessage.message;
 
@@ -25,6 +19,10 @@ const FlashMessage = React.createClass({
             );
         }
     }
-});
+}
+
+FlashMessage.propTypes = {
+    flashMessage: PropTypes.instanceOf(FlashMessageRecord).isRequired,
+};
 
 export default FlashMessage;

@@ -1,44 +1,39 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import * as actions from './actions';
-import Header from './../bootstrap/header';
-import PrimaryButton from './../bootstrap/primaryButton';
-import Form from './../bootstrap/form';
-import FormItem from './../bootstrap/formItem';
-import Input from './../bootstrap/input';
-import ItemRecord from './../item/itemRecord';
-import Item from './../item/item';
+import React from "react";
+import * as actions from "./actions";
+import Header from "./../bootstrap/header";
+import PrimaryButton from "./../bootstrap/primaryButton";
+import Form from "./../bootstrap/form";
+import FormItem from "./../bootstrap/formItem";
+import Input from "./../bootstrap/input";
+import ItemRecord from "./../item/itemRecord";
+import Item from "./../item/item";
+import PropTypes from "prop-types";
 
-const AddItemForm = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        item: React.PropTypes.instanceOf(ItemRecord).isRequired,
-    },
+class AddItemForm extends React.PureComponent {
 
     nameChangeHandler(name) {
         actions.setAddItemName(name);
-    },
+    }
 
     urlChangeHandler(url) {
         actions.setAddItemUrl(url);
-    },
+    }
 
     refreshRateChangeHandler(refreshRate) {
         actions.setAddItemRefreshRate(number(refreshRate));
-    },
+    }
 
     heightChangeHandler(height) {
         actions.setAddItemHeight(number(height));
-    },
+    }
 
     widthChangeHandler(width) {
         actions.setAddItemWidth(number(width));
-    },
-    
+    }
+
     saveHandler() {
         actions.addItem();
-    },
+    }
 
     render() {
         const item = this.props.item;
@@ -107,7 +102,11 @@ const AddItemForm = React.createClass({
             </div>
         );
     }
-});
+}
+
+AddItemForm.propTypes = {
+    item: PropTypes.instanceOf(ItemRecord).isRequired,
+};
 
 function number(string) {
     return parseInt(string, 10);

@@ -1,16 +1,7 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Container = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        children: React.PropTypes.oneOfType([
-            React.PropTypes.array,
-            React.PropTypes.element,
-        ]).isRequired,
-    },
-
+class Container extends React.PureComponent {
     render() {
         return (
             <div className="container-fluid theme-showcase" role="main">
@@ -18,6 +9,13 @@ const Container = React.createClass({
             </div>
         );
     }
-});
+}
+
+Container.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element,
+    ]).isRequired,
+};
 
 export default Container;

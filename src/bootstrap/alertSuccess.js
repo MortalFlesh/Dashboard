@@ -1,15 +1,7 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const AlertSuccess = React.createClass({
-    mixins: [PureRenderMixin],
-
-    children: React.PropTypes.oneOfType([
-        React.PropTypes.array,
-        React.PropTypes.element,
-        React.PropTypes.string,
-    ]).isRequired,
-
+class AlertSuccess extends React.PureComponent {
     render() {
         return (
             <div className="alert alert-success" role="alert">
@@ -17,6 +9,14 @@ const AlertSuccess = React.createClass({
             </div>
         );
     }
-});
+}
+
+AlertSuccess.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element,
+        PropTypes.string,
+    ]).isRequired
+};
 
 export default AlertSuccess;

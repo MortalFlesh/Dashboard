@@ -1,13 +1,7 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const DropdownLink = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        title: React.PropTypes.string.isRequired,
-    },
-
+class DropdownLink extends React.PureComponent {
     render() {
         return (
             <a href="#"
@@ -15,9 +9,15 @@ const DropdownLink = React.createClass({
                data-toggle="dropdown"
                role="button"
                aria-haspopup="true"
-               aria-expanded="false">{this.props.title} <span className="caret"></span></a>
+               aria-expanded="false">
+                {this.props.title} <span className="caret"/>
+            </a>
         );
     }
-});
+}
+
+DropdownLink.propTypes = {
+    title: PropTypes.string.isRequired,
+};
 
 export default DropdownLink;

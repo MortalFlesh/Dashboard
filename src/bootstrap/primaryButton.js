@@ -1,24 +1,8 @@
-import cn from 'classnames';
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import cn from "classnames";
+import React from "react";
+import PropTypes from "prop-types";
 
-const PrimaryButton = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        onClick: React.PropTypes.func.isRequired,
-        children: React.PropTypes.string.isRequired,
-        big: React.PropTypes.bool,
-        success: React.PropTypes.bool,
-    },
-
-    getDefaultProps() {
-        return {
-            big: false,
-            success: false,
-        };
-    },
-
+class PrimaryButton extends React.PureComponent {
     render() {
         const size = this.props.big ? 'btn-lg' : 'btn-sm';
         const type = this.props.success ? 'btn-success' : 'btn-primary';
@@ -29,6 +13,18 @@ const PrimaryButton = React.createClass({
             </button>
         );
     }
-});
+}
+
+PrimaryButton.propTypes = {
+    onClick: PropTypes.func.isRequired,
+    children: PropTypes.string.isRequired,
+    big: PropTypes.bool,
+    success: PropTypes.bool,
+};
+
+PrimaryButton.defaultProps = {
+    big: false,
+    success: false,
+};
 
 export default PrimaryButton;

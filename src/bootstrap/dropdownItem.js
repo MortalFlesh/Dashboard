@@ -1,24 +1,24 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const DropdownItem = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        id: React.PropTypes.number.isRequired,
-        title: React.PropTypes.string.isRequired,
-        onClick: React.PropTypes.func.isRequired,
-    },
-
-    clickHandler() {
-        this.props.onClick(this.props.id);
-    },
-
+class DropdownItem extends React.PureComponent {
     render() {
+        const {id, title, onClick} = this.props;
+
         return (
-            <li><a onClick={this.clickHandler}>{this.props.title}</a></li>
+            <li>
+                <a onClick={() => {onClick(id)}}>
+                    {title}
+                </a>
+            </li>
         );
     }
-});
+}
+
+DropdownItem.propTypes = {
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+};
 
 export default DropdownItem;

@@ -1,23 +1,17 @@
 import React from "react";
-import PureRenderMixin from "react-addons-pure-render-mixin";
 import ItemRecord from "./itemRecord";
-import * as actions from './actions';
+import * as actions from "./actions";
+import PropTypes from "prop-types";
 
-const ItemButtons = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        item: React.PropTypes.instanceOf(ItemRecord).isRequired,
-    },
-
+class ItemButtons extends React.PureComponent {
     saveHandler() {
         actions.saveItem(this.props.item);
-    },
+    }
 
     cancelHandler() {
         // todo - cancel edit
         console.log('cancel', this.props.item.id);
-    },
+    }
 
     render() {
         return (
@@ -27,6 +21,10 @@ const ItemButtons = React.createClass({
             </div>
         );
     }
-});
+}
+
+ItemButtons.propTypes = {
+    item: PropTypes.instanceOf(ItemRecord).isRequired,
+};
 
 export default ItemButtons;

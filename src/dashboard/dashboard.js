@@ -1,7 +1,6 @@
 import {List} from "immutable";
 import React from "react";
 import * as actions from "./../dashboardApp/actions";
-import PureRenderMixin from "react-addons-pure-render-mixin";
 import FlashMessages from "./../flashMessages/flashMessages";
 import TemplateRecord from "./../template/templateRecord";
 import ItemRecord from "./../item/itemRecord";
@@ -12,30 +11,19 @@ import AddTemplateForm from "./../addTemplate/addTemplateForm";
 import Container from "./../bootstrap/container";
 import Header from "./../bootstrap/header";
 import HeaderButtons from "./../headerButtons/headerButtons";
+import PropTypes from "prop-types";
 
-const Dashboard = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        flashMessages: React.PropTypes.instanceOf(List).isRequired,
-        template: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-        templates: React.PropTypes.instanceOf(List).isRequired,
-        isShowAddItem: React.PropTypes.bool.isRequired,
-        addItem: React.PropTypes.instanceOf(ItemRecord).isRequired,
-        isShowAddTemplate: React.PropTypes.bool.isRequired,
-        addTemplate: React.PropTypes.instanceOf(TemplateRecord).isRequired,
-    },
-
+class Dashboard extends React.PureComponent {
     style() {
         return {
             paddingTop: 30,
             paddingBottom: 30,
         };
-    },
+    }
 
     addTemplateHandler() {
         actions.showAddTemplate(true);
-    },
+    }
 
     content() {
         if (this.props.isShowAddItem) {
@@ -45,7 +33,7 @@ const Dashboard = React.createClass({
         } else {
             return <Template template={this.props.template}/>;
         }
-    },
+    }
 
     render() {
         return (
@@ -62,8 +50,9 @@ const Dashboard = React.createClass({
                             isShowAddTemplate={this.props.isShowAddTemplate}/>
                     </Header>
 
-                    {this.props.flashMessages.count() > 0 &&
-                        <FlashMessages flashMessages={this.props.flashMessages}/>
+                    {this.props.flashMessages.count() > 0
+                        ? <FlashMessages flashMessages={this.props.flashMessages}/>
+                        : null
                     }
 
                     {this.content()}
@@ -71,6 +60,16 @@ const Dashboard = React.createClass({
             </div>
         );
     }
-});
+}
+
+Dashboard.propTypes = {
+    flashMessages: PropTypes.instanceOf(List).isRequired,
+    template: PropTypes.instanceOf(TemplateRecord).isRequired,
+    templates: PropTypes.instanceOf(List).isRequired,
+    isShowAddItem: PropTypes.bool.isRequired,
+    addItem: PropTypes.instanceOf(ItemRecord).isRequired,
+    isShowAddTemplate: PropTypes.bool.isRequired,
+    addTemplate: PropTypes.instanceOf(TemplateRecord).isRequired,
+};
 
 export default Dashboard;

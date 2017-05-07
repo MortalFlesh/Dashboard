@@ -1,17 +1,14 @@
 import React from "react";
 import * as store from "./store";
-import {state, loadServerData} from "./state";
+import {loadServerData} from "./state";
 import Dashboard from "./../dashboard/dashboard";
 import TemplateRecord from "./../template/templateRecord";
 
-const DashboardApp = React.createClass({
+class DashboardApp extends React.PureComponent {
     componentDidMount() {
-        state.on('change', () => {
-            this.forceUpdate();
-        });
-
+        // todo
         loadServerData();
-    },
+    }
 
     render() {
         const dashboard = {
@@ -32,6 +29,6 @@ const DashboardApp = React.createClass({
             <Dashboard {...dashboard}/>
         );
     }
-});
+}
 
 export default DashboardApp;

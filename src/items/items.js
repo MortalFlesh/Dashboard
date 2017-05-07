@@ -1,20 +1,14 @@
-import {List} from 'immutable';
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import Item from './../item/item';
+import {List} from "immutable";
+import React from "react";
+import Item from "./../item/item";
+import PropTypes from "prop-types";
 
-const Items = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        items: React.PropTypes.instanceOf(List).isRequired,
-    },
-
+class Items extends React.PureComponent {
     style() {
         return {
             position: 'relative',
         };
-    },
+    }
 
     render() {
         const items = this.props.items.map((item) => {
@@ -27,6 +21,10 @@ const Items = React.createClass({
             </div>
         );
     }
-});
+}
+
+Items.propTypes = {
+    items: PropTypes.instanceOf(List).isRequired,
+};
 
 export default Items;

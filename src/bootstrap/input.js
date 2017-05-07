@@ -1,41 +1,15 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Input = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        onChange: React.PropTypes.func.isRequired,
-        type: React.PropTypes.string.isRequired,
-        className: React.PropTypes.string,
-        id: React.PropTypes.string,
-        placeholder: React.PropTypes.string,
-        value: React.PropTypes.string,
-        checked: React.PropTypes.bool,
-        disabled: React.PropTypes.bool,
-    },
-
-    getDefaultProps() {
-        return {
-            className: 'form-control',
-            id: '',
-            placeholder: '',
-            value: '',
-            checked: false,
-            disabled: false,
-        };
-    },
-
-    handleChange(event) {
-        var value = event.target.value;
-
-        this.props.onChange(value);
-    },
-
+class Input extends React.PureComponent {
     render() {
+        const {type, onChange} = this.props;
+
         const inputProps = {
-            onChange: this.handleChange,
-            type: this.props.type,
+            onChange(event) {
+                onChange(event.target.value);
+            },
+            type,
         };
 
         ['className', 'id', 'placeholder', 'value', 'checked', 'disabled'].forEach((property) => {
@@ -50,6 +24,26 @@ const Input = React.createClass({
             <input {...inputProps} />
         );
     }
-});
+}
+
+Input.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    type: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    id: PropTypes.string,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    checked: PropTypes.bool,
+    disabled: PropTypes.bool,
+};
+
+Input.defaultProps = {
+    className: 'form-control',
+    id: '',
+    placeholder: '',
+    value: '',
+    checked: false,
+    disabled: false,
+};
 
 export default Input;

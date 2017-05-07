@@ -1,6 +1,6 @@
 // https://github.com/steida/este-todomvc/blob/master/src/lib/state.js
-import EventEmitter from 'eventemitter3'
-import Immutable from 'immutable'
+import EventEmitter from "eventemitter3";
+import Immutable from "immutable";
 
 export default class State extends EventEmitter {
 
@@ -11,7 +11,7 @@ export default class State extends EventEmitter {
         this.load(opt_json || {});
     }
 
-    load(json: Object) {
+    load(json) {
         this.set(Immutable.fromJS(json));
     }
 
@@ -29,7 +29,7 @@ export default class State extends EventEmitter {
         return this._state;
     }
 
-    save(): Object {
+    save() {
         return this._state.toJS();
     }
 

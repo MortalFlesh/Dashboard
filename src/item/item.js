@@ -1,17 +1,13 @@
 import React from "react";
-import PureRenderMixin from "react-addons-pure-render-mixin";
+import PropTypes from "prop-types";
+import cn from "classnames";
+
 import ItemRecord from "./itemRecord";
 import ItemHeader from "./itemHeader";
 import ItemBody from "./itemBody";
 import ItemFooter from "./itemFooter";
 
-const Item = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        item: React.PropTypes.instanceOf(ItemRecord).isRequired,
-    },
-
+class Item extends React.PureComponent {
     style({top, left, width, height}) {
         return {
             position: 'absolute',
@@ -21,17 +17,17 @@ const Item = React.createClass({
             maxWidth: width,
             zIndex: this.props.item.isMoving ? 10000 : 0,
         };
-    },
+    }
 
     render() {
-        const item = this.props.item;
+        const {item} = this.props;
         const style = this.style(item);
 
-        const className = item.isMoving ? 'panel-primary' : 'panel-default';    // todo cn()
+        const className = item.isMoving ? 'panel-primary' : 'panel-default';
 
         return (
             <div className="Item" style={style}>
-                <div className={`panel ${className}`}>
+                <div className={cn('panel', className)}>
                     <ItemHeader item={item}/>
 
                     <div className="panel-body" style={{padding: 0}}>
@@ -43,6 +39,10 @@ const Item = React.createClass({
             </div>
         );
     }
-});
+}
+
+Item.propTypes = {
+    item: PropTypes.instanceOf(ItemRecord).isRequired,
+};
 
 export default Item;

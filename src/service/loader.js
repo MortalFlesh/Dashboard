@@ -6,6 +6,7 @@ class Loader {
     }
 
     /**
+     * @deprecated - use get$ instead (then remove jquery-browserify)
      * @param url : string
      * @returns {Promise}
      */
@@ -20,6 +21,7 @@ class Loader {
     }
 
     /**
+     * @deprecated - use post$ instead (then remove jquery-browserify)
      * @param url : string
      * @param data : object
      * @returns {Promise}

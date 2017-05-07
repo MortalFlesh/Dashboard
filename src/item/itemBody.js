@@ -1,21 +1,15 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const ItemBody = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        url: React.PropTypes.string.isRequired,
-        height: React.PropTypes.number.isRequired,
-        width: React.PropTypes.number.isRequired,
-    },
-
+class ItemBody extends React.PureComponent {
     style() {
+        const {height, width} = this.props;
+
         return {
-            height: this.props.height,
-            width: this.props.width,
+            height,
+            width,
         };
-    },
+    }
 
     containerStyle({height, width}) {
         const scrollerHeight = 20;
@@ -26,7 +20,7 @@ const ItemBody = React.createClass({
             width: width - scrollerWidth,
             overflow: 'hidden',
         };
-    },
+    }
 
     render() {
         const style = this.style();
@@ -38,6 +32,12 @@ const ItemBody = React.createClass({
             </div>
         );
     }
-});
+}
+
+ItemBody.propTypes = {
+    url: PropTypes.string.isRequired,
+    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired,
+};
 
 export default ItemBody;

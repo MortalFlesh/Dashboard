@@ -1,24 +1,18 @@
 import React from "react";
-import PureRenderMixin from "react-addons-pure-render-mixin";
+import PropTypes from "prop-types";
 import * as actions from "./actions";
 import ItemRecord from "./itemRecord";
 import ItemButtons from "./itemButtons";
 
-const ItemHeader = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        item: React.PropTypes.instanceOf(ItemRecord).isRequired,
-    },
-
+class ItemHeader extends React.PureComponent {
     style() {
         return {
             cursor: 'move',
         };
-    },
+    }
 
     onMouseDown({pageX, pageY}) {
-        const item = this.props.item;
+        const {item} = this.props;
 
         if (!item.isMoving) {
             const innerX = pageX - item.left;
@@ -26,10 +20,10 @@ const ItemHeader = React.createClass({
 
             actions.setMoving({id: item.id, isMoving: true, innerX, innerY});
         }
-    },
+    }
 
     onMouseMove({pageX, pageY}) {
-        const item = this.props.item;
+        const {item} = this.props;
 
         if (item.isMoving) {
             const top = pageY - item.innerY;
@@ -37,17 +31,19 @@ const ItemHeader = React.createClass({
 
             actions.setItemPosition({id: item.id, top, left});
         }
-    },
+    }
 
     onMouseUp(event) {
-        const item = this.props.item;
+        const {item} = this.props;
 
         if (item.isMoving) {
             actions.setMoving({id: item.id, isMoving: false, innerX: 0, innerY: 0});
         }
-    },
+    }
 
     render() {
+        const {item} = this.props;
+
         return (
             <div className="panel-heading"
                  style={this.style()}
@@ -55,14 +51,16 @@ const ItemHeader = React.createClass({
                  onMouseMove={this.onMouseMove}
                  onMouseUp={this.onMouseUp}>
 
-                {this.props.item.isShowSaveButton &&
-                    <ItemButtons item={this.props.item}/>
-                }
+                {item.isShowSaveButton ? <ItemButtons item={item}/> : null}
 
-                <h3 className="panel-title">{this.props.item.name}</h3>
+                <h3 className="panel-title">{item.name}</h3>
             </div>
         );
     }
-});
+}
+
+ItemHeader.propTypes = {
+    item: PropTypes.instanceOf(ItemRecord).isRequired,
+};
 
 export default ItemHeader;

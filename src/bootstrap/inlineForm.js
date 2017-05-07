@@ -1,16 +1,7 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const InlineForm = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        children: React.PropTypes.oneOfType([
-            React.PropTypes.array,
-            React.PropTypes.element,
-        ]).isRequired,
-    },
-
+class InlineForm extends React.PureComponent {
     render() {
         return (
             <div className="form-inline">
@@ -18,6 +9,13 @@ const InlineForm = React.createClass({
             </div>
         );
     }
-});
+}
+
+InlineForm.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element,
+    ]).isRequired,
+};
 
 export default InlineForm;

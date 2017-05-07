@@ -1,16 +1,7 @@
-import React from 'react';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Form = React.createClass({
-    mixins: [PureRenderMixin],
-
-    propTypes: {
-        children: React.PropTypes.oneOfType([
-            React.PropTypes.array,
-            React.PropTypes.element,
-        ]).isRequired,
-    },
-
+class Form extends React.PureComponent {
     render() {
         return (
             <div className="form-horizontal">
@@ -18,6 +9,13 @@ const Form = React.createClass({
             </div>
         );
     }
-});
+}
+
+Form.propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element,
+    ]).isRequired,
+};
 
 export default Form;
