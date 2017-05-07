@@ -1,6 +1,6 @@
 import React from "react";
 import * as store from "./store";
-import state from "./state";
+import {state, loadServerData} from "./state";
 import Dashboard from "./../dashboard/dashboard";
 import TemplateRecord from "./../template/templateRecord";
 
@@ -9,6 +9,8 @@ const DashboardApp = React.createClass({
         state.on('change', () => {
             this.forceUpdate();
         });
+
+        loadServerData();
     },
 
     render() {

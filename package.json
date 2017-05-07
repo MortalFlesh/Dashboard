@@ -32,7 +32,8 @@
         "jquery-browserify": "^1.8.1",
         "react": "^0.14.0-rc1",
         "react-addons-pure-render-mixin": "^0.14.0-rc1",
-        "react-dom": "^0.14.0-rc1"
+        "react-dom": "^0.14.0-rc1",
+        "rxjs": "^5.0.3"
     },
     "devDependencies": {
         "babelify": "^6.3.0",
