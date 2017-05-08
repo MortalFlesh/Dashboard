@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
 //import dispatcher from "./../lib/dispatcher";
 //import ItemRecord from "./../item/itemRecord";
 
-export const dispatchToken = dispatcher.register(({action, data}) => {
+export const dispatchToken = ({action, data}) => {
     switch (action) {
         case actions.setMoving:
             moving(data);
@@ -39,7 +39,7 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             itemSaveButton(data, false);
             break;
     }
-});
+};
 
 function itemSaveButton({id}, visibility) {
     const currentItems = new List(getItems());

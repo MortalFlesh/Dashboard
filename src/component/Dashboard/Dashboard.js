@@ -65,6 +65,8 @@ class Dashboard extends React.PureComponent {
 }
 
 Dashboard.propTypes = {
+    flashMessages: PropTypes.instanceOf(List).isRequired,
+
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
     templates: PropTypes.instanceOf(List).isRequired,
 

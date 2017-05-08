@@ -42,21 +42,21 @@ class ItemFooter extends React.PureComponent {
                         <Input type="text"
                                id={heightId}
                                value={height.toString()}
-                               onChange={this.heightChangeHandler}/>
+                               onChange={this.heightChangeHandler.bind(this)}/>
                     </FormItem>
 
                     <FormItem id={widthId} title="Width:">
                         <Input type="text"
                                id={widthId}
                                value={width.toString()}
-                               onChange={this.widthChangeHandler}/>
+                               onChange={this.widthChangeHandler.bind(this)}/>
                     </FormItem>
 
                     <FormItem id={refreshRateId} title="Refresh rate:">
                         <Input type="text"
                                id={refreshRateId}
                                value={refreshRate.toString()}
-                               onChange={this.refreshRateHandler}
+                               onChange={this.refreshRateHandler.bind(this)}
                                disabled={true}/>
                     </FormItem>
 

@@ -3,7 +3,7 @@ import {SELECT_TEMPLATE} from "./../constant";
 export const changeTemplateEpic = (action$) =>
     action$.ofType(SELECT_TEMPLATE)
         // todo
-        .map(SELECT_TEMPLATE);
+        //.map(SELECT_TEMPLATE);
 
 
 function __changeTemplate(templateId) {

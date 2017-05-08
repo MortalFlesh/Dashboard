@@ -15,8 +15,12 @@ class ItemButtons extends React.PureComponent {
     render() {
         return (
             <div className="btn-group btn-group-xs" style={{float: 'right'}}>
-                <button className="btn btn-primary" onClick={this.saveHandler}>Save</button>
-                <button className="btn btn-danger" onClick={this.cancelHandler}>Cancel</button>
+                <button className="btn btn-primary" onClick={this.saveHandler.bind(this)}>
+                    Save
+                </button>
+                <button className="btn btn-danger" onClick={this.cancelHandler.bind(this)}>
+                    Cancel
+                </button>
             </div>
         );
     }

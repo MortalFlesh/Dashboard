@@ -6,17 +6,19 @@ import PrimaryButton from "./bootstrap/PrimaryButton";
 class HeaderButtons extends React.PureComponent {
     header() {
         if (this.props.isShowAddItem || this.props.isShowAddTemplate) {
-            return <PrimaryButton onClick={this.backHandler}>{'< Back'}</PrimaryButton>;
+            return <PrimaryButton onClick={this.backHandler.bind(this)}>{'< Back'}</PrimaryButton>;
         } else {
-            return <PrimaryButton onClick={this.addItemHandler}>+ Item</PrimaryButton>;
+            return <PrimaryButton onClick={this.addItemHandler.bind(this)}>+ Item</PrimaryButton>;
         }
     }
 
     backHandler() {
-        if (this.props.isShowAddItem) {
-            this.props.showAddItem(false);
-        } else if (this.props.isShowAddTemplate) {
-            this.props.showAddTemplate(false);
+        const {isShowAddItem, showAddItem, isShowAddTemplate, showAddTemplate} = this.props;
+
+        if (isShowAddItem) {
+            showAddItem(false);
+        } else if (isShowAddTemplate) {
+            showAddTemplate(false);
         }
     }
 

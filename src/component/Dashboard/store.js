@@ -1,21 +1,3 @@
-import React from "react";
-import {List} from "immutable";
-import "./../../flashMessage/store";
-import "./../../item/store";
-import "./../../addItem/store";
-import "./../../addTemplate/store";
-import api from "./../../service/api";
-import dispatcher from "./../../lib/dispatcher";
-import * as actions from "./actions";
-import {addFlashMessage} from "./../../flashMessage/actions";
-import FlashMessageRecord from "./../../flashMessage/flashMessageRecord";
-import {addItem} from "./../../addItem/actions";
-import {saveItem} from "./../../item/actions";
-import {addTemplate} from "./../../addTemplate/actions";
-import {dashboardCursor} from "./state";
-import TemplateRecord from "./../Template/record";
-import ItemRecord from "./../Item/record";
-
 import {applyMiddleware, createStore} from "redux";
 import {createEpicMiddleware} from "redux-observable";
 import {rootEpic} from "./action";
@@ -32,9 +14,28 @@ export function configureStore(initialState) {
     );
 }
 
+
 // ---- deprecated ----
 
-export const dispatchToken = dispatcher.register(({action, data}) => {
+// import React from "react";
+// import {List} from "immutable";
+// import "./../../flashMessage/store";
+// import "./../../item/store";
+// import "./../../addItem/store";
+// import "./../../addTemplate/store";
+// import api from "./../../service/api";
+// import dispatcher from "./../../lib/dispatcher";
+// import * as actions from "./actions";
+// import {addFlashMessage} from "./../../flashMessage/actions";
+// import FlashMessageRecord from "./../../flashMessage/flashMessageRecord";
+// import {addItem} from "./../../addItem/actions";
+// import {saveItem} from "./../../item/actions";
+// import {addTemplate} from "./../../addTemplate/actions";
+// import {dashboardCursor} from "./state";
+// import TemplateRecord from "./../Template/record";
+// import ItemRecord from "./../Item/record";
+
+export const dispatchToken = ({action, data}) => {
     switch (action) {
         case actions.selectTemplate:
             setToDashboard('selectedTemplate', data);
@@ -72,7 +73,7 @@ export const dispatchToken = dispatcher.register(({action, data}) => {
             _addTemplate();
             break;
     }
-});
+};
 
 function _setItems(data) {
     let items = new List();

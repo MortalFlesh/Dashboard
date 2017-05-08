@@ -6,10 +6,10 @@ const initialState = new DashboardState();
 export default (state = initialState, action) => {
     switch (action.type) {
         case SHOW_ADD_TEMPLATE:
-            return state.set('showAddTemplate', action.show);
+            return state.set('isShowAddTemplate', action.show);
 
         case SELECT_TEMPLATE:
-            return state.set('selectedTemplate', action.template);
+            return state.set('isShowAddTemplate', action.template);
 
         default:
             return state;

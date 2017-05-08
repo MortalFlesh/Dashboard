@@ -54,7 +54,7 @@ class AddItemForm extends React.PureComponent {
                                placeholder="Item refresh rate"
                                id="add-item-refresh-rate"
                                value={item.refreshRate.toString()}
-                               onChange={this.refreshRateChangeHandler}/>
+                               onChange={this.refreshRateChangeHandler.bind(this)}/>
                     </FormItem>
 
                     <FormItem id="add-item-height" title="Height:" sizeLabel={1} size={10}>
@@ -62,7 +62,7 @@ class AddItemForm extends React.PureComponent {
                                placeholder="Item height"
                                id="add-item-height"
                                value={item.height.toString()}
-                               onChange={this.heightChangeHandler}/>
+                               onChange={this.heightChangeHandler.bind(this)}/>
                     </FormItem>
 
                     <FormItem id="add-item-width" title="Width:" sizeLabel={1} size={10}>
@@ -70,7 +70,7 @@ class AddItemForm extends React.PureComponent {
                                placeholder="Item width"
                                id="add-item-width"
                                value={item.width.toString()}
-                               onChange={this.widthChangeHandler}/>
+                               onChange={this.widthChangeHandler.bind(this)}/>
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
