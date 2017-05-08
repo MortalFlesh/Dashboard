@@ -13,7 +13,7 @@ import {addItem} from "./../../addItem/actions";
 import {saveItem} from "./../../item/actions";
 import {addTemplate} from "./../../addTemplate/actions";
 import {dashboardCursor} from "./state";
-import TemplateRecord from "./../../template/templateRecord";
+import TemplateRecord from "./../Template/record";
 import ItemRecord from "./../../item/itemRecord";
 
 import {applyMiddleware, createStore} from "redux";

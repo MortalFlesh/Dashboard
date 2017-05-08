@@ -1,5 +1,5 @@
 import {List, Record} from "immutable";
-import TemplateRecord from "./../../template/templateRecord";
+import TemplateRecord from "./../Template/record";
 
 let defaultTemplate = new TemplateRecord();
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
-import TemplateRecord from "./../template/templateRecord";
+import TemplateRecord from "./Template/record";
 
 import DropdownMenu from "./bootstrap/dropdown/DropdownMenu";
 import DropdownLink from "./bootstrap/dropdown/DropdownLink";

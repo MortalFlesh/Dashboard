@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TemplateRecord from "./../template/templateRecord";
-import Items from "./../items/items";
+import TemplateRecord from "./record";
+import Items from "./../../items/items";
 
 class Template extends React.PureComponent {
     render() {
