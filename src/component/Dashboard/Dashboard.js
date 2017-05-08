@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
 
+import FlashMessagesApp from "./../FlashMessages";
 import AddItemFormApp from "./../AddItemForm";
 import AddTemplateFormApp from "./../AddTemplateForm";
 import DashboardMenu from "./../DashboardMenu";
-import FlashMessages from "./../../flashMessages/flashMessages";
 import TemplateRecord from "./../../template/templateRecord";
 import Template from "./../../template/template";
 import Container from "./../../bootstrap/container";
@@ -52,7 +52,7 @@ class Dashboard extends React.PureComponent {
                     </Header>
 
                     {flashMessages.count() > 0
-                        ? <FlashMessages flashMessages={flashMessages}/>
+                        ? <FlashMessagesApp/>
                         : null
                     }
 
@@ -64,8 +64,6 @@ class Dashboard extends React.PureComponent {
 }
 
 Dashboard.propTypes = {
-    flashMessages: PropTypes.instanceOf(List).isRequired,
-
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
     templates: PropTypes.instanceOf(List).isRequired,
 

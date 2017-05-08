@@ -5,19 +5,17 @@ import DashboardApp from "./Dashboard";
 
 const mapStateToProps = ({dashboard}) => {
     const {
-        flashMessages,
         templates,
         selectedTemplate,
-        showAddTemplate,
-        showAddItem,
+        isShowAddTemplate,
+        isShowAddItem,
     } = dashboard;
 
     return {
-        flashMessages,
         template: selectedTemplate,
         templates,
-        isShowAddTemplate: showAddTemplate,
-        isShowAddItem: showAddItem,
+        isShowAddTemplate,
+        isShowAddItem,
     };
 };
 

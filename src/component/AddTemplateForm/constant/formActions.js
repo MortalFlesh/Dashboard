@@ -1,2 +1,2 @@
-export const ADD_TEMPLATE = 'ADD_TEMPLATE';
-export const SET_NAME = 'SET_NAME';
+export const ADD_TEMPLATE = 'ADD_TEMPLATE_SAVE';
+export const SET_NAME = 'ADD_TEMPLATE_SET_NAME';
