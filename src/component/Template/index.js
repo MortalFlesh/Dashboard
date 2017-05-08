@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TemplateRecord from "./record";
-import Items from "./../../items/items";
+
+import ItemsApp from "./../Items";
 
 class Template extends React.PureComponent {
     render() {
         const {template} = this.props;
 
         return (
-            <Items items={template.items}/>
+            <ItemsApp/>
         );
     }
 }

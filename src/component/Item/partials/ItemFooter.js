@@ -1,32 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as actions from "./actions";
-import ItemRecord from "./itemRecord";
-import InlineForm from "./../component/bootstrap/InlineForm";
-import FormItem from "./../component/bootstrap/FormItem";
-import Input from "./../component/bootstrap/Input";
+import {number} from "./../../../service/utils";
+import ItemRecord from "./../record";
+import ResizeRecord from "./../../Items/record/resizeRecord";
+
+import InlineForm from "./../../bootstrap/InlineForm";
+import FormItem from "./../../bootstrap/FormItem";
+import Input from "./../../bootstrap/Input";
 
 class ItemFooter extends React.PureComponent {
-    heightChangeHandler(heightString) {
-        const {item} = this.props;
-        const height = parseInt(heightString, 10);
+    refreshRateHandler(refreshRate) {
+        // todo
+    }
 
-        actions.resizeItem({id: item.id, height, width: item.width});
+    heightChangeHandler(heightString) {
+        const {id, width} = this.props.item;
+        const height = number(heightString);
+
+        this.props.resize(new ResizeRecord({id, height, width}));
     }
 
     widthChangeHandler(widthString) {
-        const {item} = this.props;
-        const width = parseInt(widthString, 10);
+        const {id, height} = this.props.item;
+        const width = number(widthString);
 
-        actions.resizeItem({id: item.id, height: item.height, width});
+        this.props.resize(new ResizeRecord({id, height, width}));
     }
 
     render() {
-        const {item} = this.props;
+        const {id, width, height, refreshRate} = this.props.item;
 
-        const heightId = `item-${item.id}-footer-height`;
-        const widthId = `item-${item.id}-footer-width`;
-        const refreshRateId = `item-${item.id}-footer-refreshRate`;
+        const heightId = `item-${id}-footer-height`;
+        const widthId = `item-${id}-footer-width`;
+        const refreshRateId = `item-${id}-footer-refreshRate`;
 
         return (
             <div className="panel-footer">
@@ -35,24 +41,22 @@ class ItemFooter extends React.PureComponent {
                     <FormItem id={heightId} title="Height:">
                         <Input type="text"
                                id={heightId}
-                               value={item.height.toString()}
+                               value={height.toString()}
                                onChange={this.heightChangeHandler}/>
                     </FormItem>
 
                     <FormItem id={widthId} title="Width:">
                         <Input type="text"
                                id={widthId}
-                               value={item.width.toString()}
+                               value={width.toString()}
                                onChange={this.widthChangeHandler}/>
                     </FormItem>
 
                     <FormItem id={refreshRateId} title="Refresh rate:">
                         <Input type="text"
                                id={refreshRateId}
-                               value={item.refreshRate.toString()}
-                               onChange={() => {
-                                   // todo
-                               }}
+                               value={refreshRate.toString()}
+                               onChange={this.refreshRateHandler}
                                disabled={true}/>
                     </FormItem>
 
@@ -64,6 +68,7 @@ class ItemFooter extends React.PureComponent {
 
 ItemFooter.propTypes = {
     item: PropTypes.instanceOf(ItemRecord).isRequired,
+    resize: PropTypes.func.isRequired,
 };
 
 export default ItemFooter;

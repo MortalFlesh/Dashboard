@@ -1,11 +1,10 @@
 import React from "react";
-import ItemRecord from "./itemRecord";
-import * as actions from "./actions";
 import PropTypes from "prop-types";
+import ItemRecord from "./../record";
 
 class ItemButtons extends React.PureComponent {
     saveHandler() {
-        actions.saveItem(this.props.item);
+        this.props.save(this.props.item);
     }
 
     cancelHandler() {
@@ -25,6 +24,7 @@ class ItemButtons extends React.PureComponent {
 
 ItemButtons.propTypes = {
     item: PropTypes.instanceOf(ItemRecord).isRequired,
+    save: PropTypes.func.isRequired,
 };
 
 export default ItemButtons;

@@ -6,7 +6,7 @@ import templateService from "./../../service/templateService";
 import * as actions from "./actions";
 import {getSelectedTemplate} from "./../../service/sessionStorage/sessionStorageStore";
 import TemplateRecord from "./../Template/record";
-import ItemRecord from "./../../item/itemRecord";
+import ItemRecord from "./../Item/record";
 
 const defaultTemplate = new TemplateRecord();
 const defaultItem = new ItemRecord();

@@ -1,8 +1,22 @@
-import {List} from "immutable";
-import * as actions from "./actions";
-import {setToDashboard, getItems} from "./../dashboardApp/store";
-import dispatcher from "./../lib/dispatcher";
-import ItemRecord from "./../item/itemRecord";
+import ItemRecord from "./../record";
+
+const initialState = new ItemRecord();
+
+export default (state = initialState, action) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
+};
+
+
+// --- deprecated ---
+
+//import {List} from "immutable";
+//import * as actions from "./actions";
+//import {setToDashboard, getItems} from "./../dashboardApp/store";
+//import dispatcher from "./../lib/dispatcher";
+//import ItemRecord from "./../item/itemRecord";
 
 export const dispatchToken = dispatcher.register(({action, data}) => {
     switch (action) {
@@ -106,3 +120,4 @@ function resize({id, height, width}) {
 
     setToDashboard('items', itemsUpdated);
 }
+

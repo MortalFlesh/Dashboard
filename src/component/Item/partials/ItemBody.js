@@ -24,10 +24,9 @@ class ItemBody extends React.PureComponent {
 
     render() {
         const style = this.style();
-        const containerStyle = this.containerStyle(style);
 
         return (
-            <div className="ItemBody" style={containerStyle}>
+            <div className="ItemBody" style={this.containerStyle(style)}>
                 <iframe src={this.props.url} style={style}/>
             </div>
         );

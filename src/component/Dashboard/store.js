@@ -14,7 +14,7 @@ import {saveItem} from "./../../item/actions";
 import {addTemplate} from "./../../addTemplate/actions";
 import {dashboardCursor} from "./state";
 import TemplateRecord from "./../Template/record";
-import ItemRecord from "./../../item/itemRecord";
+import ItemRecord from "./../Item/record";
 
 import {applyMiddleware, createStore} from "redux";
 import {createEpicMiddleware} from "redux-observable";
