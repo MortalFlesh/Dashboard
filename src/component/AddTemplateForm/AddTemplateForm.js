@@ -1,24 +1,15 @@
 import React from "react";
-import * as actions from "./actions";
-import Form from "./../bootstrap/form";
-import FormItem from "./../bootstrap/formItem";
-import Input from "./../bootstrap/input";
-import PrimaryButton from "./../bootstrap/primaryButton";
-import TemplateRecord from "./../template/templateRecord";
 import PropTypes from "prop-types";
 
+import TemplateRecord from "./../../template/templateRecord";
+import Form from "./../../bootstrap/form";
+import FormItem from "./../../bootstrap/formItem";
+import Input from "./../../bootstrap/input";
+import PrimaryButton from "./../../bootstrap/primaryButton";
+
 class AddTemplateForm extends React.PureComponent {
-
-    nameChangeHandler(name) {
-        actions.setAddTemplateName(name);
-    }
-
-    saveHandler() {
-        actions.addTemplate();
-    }
-
     render() {
-        const template = this.props.template;
+        const {template} = this.props;
 
         return (
             <div className="AddTemplateForm">
@@ -31,11 +22,11 @@ class AddTemplateForm extends React.PureComponent {
                                placeholder="Template name"
                                id="add-template-name"
                                value={template.name}
-                               onChange={this.nameChangeHandler}/>
+                               onChange={this.props.setName}/>
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
-                        <PrimaryButton big={true} onClick={this.saveHandler}>
+                        <PrimaryButton big={true} onClick={this.props.addTemplate}>
                             Save template
                         </PrimaryButton>
                     </FormItem>
@@ -48,6 +39,8 @@ class AddTemplateForm extends React.PureComponent {
 
 AddTemplateForm.propTypes = {
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
+    addTemplate: PropTypes.func.isRequired,
+    setName: PropTypes.func.isRequired,
 };
 
 export default AddTemplateForm;

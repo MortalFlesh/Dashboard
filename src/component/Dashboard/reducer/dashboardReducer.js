@@ -1,4 +1,4 @@
-import DashboardState from "./../state/dashboardState";
+import DashboardState from "./../state";
 import {SELECT_TEMPLATE, SHOW_ADD_TEMPLATE} from "./../constant";
 
 const initialState = new DashboardState();

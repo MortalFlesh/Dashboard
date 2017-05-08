@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
 
+import AddItemFormApp from "./../AddItemForm";
+import AddTemplateFormApp from "./../AddTemplateForm";
 import DashboardMenu from "./../DashboardMenu";
 import FlashMessages from "./../../flashMessages/flashMessages";
 import TemplateRecord from "./../../template/templateRecord";
-import ItemRecord from "./../../item/itemRecord";
 import Template from "./../../template/template";
-import AddItemForm from "./../../addItem/addItemForm";
-import AddTemplateForm from "./../../addTemplate/addTemplateForm";
 import Container from "./../../bootstrap/container";
 import Header from "./../../bootstrap/header";
 import HeaderButtons from "./../../headerButtons/headerButtons";
@@ -23,9 +22,9 @@ class Dashboard extends React.PureComponent {
 
     content() {
         if (this.props.isShowAddItem) {
-            return <AddItemForm item={this.props.addItem}/>;
+            return <AddItemFormApp/>;
         } else if (this.props.isShowAddTemplate) {
-            return <AddTemplateForm template={this.props.addTemplate}/>;
+            return <AddTemplateFormApp/>;
         } else {
             return <Template template={this.props.template}/>;
         }
@@ -71,10 +70,7 @@ Dashboard.propTypes = {
     templates: PropTypes.instanceOf(List).isRequired,
 
     isShowAddItem: PropTypes.bool.isRequired,
-    addItem: PropTypes.instanceOf(ItemRecord).isRequired,
-
     isShowAddTemplate: PropTypes.bool.isRequired,
-    addTemplate: PropTypes.instanceOf(TemplateRecord).isRequired,
 
     showAddTemplate: PropTypes.func.isRequired,
     selectTemplate: PropTypes.func.isRequired,
