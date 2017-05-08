@@ -49,9 +49,9 @@ class ItemHeader extends React.PureComponent {
         return (
             <div className="panel-heading"
                  style={this.style()}
-                 onMouseDown={this.onMouseDown}
-                 onMouseMove={this.onMouseMove}
-                 onMouseUp={this.onMouseUp}>
+                 onMouseDown={this.onMouseDown.bind(this)}
+                 onMouseMove={this.onMouseMove.bind(this)}
+                 onMouseUp={this.onMouseUp.bind(this)}>
 
                 {item.isShowSaveButton ? <ItemButtons item={item} save={this.props.save}/> : null}
 

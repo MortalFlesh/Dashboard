@@ -13,6 +13,12 @@ import Header from "./../bootstrap/Header";
 import Template from "./../Template";
 
 class Dashboard extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.props.load();
+    }
+
     style() {
         return {
             paddingTop: 30,
@@ -73,6 +79,7 @@ Dashboard.propTypes = {
     isShowAddItem: PropTypes.bool.isRequired,
     isShowAddTemplate: PropTypes.bool.isRequired,
 
+    load: PropTypes.func.isRequired,
     selectTemplate: PropTypes.func.isRequired,
     showAddTemplate: PropTypes.func.isRequired,
     showAddItem: PropTypes.func.isRequired,

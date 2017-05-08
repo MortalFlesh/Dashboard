@@ -1,7 +1,9 @@
 import {combineEpics} from "redux-observable";
 import {clearFlashmessagesEpic} from "./../../FlashMessages/action";
-import {changeTemplateEpic} from "./dashboardEpics";
+import {loadEpic, preSelectTemplateEpic, selectTemplateEpic} from "./dashboardEpics";
 import {
+    load,
+    preSelectTemplate,
     selectTemplate,
     setItems,
     setTemplateName,
@@ -11,17 +13,11 @@ import {
 } from "./dashboardActions";
 
 const rootEpic = combineEpics(
+    loadEpic, preSelectTemplateEpic, selectTemplateEpic,
     clearFlashmessagesEpic,
-    changeTemplateEpic,
 );
 
 export {
-    selectTemplate, setTemplateName, setItems, setTemplates, showAddItem, showAddTemplate,
+    load, preSelectTemplate, selectTemplate, setTemplateName, setItems, setTemplates, showAddItem, showAddTemplate,
     rootEpic,
 };
-
-
-
-export function getSelectedTemplate() {
-    return SessionStorage.get('selectedTemplate');
-}

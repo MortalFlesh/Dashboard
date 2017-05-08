@@ -1,4 +1,6 @@
 import {
+    LOAD,
+    PRE_SELECT_TEMPLATE,
     SELECT_TEMPLATE,
     SET_ITEMS,
     SET_TEMPLATE_NAME,
@@ -6,6 +8,18 @@ import {
     SHOW_ADD_ITEM,
     SHOW_ADD_TEMPLATE
 } from "./../constant";
+
+export function load() {
+    return {
+        type: LOAD,
+    }
+}
+
+export function preSelectTemplate() {
+    return {
+        type: PRE_SELECT_TEMPLATE,
+    }
+}
 
 export function selectTemplate(template) {
     return {

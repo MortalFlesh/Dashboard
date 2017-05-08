@@ -1,12 +1,25 @@
+import {List} from "immutable";
+import TemplateRecord from "./../component/Template/record";
+import ItemRecord from "./../component/Item/record";
+
 export default class Api {
     constructor(loader, config) {
         this.loader = loader;
         this.url = config.getApiUrl();
     }
 
-    loadTemplates() {
-        return this.getData('/template/list/')
-            .then(({templates}) => templates);
+    loadTemplates$() {
+        return this.getData$('/template/list/')
+            .map(({response}) => new List(response.templates.map((template) => new TemplateRecord(template))));
+    }
+
+    /**
+     * @param path : string
+     * @returns {Observable}
+     * @private
+     */
+    getData$(path) {
+        return this.loader.get$(this.url + path);
     }
 
     /**
@@ -18,14 +31,15 @@ export default class Api {
         return this.loader.get(this.url + path);
     }
 
+    // todo remove?
     loadTemplateName(templateId) {
         return this.getData(`/template/${templateId}/name/`)
             .then(({name}) => name);
     }
 
-    loadItems(templateId) {
-        return this.getData(`/template/${templateId}/item/list/`)
-            .then(({items}) => items);
+    loadItems$(templateId) {
+        return this.getData$(`/template/${templateId}/item/list/`)
+            .map(({response}) => new List(response.items.map((item) => new ItemRecord(item))));
     }
 
     saveItem(templateId, item) {

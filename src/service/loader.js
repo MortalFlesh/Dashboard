@@ -1,6 +1,16 @@
+import {Observable} from "rxjs";
+
 export default class Loader {
     constructor(jQuery) {
         this.jQuery = jQuery;
+    }
+
+    /**
+     * @param url : string
+     * @returns {Observable}
+     */
+    get$(url) {
+        return Observable.ajax({url, method: 'GET', responseType: 'json', crossDomain: true});
     }
 
     /**

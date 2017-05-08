@@ -4,7 +4,7 @@ import {render} from "react-dom";
 import {Provider} from "react-redux";
 import DashboardApp from './component/Dashboard';
 import {configureStore} from "./component/Dashboard/store";
-import {createContainer} from "./service/container";
+import {createContainer} from "./service";
 
 createContainer(window);
 
