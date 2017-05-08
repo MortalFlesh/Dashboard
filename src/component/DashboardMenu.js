@@ -3,27 +3,25 @@ import PropTypes from "prop-types";
 import {List} from "immutable";
 import TemplateRecord from "./../template/templateRecord";
 
-import DropdownMenu from "../bootstrap/dropdownMenu";
-import DropdownLink from "./../bootstrap/dropdownLink";
-import DropdownItem from "./../bootstrap/dropdownItem";
+import DropdownMenu from "./bootstrap/dropdown/DropdownMenu";
+import DropdownLink from "./bootstrap/dropdown/DropdownLink";
+import DropdownItem from "./bootstrap/dropdown/DropdownItem";
 import PrimaryButton from "./../bootstrap/primaryButton";
 
 class DashboardMenu extends React.PureComponent {
     render() {
         const selectedTemplate = this.props.template;
 
-        const templates = this.props.templates.map((template) => {
-            // const template = t.toJS(); // todo - check why was that?
-            const selected = template.id === selectedTemplate.id;
-
-            return <DropdownItem key={template.id}
-                                 id={template.id}
-                                 title={template.name}
-                                 selected={selected}
-                                 onClick={() => {
-                                     this.props.selectTemplate(template);
-                                 }}/>;
-        });
+        // const template = t.toJS(); // todo - check why was that?
+        const templates = this.props.templates.map((template) =>
+            <DropdownItem key={template.id}
+                          id={template.id}
+                          title={template.name}
+                          selected={template.id === selectedTemplate.id}
+                          onClick={() => {
+                              this.props.selectTemplate(template);
+                          }}/>
+        );
 
         return (
             <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -56,7 +54,9 @@ class DashboardMenu extends React.PureComponent {
 
                             <li>
                                 <p className="navbar-btn">
-                                    <PrimaryButton onClick={() => {this.props.showAddTemplate(true)}}>
+                                    <PrimaryButton onClick={() => {
+                                        this.props.showAddTemplate(true)
+                                    }}>
                                         + Template
                                     </PrimaryButton>
                                 </p>
