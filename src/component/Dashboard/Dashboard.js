@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
+import TemplateRecord from "./../../template/templateRecord";
 
 import FlashMessagesApp from "./../FlashMessages";
 import AddItemFormApp from "./../AddItemForm";
 import AddTemplateFormApp from "./../AddTemplateForm";
 import DashboardMenu from "./../DashboardMenu";
 import HeaderButtons from "./../HeaderButtons";
-import TemplateRecord from "./../../template/templateRecord";
+import Container from "./../bootstrap/Container";
+import Header from "./../bootstrap/Header";
 import Template from "./../../template/template";
-import Container from "./../../bootstrap/container";
-import Header from "./../../bootstrap/header";
 
 class Dashboard extends React.PureComponent {
     style() {

@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import * as actions from "./actions";
 import ItemRecord from "./itemRecord";
-import InlineForm from "./../bootstrap/inlineForm";
-import FormItem from "./../bootstrap/formItem";
-import Input from "./../bootstrap/input";
+import InlineForm from "./../component/bootstrap/InlineForm";
+import FormItem from "./../component/bootstrap/FormItem";
+import Input from "./../component/bootstrap/Input";
 
 class ItemFooter extends React.PureComponent {
     heightChangeHandler(heightString) {

@@ -6,7 +6,7 @@ import TemplateRecord from "./../template/templateRecord";
 import DropdownMenu from "./bootstrap/dropdown/DropdownMenu";
 import DropdownLink from "./bootstrap/dropdown/DropdownLink";
 import DropdownItem from "./bootstrap/dropdown/DropdownItem";
-import PrimaryButton from "./../bootstrap/primaryButton";
+import PrimaryButton from "./bootstrap/PrimaryButton";
 
 class DashboardMenu extends React.PureComponent {
     render() {

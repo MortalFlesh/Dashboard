@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {number} from "./../../service/utils";
-
-import Header from "./../../bootstrap/header";
-import PrimaryButton from "./../../bootstrap/primaryButton";
-import Form from "./../../bootstrap/form";
-import FormItem from "./../../bootstrap/formItem";
-import Input from "./../../bootstrap/input";
 import ItemRecord from "./../../item/itemRecord";
+
+import Header from "./../bootstrap/Header";
+import PrimaryButton from "./../bootstrap/PrimaryButton";
+import Form from "./../bootstrap/Form";
+import FormItem from "./../bootstrap/FormItem";
+import Input from "./../bootstrap/Input";
 import Item from "./../../item/item";
 
 class AddItemForm extends React.PureComponent {
