@@ -1,6 +1,4 @@
-import jQuery from "jquery-browserify";
-
-class Loader {
+export default class Loader {
     constructor(jQuery) {
         this.jQuery = jQuery;
     }
@@ -36,5 +34,3 @@ class Loader {
         });
     }
 }
-
-export default new Loader(jQuery);

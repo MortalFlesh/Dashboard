@@ -19,3 +19,9 @@ export {
     selectTemplate, setTemplateName, setItems, setTemplates, showAddItem, showAddTemplate,
     rootEpic,
 };
+
+
+
+export function getSelectedTemplate() {
+    return SessionStorage.get('selectedTemplate');
+}

@@ -8,8 +8,12 @@ export default (state = initialState, action) => {
         case SHOW_ADD_TEMPLATE:
             return state.set('isShowAddTemplate', action.show);
 
-        case SELECT_TEMPLATE:
-            return state.set('isShowAddTemplate', action.template);
+        case SELECT_TEMPLATE: {
+            const {template} = action;
+            SessionStorage.set('selectedTemplate', template);
+
+            return state.set('isShowAddTemplate', template);
+        }
 
         default:
             return state;

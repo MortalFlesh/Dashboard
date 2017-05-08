@@ -1,31 +1,20 @@
 import Immutable from "immutable";
 
-let config = {
-    apiUrl: 'http://dashboard-api',
-    apiVersion: 'dev',
-};
-let configLocal = {
-    apiUrl: 'http://dashboard-api/app_dev.php',
-};
-
-/**
- * todo
- * - zkusit jeste nacitat config json (prevedeny z yml pri buildu) primo v index.html)
- * - jak vyresit, aby config_local.yml prepsal config ale nemusel existovat
- */
-
-class Config {
-    constructor(config, configLocal) {
-        this.config = config;
-        this.configLocal = configLocal;
+export default class Config {
+    constructor(config, configLocal = {}) {
+        this.config = Immutable
+            .fromJS(config)
+            .merge(configLocal)
+            .toJS();
     }
 
     getConfig() {
-        return Immutable
-            .fromJS(this.config)
-            .merge(this.configLocal || {})
-            .toJS()
+        return this.config;
+    }
+
+    getApiUrl() {
+        const {apiUrl, apiVersion} = this.getConfig();
+
+        return `${apiUrl}/${apiVersion}`;
     }
 }
-
-export default new Config(config, configLocal);

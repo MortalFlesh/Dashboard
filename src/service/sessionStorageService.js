@@ -1,4 +1,4 @@
-class SessionStorageService {
+export default class SessionStorageService {
     constructor(sessionStorage) {
         this.sessionStorage = sessionStorage;
     }
@@ -11,5 +11,3 @@ class SessionStorageService {
         return this.sessionStorage.getItem(key);
     }
 }
-
-export default new SessionStorageService(window.sessionStorage);

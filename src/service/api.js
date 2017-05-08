@@ -1,13 +1,7 @@
-import Loader from "./loader";
-import {getApiUrl, getApiVersion} from "./../dashboardApp/store";
-
-class Api {
-    constructor(loader, urlGetter, versionGetter) {
+export default class Api {
+    constructor(loader, config) {
         this.loader = loader;
-        this.urlGetter = urlGetter;
-        this.versionGetter = versionGetter;
-
-        this.url = null;
+        this.url = config.getApiUrl();
     }
 
     loadTemplates() {
@@ -21,19 +15,7 @@ class Api {
      * @private
      */
     getData(path) {
-        return this.loader.get(this.getUrl() + path);
-    }
-
-    /**
-     * @returns {string}
-     * @private
-     */
-    getUrl() {
-        if (!this.url) {
-            this.url = `${this.urlGetter()}/${this.versionGetter()}`;
-        }
-
-        return this.url;
+        return this.loader.get(this.url + path);
     }
 
     loadTemplateName(templateId) {
@@ -58,7 +40,7 @@ class Api {
      * @private
      */
     postData(path, data) {
-        return this.loader.post(this.getUrl() + path, data);
+        return this.loader.post(this.url + path, data);
     }
 
     saveTemplate(template) {
@@ -66,5 +48,3 @@ class Api {
             .then(({id}) => id);
     }
 }
-
-export default new Api(Loader, getApiUrl, getApiVersion);
