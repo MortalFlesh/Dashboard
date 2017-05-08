@@ -1,7 +1,7 @@
 import React from "react";
-import PrimaryButton from "./../bootstrap/primaryButton";
-import * as actions from "./../dashboardApp/actions";
 import PropTypes from "prop-types";
+
+import PrimaryButton from "./../bootstrap/primaryButton";
 
 class HeaderButtons extends React.PureComponent {
     header() {
@@ -14,14 +14,14 @@ class HeaderButtons extends React.PureComponent {
 
     backHandler() {
         if (this.props.isShowAddItem) {
-            actions.showAddItem(false);
+            this.props.showAddItem(false);
         } else if (this.props.isShowAddTemplate) {
-            actions.showAddTemplate(false);
+            this.props.showAddTemplate(false);
         }
     }
 
     addItemHandler() {
-        actions.showAddItem(true);
+        this.props.showAddItem(true);
     }
 
     render() {
@@ -36,6 +36,8 @@ class HeaderButtons extends React.PureComponent {
 HeaderButtons.propTypes = {
     isShowAddItem: PropTypes.bool.isRequired,
     isShowAddTemplate: PropTypes.bool.isRequired,
+    showAddItem: PropTypes.func.isRequired,
+    showAddTemplate: PropTypes.func.isRequired,
 };
 
 export default HeaderButtons;

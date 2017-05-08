@@ -6,11 +6,11 @@ import FlashMessagesApp from "./../FlashMessages";
 import AddItemFormApp from "./../AddItemForm";
 import AddTemplateFormApp from "./../AddTemplateForm";
 import DashboardMenu from "./../DashboardMenu";
+import HeaderButtons from "./../HeaderButtons";
 import TemplateRecord from "./../../template/templateRecord";
 import Template from "./../../template/template";
 import Container from "./../../bootstrap/container";
 import Header from "./../../bootstrap/header";
-import HeaderButtons from "./../../headerButtons/headerButtons";
 
 class Dashboard extends React.PureComponent {
     style() {
@@ -36,19 +36,20 @@ class Dashboard extends React.PureComponent {
         return (
             <div className="Dashboard" style={this.style()}>
                 <DashboardMenu
-                    addTemplateHandler={() => {
-                        this.props.showAddTemplate(true)
-                    }}
                     template={this.props.template}
                     templates={this.props.templates}
                     selectTemplate={this.props.selectTemplate}
+                    showAddTemplate={this.props.showAddTemplate}
                 />
 
                 <Container>
                     <Header>
                         <HeaderButtons
                             isShowAddItem={this.props.isShowAddItem}
-                            isShowAddTemplate={this.props.isShowAddTemplate}/>
+                            isShowAddTemplate={this.props.isShowAddTemplate}
+                            showAddItem={this.props.showAddItem}
+                            showAddTemplate={this.props.showAddTemplate}
+                        />
                     </Header>
 
                     {flashMessages.count() > 0
@@ -70,8 +71,9 @@ Dashboard.propTypes = {
     isShowAddItem: PropTypes.bool.isRequired,
     isShowAddTemplate: PropTypes.bool.isRequired,
 
-    showAddTemplate: PropTypes.func.isRequired,
     selectTemplate: PropTypes.func.isRequired,
+    showAddTemplate: PropTypes.func.isRequired,
+    showAddItem: PropTypes.func.isRequired,
 };
 
 export default Dashboard;

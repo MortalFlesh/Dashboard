@@ -56,7 +56,9 @@ class DashboardMenu extends React.PureComponent {
 
                             <li>
                                 <p className="navbar-btn">
-                                    <PrimaryButton onClick={this.props.addTemplateHandler}>+ Template</PrimaryButton>
+                                    <PrimaryButton onClick={() => {this.props.showAddTemplate(true)}}>
+                                        + Template
+                                    </PrimaryButton>
                                 </p>
                             </li>
                         </ul>
@@ -70,7 +72,7 @@ class DashboardMenu extends React.PureComponent {
 DashboardMenu.propTypes = {
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
     templates: PropTypes.instanceOf(List).isRequired,
-    addTemplateHandler: PropTypes.func.isRequired,
+    showAddTemplate: PropTypes.func.isRequired,
     selectTemplate: PropTypes.func.isRequired,
 };
 
