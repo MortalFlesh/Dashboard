@@ -1,5 +1,6 @@
 import {combineEpics} from "redux-observable";
 import {clearFlashmessagesEpic} from "./../../FlashMessages/action";
+import {changeTemplateEpic} from "./dashboardEpics";
 import {
     selectTemplate,
     setItems,
@@ -11,6 +12,7 @@ import {
 
 const rootEpic = combineEpics(
     clearFlashmessagesEpic,
+    changeTemplateEpic,
 );
 
 export {
