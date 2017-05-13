@@ -12,14 +12,13 @@ class DashboardMenu extends React.PureComponent {
     render() {
         const selectedTemplate = this.props.template;
 
-        // const template = t.toJS(); // todo - check why was that?
         const templates = this.props.templates.map((template) =>
             <DropdownItem key={template.id}
                           id={template.id}
                           title={template.name}
                           selected={template.id === selectedTemplate.id}
                           onClick={() => {
-                              this.props.selectTemplate(template);
+                              this.props.selectTemplate(template.id);
                           }}/>
         );
 

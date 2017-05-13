@@ -1,21 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TemplateRecord from "./record";
+import {connect} from "react-redux";
+import * as actions from "./action";
 
-import ItemsApp from "./../Items";
+import Template from "./Template";
 
-class Template extends React.PureComponent {
-    render() {
-        const {template} = this.props;
+const mapStateToProps = ({template}) => ({
+    template,
+});
 
-        return (
-            <ItemsApp/>
-        );
-    }
-}
-
-Template.propTypes = {
-    template: PropTypes.instanceOf(TemplateRecord).isRequired,
-};
-
-export default Template;
+export default connect(
+    mapStateToProps,
+    actions
+)(Template);

@@ -1,40 +1,25 @@
-import {number} from "./../../../service/utils";
 import {getService, TYPES} from "./../../../service";
 import DashboardState from "./../state";
-import {
-    PRE_SELECT_TEMPLATE,
-    SELECT_TEMPLATE,
-    SET_ITEMS,
-    SET_TEMPLATES,
-    SHOW_ADD_ITEM,
-    SHOW_ADD_TEMPLATE
-} from "./../constant";
+import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "./../constant";
 
 const initialState = new DashboardState();
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case PRE_SELECT_TEMPLATE: {
-            const selectedTemplateId = getSelectedTemplateId();
-            const template = state.templates
-                .filter((template) => template.id === selectedTemplateId)
-                .first();
-
-            return template ? state.set('selectedTemplate', template) : state;
-        }
-
         case SET_TEMPLATES:
             return state.set('templates', action.templates);
 
         case SELECT_TEMPLATE: {
-            const {template} = action;
-            getService(TYPES.SessionStorage).set('selectedTemplate', template.id);
+            const {selectedTemplateId} = action;
 
-            return state.set('selectedTemplate', template);
+            if (selectedTemplateId === 0) {
+                return state;
+            }
+
+            getService(TYPES.SessionStorage).set('selectedTemplate', selectedTemplateId);
+
+            return state.set('selectedTemplateId', selectedTemplateId);
         }
-
-        case SET_ITEMS:
-            return state.setIn(['selectedTemplate', 'items'], action.items);
 
         case SHOW_ADD_TEMPLATE:
             return state.set('isShowAddTemplate', action.show);
@@ -46,7 +31,3 @@ export default (state = initialState, action) => {
             return state;
     }
 };
-
-function getSelectedTemplateId() {
-    return number(getService(TYPES.SessionStorage).get('selectedTemplate')) || 1;
-}

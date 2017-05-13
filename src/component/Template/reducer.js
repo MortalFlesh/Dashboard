@@ -1,14 +1,22 @@
-import {SET_MOVING, SET_POSITION} from './constant';
-import ItemRecord from "./../Item/record";
+import {LOAD_TEMPLATE, SET_ITEMS, SET_MOVING, SET_POSITION} from "./constant";
+import TemplateRecord from "./record";
 
-const initialState = new ItemRecord();
+const initialState = new TemplateRecord({name: 'Loading...'});
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case LOAD_TEMPLATE:
+            return action.template;
+
+        case SET_ITEMS:
+            return state.set('items', action.items);
+
         case SET_MOVING:
+            // todo
             return state;
 
         case SET_POSITION:
+            // todo
             return state;
 
         default:

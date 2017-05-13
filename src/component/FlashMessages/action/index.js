@@ -1,10 +1,7 @@
 import {combineEpics} from "redux-observable";
-import {addFlashMessage, clearFlashmessagesEpic} from "./flashMessagesActions";
+import {clearFlashmessagesEpic} from "./flashMessagesEpics";
+export {addFlashMessage} from "./flashMessagesActions";
 
-const flashMessagesEpic = combineEpics(
-    clearFlashmessagesEpic,
-);
+const flashMessagesEpic = combineEpics(clearFlashmessagesEpic);
 
-export {
-    addFlashMessage, flashMessagesEpic,
-};
+export {flashMessagesEpic};

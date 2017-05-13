@@ -2,8 +2,6 @@ import {
     LOAD,
     PRE_SELECT_TEMPLATE,
     SELECT_TEMPLATE,
-    SET_ITEMS,
-    SET_TEMPLATE_NAME,
     SET_TEMPLATES,
     SHOW_ADD_ITEM,
     SHOW_ADD_TEMPLATE
@@ -21,24 +19,10 @@ export function preSelectTemplate() {
     }
 }
 
-export function selectTemplate(template) {
+export function selectTemplate(selectedTemplateId = 0) {
     return {
         type: SELECT_TEMPLATE,
-        template,
-    }
-}
-
-export function setTemplateName(name) {
-    return {
-        type: SET_TEMPLATE_NAME,
-        name,
-    }
-}
-
-export function setItems(items) {
-    return {
-        type: SET_ITEMS,
-        items,
+        selectedTemplateId,
     }
 }
 

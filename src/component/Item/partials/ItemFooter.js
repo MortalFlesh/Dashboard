@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {number} from "./../../../service/utils";
 import ItemRecord from "./../record";
-import ResizeRecord from "./../../Items/record/resizeRecord";
+import ResizeRecord from "./../record/resizeRecord";
 
 import InlineForm from "./../../bootstrap/InlineForm";
 import FormItem from "./../../bootstrap/FormItem";

@@ -1,26 +1,22 @@
 import {combineEpics} from "redux-observable";
 import {flashMessagesEpic} from "./../../FlashMessages/action";
-import {loadEpic, preSelectTemplateEpic, selectTemplateEpic} from "./dashboardEpics";
+import {templateEpics} from "./../../Template/action";
+import {loadEpic, preSelectTemplateEpic} from "./dashboardEpics";
 export {
     load,
     preSelectTemplate,
     selectTemplate,
-    setItems,
-    setTemplateName,
     setTemplates,
     showAddItem,
     showAddTemplate
 } from "./dashboardActions";
 
-const dashboardEpic = combineEpics(
-    loadEpic, preSelectTemplateEpic, selectTemplateEpic
-);
+const dashboardEpic = combineEpics(loadEpic, preSelectTemplateEpic);
 
 const rootEpic = combineEpics(
     dashboardEpic,
     flashMessagesEpic,
+    templateEpics,
 );
 
-export {
-    rootEpic,
-};
+export {rootEpic};

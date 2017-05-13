@@ -1,5 +1,5 @@
 import {List} from "immutable";
-import TemplateRecord from "./../component/Template/record";
+import TemplateRecord from "../component/Template/record";
 import ItemRecord from "./../component/Item/record";
 
 export default class Api {

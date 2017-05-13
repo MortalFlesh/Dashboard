@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TemplateRecord from "./../Template/record";
+import TemplateRecord from "../Template/record";
 
 import Form from "./../bootstrap/Form";
 import FormItem from "./../bootstrap/FormItem";

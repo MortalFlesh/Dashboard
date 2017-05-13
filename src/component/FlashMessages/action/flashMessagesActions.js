@@ -7,12 +7,7 @@ export function addFlashMessage(flashMessage) {
     }
 }
 
-export const clearFlashmessagesEpic = (action$) =>
-    action$.ofType(ADD)
-        .debounceTime(2200)
-        .map(clearFlashMessages);
-
-function clearFlashMessages() {
+export function clearFlashMessages() {
     return {
         type: CLEAR,
     }

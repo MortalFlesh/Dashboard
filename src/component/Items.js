@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
 
-import Item from "./../Item";
+import Item from "./Item";
 
 class Items extends React.PureComponent {
     style() {

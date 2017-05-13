@@ -1,7 +1,9 @@
 import {Observable} from "rxjs";
 import {getService, TYPES} from "./../../../service";
-import {LOAD, PRE_SELECT_TEMPLATE, SELECT_TEMPLATE} from "./../constant";
-import {preSelectTemplate, selectTemplate, setItems, setTemplates} from "./dashboardActions";
+import {number} from "./../../../service/utils";
+import {LOAD, PRE_SELECT_TEMPLATE} from "./../constant";
+import {preSelectTemplate, selectTemplate, setTemplates} from "./dashboardActions";
+import {loadTemplate} from "./../../Template/action";
 
 export const loadEpic = (action$) =>
     action$.ofType(LOAD)
@@ -15,11 +17,22 @@ export const loadEpic = (action$) =>
 
 export const preSelectTemplateEpic = (action$, {getState}) =>
     action$.ofType(PRE_SELECT_TEMPLATE)
-        .map(() => selectTemplate(getState().dashboard.selectedTemplate));
-
-export const selectTemplateEpic = (action$) =>
-    action$.ofType(SELECT_TEMPLATE)
-        .switchMap(({template}) =>
-            Observable.from(getService(TYPES.Api).loadItems$(template.id))
-                .map(setItems)
+        .switchMap(() =>
+            Observable.of(getSelectedTemplateId(getState().dashboard.selectedTemplateId))
+                .map((selectedId) => firstTemplateById(getState(), selectedId))
+                .filter((template) => !!template)
+                .flatMap((template) => [
+                    selectTemplate(template.id),
+                    loadTemplate(template),
+                ])
         );
+
+function getSelectedTemplateId(defaultId = 0) {
+    return number(getService(TYPES.SessionStorage).get('selectedTemplate')) || defaultId;
+}
+
+function firstTemplateById({dashboard}, selectedId) {
+    return dashboard.templates
+        .filter((t) => t.id === selectedId)
+        .first()
+}

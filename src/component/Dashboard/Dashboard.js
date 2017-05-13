@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
-import TemplateRecord from "./../Template/record";
+import TemplateRecord from "../Template/record";
 
 import FlashMessagesApp from "./../FlashMessages";
 import AddItemFormApp from "./../AddItemForm";
@@ -10,7 +10,7 @@ import DashboardMenu from "./../DashboardMenu";
 import HeaderButtons from "./../HeaderButtons";
 import Container from "./../bootstrap/Container";
 import Header from "./../bootstrap/Header";
-import Template from "./../Template";
+import TemplateApp from "./../Template";
 
 class Dashboard extends React.PureComponent {
     constructor(props) {
@@ -32,7 +32,7 @@ class Dashboard extends React.PureComponent {
         } else if (this.props.isShowAddTemplate) {
             return <AddTemplateFormApp/>;
         } else {
-            return <Template template={this.props.template}/>;
+            return <TemplateApp/>;
         }
     }
 

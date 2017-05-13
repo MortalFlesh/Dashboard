@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ItemRecord from "./../record";
-import MovingRecord from "./../../Items/record/movingRecord";
-import PositionRecord from "./../../Items/record/positionRecord";
+import MovingRecord from "./../record/movingRecord";
+import PositionRecord from "./../record/positionRecord";
 
 import ItemButtons from "./ItemButtons";
 
