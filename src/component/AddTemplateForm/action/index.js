@@ -1,5 +1,1 @@
-import {addTemplate, setName} from "./addTemplateActions";
-
-export {
-    addTemplate, setName,
-};
+export {addTemplate, setName} from "./addTemplateActions";

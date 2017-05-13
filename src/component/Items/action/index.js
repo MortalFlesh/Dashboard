@@ -1,5 +1,1 @@
-import {resize, save, setMoving, setPosition} from "./itemActions";
-
-export {
-    resize, save, setMoving, setPosition,
-};
+export {resize, save, setMoving, setPosition} from "./itemActions";

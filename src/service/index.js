@@ -8,4 +8,3 @@ export {
 export function getService(service) {
     return container.get(service);
 }
-

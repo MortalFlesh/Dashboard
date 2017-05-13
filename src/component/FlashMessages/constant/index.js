@@ -1,5 +1,1 @@
-import {ADD, CLEAR} from "./flashMessagesActions";
-
-export {
-    ADD, CLEAR,
-};
+export {ADD, CLEAR} from "./flashMessagesActions";

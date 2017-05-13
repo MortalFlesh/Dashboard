@@ -1,9 +1,16 @@
-import ItemRecord from "./../record";
+import {SET_MOVING, SET_POSITION} from './constant';
+import ItemRecord from "./../Item/record";
 
 const initialState = new ItemRecord();
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SET_MOVING:
+            return state;
+
+        case SET_POSITION:
+            return state;
+
         default:
             return state;
     }
