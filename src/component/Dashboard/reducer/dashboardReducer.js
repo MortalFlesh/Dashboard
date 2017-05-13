@@ -1,5 +1,5 @@
 import {number} from "./../../../service/utils";
-import {getService} from "./../../../service";
+import {getService, TYPES} from "./../../../service";
 import DashboardState from "./../state";
 import {
     PRE_SELECT_TEMPLATE,
@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
 
         case SELECT_TEMPLATE: {
             const {template} = action;
-            getService('sessionStorage').set('selectedTemplate', template.id);
+            getService(TYPES.SessionStorage).set('selectedTemplate', template.id);
 
             return state.set('selectedTemplate', template);
         }
@@ -48,5 +48,5 @@ export default (state = initialState, action) => {
 };
 
 function getSelectedTemplateId() {
-    return number(getService('sessionStorage').get('selectedTemplate')) || 1;
+    return number(getService(TYPES.SessionStorage).get('selectedTemplate')) || 1;
 }
