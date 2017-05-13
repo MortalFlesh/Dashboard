@@ -1,7 +1,7 @@
 /.idea
 /node_modules
 /bower_components
-/cache
+/dist
 
 config_local.yml
 /static

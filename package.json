@@ -4,11 +4,11 @@
     "description": "Customizeable dashboard app in react.",
     "main": "./src/index.js",
     "scripts": {
-        "prebuild": "mkdir -p cache",
+        "prebuild": "mkdir -p dist",
         "build": "npm run build:scripts",
         "postbuild": "npm run postbuild:scripts",
-        "build:scripts": "browserify . > cache/index.js",
-        "postbuild:scripts": "uglifyjs cache/index.js > cache/index.min.js"
+        "build:scripts": "browserify . > dist/dashboard.js",
+        "postbuild:scripts": "uglifyjs dist/dashboard.js > dist/dashboard.min.js"
     },
     "repository": {
         "type": "git",
