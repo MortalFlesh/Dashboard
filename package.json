@@ -26,7 +26,10 @@
     },
     "homepage": "https://github.com/MortalFlesh/Dashboard",
     "dependencies": {
+        "core-js": "^2.4.1",
         "immutable": "^3.8.1",
+        "inversify": "^4.1.0",
+        "inversify-vanillajs-helpers": "^2.0.0",
         "prop-types": "^15.5.8",
         "react": "^15.5.4",
         "react-dom": "^15.5.4",
@@ -36,18 +39,40 @@
         "remote-redux-devtools": "^0.5.7",
         "rxjs": "^5.3.0",
         "classnames": "^2.2.5",
-
         "jquery-browserify": "^1.8.1"
     },
     "devDependencies": {
-        "babel-preset-es2015": "^6.18.0",
-        "babelify": "^6.3.0",
+        "babel-cli": "^6.24.1",
+        "babel-plugin-decorator-metadata": "^0.3.0",
+        "babel-plugin-syntax-decorators": "^6.13.0",
+        "babel-preset-env": "^1.4.0",
+        "babel-preset-react": "^6.24.1",
+        "babelify": "^7.3.0",
         "browserify": "^11.1.0",
-        "uglify-js": "*"
+        "flow-bin": "^0.46.0",
+        "uglify-js": "^3.0.4"
     },
     "browserify": {
         "transform": [
-            "babelify"
+            [
+                "babelify",
+                {
+                    "comments": false
+                }
+            ]
+        ]
+    },
+    "browser": {
+        "reflect-metadata": "./node_modules/reflect-metadata/Reflect.js"
+    },
+    "babel": {
+        "presets": [
+            "env",
+            "react"
+        ],
+        "plugins": [
+            "babel-plugin-syntax-decorators",
+            "babel-plugin-decorator-metadata"
         ]
     }
 }
