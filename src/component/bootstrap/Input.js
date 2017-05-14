@@ -3,16 +3,17 @@ import PropTypes from "prop-types";
 
 class Input extends React.PureComponent {
     render() {
-        const {type, onChange} = this.props;
+        const {type, onChange, value} = this.props;
 
         const inputProps = {
             onChange(event) {
                 onChange(event.target.value);
             },
             type,
+            value,
         };
 
-        ['className', 'id', 'placeholder', 'value', 'checked', 'disabled'].forEach((property) => {
+        ['className', 'id', 'placeholder', 'checked', 'disabled'].forEach((property) => {
             const value = this.props[property];
 
             if (value) {
