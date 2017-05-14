@@ -1,29 +1,36 @@
-import {RESIZE, SAVE, SET_MOVING, SET_POSITION} from "./../constant";
+import {RESIZE, SAVE, SET_MOVING, SET_POSITION, SHOW_SAVE} from "./../constant";
 
 export function setMoving(moving) {
     return {
         type: SET_MOVING,
-        moving,
+        payload: moving,
     }
 }
 
 export function setPosition(position) {
     return {
         type: SET_POSITION,
-        position,
+        payload: position,
     }
 }
 
 export function resize(resize) {
     return {
         type: RESIZE,
-        resize,
+        payload: resize,
+    }
+}
+
+export function showSave(id) {
+    return {
+        type: SHOW_SAVE,
+        payload: id,
     }
 }
 
 export function save(item) {
     return {
         type: SAVE,
-        item,
+        payload: item,
     }
 }

@@ -1,8 +1,8 @@
 import {combineEpics} from "redux-observable";
-import {loadItemsEpic} from "./templateEpics";
+import {loadItemsEpic, showSaveEpic} from "./templateEpics";
 export {setItems, loadTemplate} from "./templateActions";
-export {resize, save, setMoving, setPosition} from "./itemActions";
+export {resize, save, setMoving, setPosition, showSave} from "./itemActions";
 
-const templateEpics = combineEpics(loadItemsEpic);
+const templateEpics = combineEpics(loadItemsEpic, showSaveEpic);
 
 export {templateEpics};

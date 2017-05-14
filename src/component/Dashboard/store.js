@@ -4,7 +4,7 @@ import {rootEpic} from "./action";
 import rootReducer from "./reducer";
 
 export function configureStore(initialState) {
-    const epicMiddleware = createEpicMiddleware(rootEpic);
+    const epicMiddleware = createEpicMiddleware(rootEpic);// todo add dependencies
     const createStoreWithMiddleware = applyMiddleware(epicMiddleware)(createStore);
 
     return createStoreWithMiddleware(

@@ -1,5 +1,6 @@
-import {LOAD_TEMPLATE, SET_ITEMS, SET_MOVING, SET_POSITION} from "./constant";
+import {LOAD_TEMPLATE, SET_ITEMS, SET_MOVING, SET_POSITION, SHOW_SAVE} from "./constant";
 import TemplateRecord from "./record";
+import MovingRecord from "./../Item/record/movingRecord";
 
 const initialState = new TemplateRecord({name: 'Loading...'});
 
@@ -12,18 +13,27 @@ export default (state = initialState, action) => {
             return state.set('items', action.items);
 
         case SET_MOVING:
-            // todo
-            return state;
+            return state.set('items', mapItems(state, action, ({id}) => new MovingRecord({id})));
 
         case SET_POSITION:
-            // todo
-            return state;
+            return state.set('items', mapItems(state, action));
+
+        case SHOW_SAVE:
+            return state.set('items', mapItems(state, showSavePayload(action, true)));
 
         default:
             return state;
     }
 };
 
+const mapItems = ({items}, {payload}, forOthers = (item) => item) =>
+    items.map((item) =>
+        item.merge(item.id === payload.id ? payload : forOthers(item))
+    );
+
+const showSavePayload = ({payload}, isShowSaveButton) => (
+    {payload: {id: payload, isShowSaveButton}}
+);
 
 // --- deprecated ---
 
@@ -73,7 +83,7 @@ function itemSaveButton({id}, visibility) {
     setToDashboard('items', itemsUpdated);
 }
 
-function moving({id, isMoving, innerX, innerY}) {
+function moving_OLD({id, isMoving, innerX, innerY}) {
     const currentItems = new List(getItems());
     let itemsUpdated = new List();
 
@@ -100,7 +110,7 @@ function moving({id, isMoving, innerX, innerY}) {
     setToDashboard('items', itemsUpdated);
 }
 
-function changingPosition({id, top, left}) {
+function changingPosition_OLD({id, top, left}) {
     const currentItems = new List(getItems());
     let itemsUpdated = new List();
 
