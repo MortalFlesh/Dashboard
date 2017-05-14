@@ -1,4 +1,4 @@
-import {LOAD_TEMPLATE, SET_ITEMS, SET_MOVING, SET_POSITION, SHOW_SAVE} from "./constant";
+import {LOAD_TEMPLATE, RESIZE, SET_ITEMS, SET_MOVING, SET_POSITION, SHOW_SAVE} from "./constant";
 import TemplateRecord from "./record";
 import MovingRecord from "./../Item/record/movingRecord";
 
@@ -16,6 +16,7 @@ export default (state = initialState, action) => {
             return state.set('items', mapItems(state, action, ({id}) => new MovingRecord({id})));
 
         case SET_POSITION:
+        case RESIZE:
             return state.set('items', mapItems(state, action));
 
         case SHOW_SAVE:

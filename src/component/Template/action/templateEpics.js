@@ -2,7 +2,7 @@ import {Observable} from "rxjs";
 import {getService, TYPES} from "./../../../service";
 import {inArray} from "./../../../service/utils";
 import {SELECT_TEMPLATE} from "./../../Dashboard/constant";
-import {SET_POSITION} from "./../constant";
+import {RESIZE, SET_POSITION} from "./../constant";
 import {setItems, showSave} from "./../action";
 
 export const loadItemsEpic = (action$, {getState}) =>
@@ -13,7 +13,7 @@ export const loadItemsEpic = (action$, {getState}) =>
         );
 
 export const showSaveEpic = (action$) =>
-    action$.filter(({type}) => inArray(type, [SET_POSITION]))
+    action$.filter(({type}) => inArray(type, [RESIZE, SET_POSITION]))
         .debounceTime(200)
         .map(({payload}) =>
             showSave(payload.id)
