@@ -10,7 +10,7 @@ export default class Api {
 
     loadTemplates$() {
         return this.getData$('/template/list/')
-            .map(({response}) => new List(response.templates.map((template) => new TemplateRecord(template))));
+            .map(({templates}) => new List(templates.map((template) => new TemplateRecord(template))));
     }
 
     /**
@@ -19,7 +19,7 @@ export default class Api {
      * @private
      */
     getData$(path) {
-        return this.loader.get$(this.url + path);
+        return this.loader.get$(this.url + path).map(({response}) => response);
     }
 
     /**
@@ -39,12 +39,7 @@ export default class Api {
 
     loadItems$(templateId) {
         return this.getData$(`/template/${templateId}/item/list/`)
-            .map(({response}) => new List(response.items.map((item) => new ItemRecord(item))));
-    }
-
-    saveItem(templateId, item) {
-        return this.postData(`/template/${templateId}/item/`, {item: item.toJSON()})
-            .then(({id}) => id);
+            .map(({items}) => new List(items.map((item) => new ItemRecord(item))));
     }
 
     /**
@@ -55,6 +50,21 @@ export default class Api {
      */
     postData(path, data) {
         return this.loader.post(this.url + path, data);
+    }
+
+    saveItem$(templateId, item) {
+        return this.postData$(`/template/${templateId}/item/`, {item: item.toJSON()})
+            .map(({id}) => id);
+    }
+
+    /**
+     * @param path : string
+     * @param data : object
+     * @returns {Observable}
+     * @private
+     */
+    postData$(path, data) {
+        return this.loader.post$(this.url + path, JSON.stringify(data));
     }
 
     saveTemplate(template) {

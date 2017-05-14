@@ -31,6 +31,6 @@ export function showSave(id) {
 export function save(item) {
     return {
         type: SAVE,
-        payload: item,
+        item,
     }
 }

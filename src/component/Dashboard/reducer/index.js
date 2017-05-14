@@ -3,10 +3,10 @@ import dashboard from "./dashboardReducer";
 import addTemplate from "./../../AddTemplateForm/reducer";
 import addItem from "./../../AddItemForm/reducer";
 import template from "./../../Template/reducer";
-import flashMessage from "./../../FlashMessages/reducer";
+import flashMessages from "./../../FlashMessages/reducer";
 
 export default combineReducers({
-    flashMessage,
+    flashMessages,
     dashboard,
     addTemplate,
     template,

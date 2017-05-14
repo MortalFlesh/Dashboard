@@ -1,15 +1,15 @@
-import FlashMessagesState from "./state";
+import {List} from 'immutable';
 import {ADD, CLEAR} from "./constant";
 
-const initialState = new FlashMessagesState();
+const initialState = new List();
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case ADD:
-            return state.flashMessages.push(action.flashMessage);
+            return state.push(action.flashMessage);
 
         case CLEAR:
-            return state.flashMessages.clear();
+            return state.clear();
 
         default:
             return state;

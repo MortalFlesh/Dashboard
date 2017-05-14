@@ -3,8 +3,7 @@ import * as actions from "./action";
 
 import DashboardApp from "./Dashboard";
 
-const mapStateToProps = ({flashMessage, dashboard, template}) => {
-    const {flashMessages} = flashMessage;
+const mapStateToProps = ({flashMessages, dashboard, template}) => {
     const {templates, isShowAddTemplate, isShowAddItem} = dashboard;
 
     return {

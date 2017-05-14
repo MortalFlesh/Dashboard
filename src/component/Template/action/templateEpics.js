@@ -1,14 +1,16 @@
 import {Observable} from "rxjs";
-import {getService, TYPES} from "./../../../service";
+import React from "react";
 import {inArray} from "./../../../service/utils";
 import {SELECT_TEMPLATE} from "./../../Dashboard/constant";
-import {RESIZE, SET_POSITION} from "./../constant";
+import {RESIZE, SAVE, SET_POSITION} from "./../constant";
 import {setItems, showSave} from "./../action";
+import {addFlashMessage} from "./../../FlashMessages/action";
+import FlashMessageRecord from "./../../FlashMessage/record";
 
-export const loadItemsEpic = (action$, {getState}) =>
+export const loadItemsEpic = (action$, {getState}, {api}) =>
     action$.ofType(SELECT_TEMPLATE)
         .switchMap(({selectedTemplateId}) =>
-            Observable.from(getService(TYPES.Api).loadItems$(selectedTemplateId || getState().dashboard.selectedTemplateId))
+            Observable.from(api.loadItems$(selectedTemplateId || getState().dashboard.selectedTemplateId))
                 .map(setItems)
         );
 
@@ -17,4 +19,15 @@ export const showSaveEpic = (action$) =>
         .debounceTime(200)
         .map(({payload}) =>
             showSave(payload.id)
+        );
+
+export const saveEpic = (action$, {getState}, {api}) =>
+    action$.ofType(SAVE)
+        .switchMap(({item}) =>
+            Observable.from(api.saveItem$(getState().template.id, item))
+                .map(() => {
+                    const message = ['Item ', <strong>{item.name}</strong>, ' was updated successfully.'];
+
+                    return addFlashMessage(new FlashMessageRecord({message}));
+                })
         );
