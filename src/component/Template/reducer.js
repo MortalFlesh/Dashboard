@@ -1,4 +1,13 @@
-import {LOAD_TEMPLATE, RESIZE, SAVE, SET_ITEMS, SET_MOVING, SET_POSITION, SHOW_SAVE} from "./constant";
+import {
+    SET_REFRESH_RATE,
+    LOAD_TEMPLATE,
+    RESIZE,
+    SAVE,
+    SET_ITEMS,
+    SET_MOVING,
+    SET_POSITION,
+    SHOW_SAVE
+} from "./constant";
 import {ITEM_SAVED} from "./../AddItemForm/constant";
 import TemplateRecord from "./record";
 import MovingRecord from "./../Item/record/movingRecord";
@@ -18,6 +27,7 @@ export default (state = initialState, action) => {
 
         case SET_POSITION:
         case RESIZE:
+        case SET_REFRESH_RATE:
             return state.set('items', mapItems(state, action));
 
         case SHOW_SAVE:

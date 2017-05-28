@@ -1,7 +1,7 @@
 import React from "react";
 import {inArray} from "./../../../service/utils";
 import {SELECT_TEMPLATE} from "./../../Dashboard/constant";
-import {RESIZE, SAVE, SET_POSITION} from "./../constant";
+import {RESIZE, SAVE, SET_POSITION, SET_REFRESH_RATE} from "./../constant";
 import {setItems, showSave} from "./../action";
 import {addFlashMessage} from "./../../FlashMessages/action";
 import FlashMessageRecord from "./../../FlashMessage/record";
@@ -14,7 +14,7 @@ export const loadItemsEpic = (action$, {getState}, {api}) =>
         );
 
 export const showSaveEpic = (action$) =>
-    action$.filter(({type}) => inArray(type, [RESIZE, SET_POSITION]))
+    action$.filter(({type}) => inArray(type, [RESIZE, SET_POSITION, SET_REFRESH_RATE]))
         .debounceTime(200)
         .map(({payload}) =>
             showSave(payload.id)

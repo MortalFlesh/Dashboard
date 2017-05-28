@@ -20,7 +20,7 @@ class Item extends React.PureComponent {
     }
 
     render() {
-        const {item} = this.props;
+        const {item, setMoving, setPosition, save, resize, setRefreshRate} = this.props;
         const style = this.style(item);
 
         const className = item.isMoving ? 'panel-primary' : 'panel-default';
@@ -30,16 +30,16 @@ class Item extends React.PureComponent {
                 <div className={cn('panel', className)}>
                     <ItemHeader
                         item={item}
-                        setMoving={this.props.setMoving}
-                        setPosition={this.props.setPosition}
-                        save={this.props.save}
+                        setMoving={setMoving}
+                        setPosition={setPosition}
+                        save={save}
                     />
 
                     <div className="panel-body" style={{padding: 0}}>
                         <ItemBody url={item.url} height={item.height} width={item.width}/>
                     </div>
 
-                    <ItemFooter item={item} resize={this.props.resize}/>
+                    <ItemFooter item={item} resize={resize} setRefreshRate={setRefreshRate}/>
                 </div>
             </div>
         );
@@ -51,6 +51,7 @@ Item.propTypes = {
     setMoving: PropTypes.func,
     setPosition: PropTypes.func,
     resize: PropTypes.func,
+    setRefreshRate: PropTypes.func,
     save: PropTypes.func,
 };
 
@@ -60,6 +61,8 @@ Item.defaultProps = {
     setPosition() {
     },
     resize() {
+    },
+    setRefreshRate() {
     },
     save() {
     },

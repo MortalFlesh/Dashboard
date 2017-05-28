@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {number} from "./../../../service/utils";
 import ItemRecord from "./../record";
 import ResizeRecord from "./../record/resizeRecord";
+import RefreshRateRecord from "./../record/refreshRateRecord";
 
 import InlineForm from "./../../bootstrap/InlineForm";
 import FormItem from "./../../bootstrap/FormItem";
@@ -10,7 +11,9 @@ import Input from "./../../bootstrap/Input";
 
 class ItemFooter extends React.PureComponent {
     refreshRateHandler(refreshRate) {
-        // todo
+        const {id} = this.props.item;
+
+        this.props.setRefreshRate(new RefreshRateRecord({id, refreshRate}));
     }
 
     heightChangeHandler(heightString) {
@@ -56,8 +59,7 @@ class ItemFooter extends React.PureComponent {
                         <Input type="text"
                                id={refreshRateId}
                                value={refreshRate.toString()}
-                               onChange={this.refreshRateHandler.bind(this)}
-                               disabled={true}/>
+                               onChange={this.refreshRateHandler.bind(this)}/>
                     </FormItem>
 
                 </InlineForm>
@@ -69,6 +71,7 @@ class ItemFooter extends React.PureComponent {
 ItemFooter.propTypes = {
     item: PropTypes.instanceOf(ItemRecord).isRequired,
     resize: PropTypes.func.isRequired,
+    setRefreshRate: PropTypes.func.isRequired,
 };
 
 export default ItemFooter;

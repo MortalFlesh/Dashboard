@@ -6,13 +6,14 @@ import Items from "./../Items";
 
 class Template extends React.PureComponent {
     render() {
-        const {template, setMoving, setPosition, resize, save} = this.props;
+        const {template, setMoving, setPosition, resize, setRefreshRate, save} = this.props;
 
         const items = {
             items: template.items,
             setMoving,
             setPosition,
             resize,
+            setRefreshRate,
             save,
         };
 
@@ -27,6 +28,7 @@ Template.propTypes = {
     setMoving: PropTypes.func.isRequired,
     setPosition: PropTypes.func.isRequired,
     resize: PropTypes.func.isRequired,
+    setRefreshRate: PropTypes.func.isRequired,
     save: PropTypes.func.isRequired,
 };
 

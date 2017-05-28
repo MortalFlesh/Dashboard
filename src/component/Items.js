@@ -18,6 +18,7 @@ class Items extends React.PureComponent {
                   setMoving={this.props.setMoving}
                   setPosition={this.props.setPosition}
                   resize={this.props.resize}
+                  setRefreshRate={this.props.setRefreshRate}
                   save={this.props.save}
             />
         );
@@ -35,6 +36,7 @@ Items.propTypes = {
     setMoving: PropTypes.func.isRequired,
     setPosition: PropTypes.func.isRequired,
     resize: PropTypes.func.isRequired,
+    setRefreshRate: PropTypes.func.isRequired,
     save: PropTypes.func.isRequired,
 };
 
