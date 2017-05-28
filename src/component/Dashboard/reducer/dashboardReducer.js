@@ -1,4 +1,5 @@
 import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "./../constant";
+import {TEMPLATE_SAVED} from "./../../AddTemplateForm/constant";
 import {ITEM_SAVED} from "./../../AddItemForm/constant";
 import {getService, TYPES} from "./../../../service";
 import DashboardState from "./../state";
@@ -24,6 +25,12 @@ export default (state = initialState, action) => {
 
         case SHOW_ADD_TEMPLATE:
             return state.set('isShowAddTemplate', action.show);
+
+        case TEMPLATE_SAVED:
+            return state.merge({
+                isShowAddTemplate: false,
+                templates: state.templates.push(action.template),
+            });
 
         case SHOW_ADD_ITEM:
             return state.set('isShowAddItem', action.show);

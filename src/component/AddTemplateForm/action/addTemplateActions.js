@@ -1,4 +1,4 @@
-import {ADD_TEMPLATE, SET_NAME} from "./../constant";
+import {SAVE, SET_NAME, TEMPLATE_SAVED} from "./../constant";
 
 export function setName(name) {
     return {
@@ -7,8 +7,16 @@ export function setName(name) {
     }
 }
 
-export function addTemplate() {
+export function save(template) {
     return {
-        type: ADD_TEMPLATE,
+        type: SAVE,
+        template,
+    }
+}
+
+export function templateSaved(template) {
+    return {
+        type: TEMPLATE_SAVED,
+        template,
     }
 }

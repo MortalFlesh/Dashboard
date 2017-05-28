@@ -1,14 +1,16 @@
 import {
-    SET_REFRESH_RATE,
     LOAD_TEMPLATE,
     RESIZE,
     SAVE,
     SET_ITEMS,
     SET_MOVING,
     SET_POSITION,
+    SET_REFRESH_RATE,
+    SET_TEPLATE_NAME,
     SHOW_SAVE
 } from "./constant";
 import {ITEM_SAVED} from "./../AddItemForm/constant";
+import {SELECT_TEMPLATE} from "./../Dashboard/constant";
 import TemplateRecord from "./record";
 import MovingRecord from "./../Item/record/movingRecord";
 
@@ -18,6 +20,12 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case LOAD_TEMPLATE:
             return action.template;
+
+        case SELECT_TEMPLATE:
+            return state.set('id', action.selectedTemplateId);
+
+        case SET_TEPLATE_NAME:
+            return state.set('name', action.name);
 
         case SET_ITEMS:
             return state.set('items', action.items);

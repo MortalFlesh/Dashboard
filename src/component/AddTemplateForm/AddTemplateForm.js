@@ -8,6 +8,12 @@ import Input from "./../bootstrap/Input";
 import PrimaryButton from "./../bootstrap/PrimaryButton";
 
 class AddTemplateForm extends React.PureComponent {
+    saveHandler() {
+        const {save, template} = this.props;
+
+        save(template);
+    }
+
     render() {
         const {template} = this.props;
 
@@ -26,7 +32,7 @@ class AddTemplateForm extends React.PureComponent {
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
-                        <PrimaryButton big={true} onClick={this.props.addTemplate}>
+                        <PrimaryButton big={true} onClick={this.saveHandler.bind(this)}>
                             Save template
                         </PrimaryButton>
                     </FormItem>
@@ -39,8 +45,8 @@ class AddTemplateForm extends React.PureComponent {
 
 AddTemplateForm.propTypes = {
     template: PropTypes.instanceOf(TemplateRecord).isRequired,
-    addTemplate: PropTypes.func.isRequired,
     setName: PropTypes.func.isRequired,
+    save: PropTypes.func.isRequired,
 };
 
 export default AddTemplateForm;

@@ -1,1 +1,1 @@
-export {ADD_TEMPLATE, SET_NAME} from "./formActions";
+export {SET_NAME, SAVE, TEMPLATE_SAVED} from "./formActions";
