@@ -1,6 +1,7 @@
+import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "./../constant";
+import {ITEM_SAVED} from "./../../AddItemForm/constant";
 import {getService, TYPES} from "./../../../service";
 import DashboardState from "./../state";
-import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "./../constant";
 
 const initialState = new DashboardState();
 
@@ -16,6 +17,7 @@ export default (state = initialState, action) => {
                 return state;
             }
 
+            // todo move to epic?
             getService(TYPES.SessionStorage).set('selectedTemplate', selectedTemplateId);
 
             return state.set('selectedTemplateId', selectedTemplateId);
@@ -26,6 +28,9 @@ export default (state = initialState, action) => {
 
         case SHOW_ADD_ITEM:
             return state.set('isShowAddItem', action.show);
+
+        case ITEM_SAVED:
+            return state.set('isShowAddItem', false);
 
         default:
             return state;

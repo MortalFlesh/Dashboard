@@ -19,7 +19,8 @@ export default class Api {
      * @private
      */
     getData$(path) {
-        return this.loader.get$(this.url + path).map(({response}) => response);
+        return this.loader.get$(this.url + path)
+            .map(({response}) => response);
     }
 
     /**
@@ -64,7 +65,8 @@ export default class Api {
      * @private
      */
     postData$(path, data) {
-        return this.loader.post$(this.url + path, JSON.stringify(data));
+        return this.loader.post$(this.url + path, JSON.stringify(data))
+            .map(({response}) => response);
     }
 
     saveTemplate(template) {

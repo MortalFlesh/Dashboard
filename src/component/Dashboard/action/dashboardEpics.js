@@ -6,7 +6,7 @@ import {loadTemplate} from "./../../Template/action";
 export const loadEpic = (action$, store, {api}) =>
     action$.ofType(LOAD)
         .switchMap(() =>
-            Observable.from(api.loadTemplates$())
+            api.loadTemplates$()
                 .flatMap((templates) => [
                     setTemplates(templates),
                     preSelectTemplate(),

@@ -1,5 +1,5 @@
 import AddItemState from "./state";
-import {SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./constant";
+import {ITEM_SAVED, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./constant";
 
 const initialState = new AddItemState();
 
@@ -19,6 +19,9 @@ export default (state = initialState, action) => {
 
         case SET_WIDTH:
             return state.setIn(['item', 'width'], action.width);
+
+        case ITEM_SAVED:
+            return new AddItemState();
 
         default:
             return state;

@@ -24,6 +24,12 @@ class AddItemForm extends React.PureComponent {
         this.props.setWidth(number(width));
     }
 
+    saveHandler() {
+        const {save, item} = this.props;
+
+        save(item);
+    }
+
     render() {
         const {item} = this.props;
 
@@ -74,7 +80,7 @@ class AddItemForm extends React.PureComponent {
                     </FormItem>
 
                     <FormItem id="" title="" sizeLabel={1} size={10}>
-                        <PrimaryButton big={true} onClick={this.props.addItem}>
+                        <PrimaryButton big={true} onClick={this.saveHandler.bind(this)}>
                             Save item
                         </PrimaryButton>
                     </FormItem>
@@ -95,7 +101,7 @@ class AddItemForm extends React.PureComponent {
 
 AddItemForm.propTypes = {
     item: PropTypes.instanceOf(ItemRecord).isRequired,
-    addItem: PropTypes.func.isRequired,
+    save: PropTypes.func.isRequired,
     setHeight: PropTypes.func.isRequired,
     setName: PropTypes.func.isRequired,
     setRefreshRate: PropTypes.func.isRequired,

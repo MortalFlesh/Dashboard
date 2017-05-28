@@ -1,4 +1,3 @@
-import {Observable} from "rxjs";
 import React from "react";
 import {inArray} from "./../../../service/utils";
 import {SELECT_TEMPLATE} from "./../../Dashboard/constant";
@@ -10,7 +9,7 @@ import FlashMessageRecord from "./../../FlashMessage/record";
 export const loadItemsEpic = (action$, {getState}, {api}) =>
     action$.ofType(SELECT_TEMPLATE)
         .switchMap(({selectedTemplateId}) =>
-            Observable.from(api.loadItems$(selectedTemplateId || getState().dashboard.selectedTemplateId))
+            api.loadItems$(selectedTemplateId || getState().dashboard.selectedTemplateId)
                 .map(setItems)
         );
 
@@ -21,11 +20,12 @@ export const showSaveEpic = (action$) =>
             showSave(payload.id)
         );
 
-export const saveEpic = (action$, {getState}, {api}) =>
+export const itemSaveEpic = (action$, {getState}, {api}) =>
     action$.ofType(SAVE)
         .switchMap(({item}) =>
-            Observable.from(api.saveItem$(getState().template.id, item))
+            api.saveItem$(getState().template.id, item)
                 .map(() => {
+                    // todo - make flashmessages as markdown and use markdown->react transformation lib
                     const message = ['Item ', <strong>{item.name}</strong>, ' was updated successfully.'];
 
                     return addFlashMessage(new FlashMessageRecord({message}));

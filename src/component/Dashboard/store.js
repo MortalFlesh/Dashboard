@@ -63,8 +63,7 @@ function _addItem() {
     api.saveItem(getSelectedTemplate(), newItem).then((newItemId) => {
         newItem = newItem.set('id', newItemId);
 
-        let items = new List(getItems());
-        items = items.push(newItem);
+        const items = getItems().push(newItem);
 
         setToDashboard('items', items);
         addFlashMessage(new FlashMessageRecord({message: 'New item successfully saved!'}));

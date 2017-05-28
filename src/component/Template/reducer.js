@@ -1,4 +1,5 @@
 import {LOAD_TEMPLATE, RESIZE, SAVE, SET_ITEMS, SET_MOVING, SET_POSITION, SHOW_SAVE} from "./constant";
+import {ITEM_SAVED} from "./../AddItemForm/constant";
 import TemplateRecord from "./record";
 import MovingRecord from "./../Item/record/movingRecord";
 
@@ -24,6 +25,9 @@ export default (state = initialState, action) => {
 
         case SAVE:
             return state.set('items', mapItems(state, showSavePayload(action.item.id, false)));
+
+        case ITEM_SAVED:
+            return state.set('items', state.items.push(action.item));
 
         default:
             return state;

@@ -1,4 +1,4 @@
-import {ADD_ITEM, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./../constant";
+import {ITEM_SAVED, SAVE, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./../constant";
 
 export function setName(name) {
     return {
@@ -35,8 +35,16 @@ export function setWidth(width) {
     }
 }
 
-export function addItem() {
+export function save(item) {
     return {
-        type: ADD_ITEM,
+        type: SAVE,
+        item,
+    }
+}
+
+export function itemSaved(item) {
+    return {
+        type: ITEM_SAVED,
+        item,
     }
 }
