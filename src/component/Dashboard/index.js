@@ -15,7 +15,4 @@ const mapStateToProps = ({flashMessages, dashboard, template}) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    actions
-)(DashboardApp);
+export default connect(mapStateToProps, actions)(DashboardApp);

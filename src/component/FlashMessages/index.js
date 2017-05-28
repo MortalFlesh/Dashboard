@@ -3,6 +3,4 @@ import FlashMessages from "./FlashMessages";
 
 const mapStateToProps = ({flashMessages}) => ({flashMessages});
 
-export default connect(
-    mapStateToProps
-)(FlashMessages);
+export default connect(mapStateToProps)(FlashMessages);

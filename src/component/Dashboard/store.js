@@ -43,30 +43,6 @@ export function configureStore(initialState) {
 
 export const dispatchToken = ({action, data}) => {
     switch (action) {
-        case actions.selectTemplate:
-            setToDashboard('selectedTemplate', data);
-            break;
-
-        case actions.setTemplateName:
-            setToDashboard('templateName', data);
-            break;
-
-        case actions.setItems:
-            _setItems(data);
-            break;
-
-        case actions.setTemplates:
-            _setTemplates(data);
-            break;
-
-        case actions.showAddItem:
-            setToDashboard('showAddItem', data ? true : false);
-            break;
-
-        case actions.showAddTemplate:
-            setToDashboard('showAddTemplate', data ? true : false);
-            break;
-
         case addItem:
             _addItem();
             break;

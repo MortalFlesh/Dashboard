@@ -11,7 +11,4 @@ const mapStateToProps = ({addTemplate}) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    actions
-)(AddTemplateForm);
+export default connect(mapStateToProps, actions)(AddTemplateForm);

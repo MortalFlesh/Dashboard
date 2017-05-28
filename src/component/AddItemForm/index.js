@@ -11,7 +11,4 @@ const mapStateToProps = ({addItem}) => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    actions
-)(AddItemForm);
+export default connect(mapStateToProps, actions)(AddItemForm);
