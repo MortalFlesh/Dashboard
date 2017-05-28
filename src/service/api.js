@@ -23,34 +23,9 @@ export default class Api {
             .map(({response}) => response);
     }
 
-    /**
-     * @param path : string
-     * @returns {Promise}
-     * @private
-     */
-    getData(path) {
-        return this.loader.get(this.url + path);
-    }
-
-    // todo remove?
-    loadTemplateName(templateId) {
-        return this.getData(`/template/${templateId}/name/`)
-            .then(({name}) => name);
-    }
-
     loadItems$(templateId) {
         return this.getData$(`/template/${templateId}/item/list/`)
             .map(({items}) => new List(items.map((item) => new ItemRecord(item))));
-    }
-
-    /**
-     * @param path : string
-     * @param data : object
-     * @returns {Promise}
-     * @private
-     */
-    postData(path, data) {
-        return this.loader.post(this.url + path, data);
     }
 
     saveItem$(templateId, item) {
@@ -69,8 +44,10 @@ export default class Api {
             .map(({response}) => response);
     }
 
-    saveTemplate(template) {
-        return this.postData('/template/', {name: template.name})
-            .then(({id}) => id);
+    saveTemplate$(template) {
+        const {name} = template;
+
+        return this.postData$('/template/', {name})
+            .map(({id}) => id);
     }
 }

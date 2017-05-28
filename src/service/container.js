@@ -1,6 +1,5 @@
 import {Container} from "inversify";
 import {helpers} from "inversify-vanillajs-helpers";
-import jQuery from "jquery-browserify";
 import TYPES from "./types";
 import ConfigFactory from "./configFactory";
 import Loader from "./loader";
@@ -22,11 +21,10 @@ export function createContainer({sessionStorage}) {
     const registerFactory = helpers.registerFactory(container);
     const singletonScope = (bind) => bind.inSingletonScope();
 
-    registerConstantValue(TYPES.jQuery, jQuery);
     registerConstantValue(PRIVATE.SessionStorage, sessionStorage);
 
     register(PRIVATE.ConfigFactory, [], singletonScope)(ConfigFactory);
-    register(TYPES.Loader, [TYPES.jQuery], singletonScope)(Loader);
+    register(TYPES.Loader, [], singletonScope)(Loader);
     register(TYPES.Api, [TYPES.Loader, TYPES.Config], singletonScope)(Api);
     register(TYPES.SessionStorage, [PRIVATE.SessionStorage, TYPES.Config], singletonScope)(SessionStorageService);
 

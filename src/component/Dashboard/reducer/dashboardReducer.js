@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
                 return state;
             }
 
-            // todo move to epic?
             getService(TYPES.SessionStorage).set('selectedTemplate', selectedTemplateId);
 
             return state.set('selectedTemplateId', selectedTemplateId);
