@@ -5,8 +5,8 @@
     "main": "./src/index.js",
     "scripts": {
         "prebuild": "mkdir -p dist",
-        "build": "npm run build:scripts",
-        "postbuild": "npm run postbuild:scripts",
+        "build": "yarn build:scripts",
+        "postbuild": "yarn postbuild:scripts",
         "build:scripts": "browserify . > dist/dashboard.js",
         "postbuild:scripts": "uglifyjs dist/dashboard.js > dist/dashboard.min.js"
     },
