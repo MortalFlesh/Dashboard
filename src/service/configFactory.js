@@ -1,7 +1,8 @@
+// @flow
 import Config from "./config";
 
 export default class ConfigFactory {
-    createConfig() {
+    createConfig(): Config {
         const configuration = {
             apiUrl: 'http://dashboard-api',
             apiVersion: 'dev',

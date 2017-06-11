@@ -1,3 +1,4 @@
+// @flow
 import {Container} from "inversify";
 import {helpers} from "inversify-vanillajs-helpers";
 import TYPES from "./types";
@@ -11,9 +12,11 @@ const PRIVATE = {
     SessionStorage: Symbol('SessionStorage'),
 };
 
-let container = {};
+type Global = {sessionStorage: Object};
 
-export function createContainer({sessionStorage}) {
+let container: Container = {};
+
+export function createContainer({sessionStorage}: Global): void {
     container = new Container();
 
     const register = helpers.register(container);

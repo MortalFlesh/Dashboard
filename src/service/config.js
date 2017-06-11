@@ -1,18 +1,22 @@
-import Immutable from "immutable";
+// @flow
+import {fromJS} from "immutable";
+
+type tConfig = {apiUrl: string, apiVersion: string};
 
 export default class Config {
-    constructor(config, configLocal = {}) {
-        this.config = Immutable
-            .fromJS(config)
+    config: tConfig;
+
+    constructor(config: tConfig, configLocal: Object = {}) {
+        this.config = fromJS(config)
             .merge(configLocal)
             .toJS();
     }
 
-    getConfig() {
+    getConfig(): tConfig {
         return this.config;
     }
 
-    getApiUrl() {
+    getApiUrl(): string {
         const {apiUrl, apiVersion} = this.getConfig();
 
         return `${apiUrl}/${apiVersion}`;

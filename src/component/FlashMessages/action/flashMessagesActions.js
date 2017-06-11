@@ -1,13 +1,17 @@
-import {ADD, CLEAR} from "./../constant";
+// @flow
+import type {Action} from "./../../../flow/types";
 
-export function addFlashMessage(flashMessage) {
+import {ADD, CLEAR} from "./../constant";
+import FlashMessageRecord from "./../../FlashMessage/record";
+
+export function addFlashMessage(flashMessage: FlashMessageRecord): Action {
     return {
         type: ADD,
         flashMessage,
     }
 }
 
-export function clearFlashMessages() {
+export function clearFlashMessages(): Action {
     return {
         type: CLEAR,
     }

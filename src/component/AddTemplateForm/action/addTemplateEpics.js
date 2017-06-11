@@ -1,9 +1,13 @@
+// @flow
+import type {ActionsObservable, Epic, Options} from "redux-observable";
+import type {Store} from "./../../../flow/types";
+
 import {SAVE} from "../constant";
 import {templateSaved} from "../action";
 import {addFlashMessage} from "../../FlashMessages/action";
 import FlashMessageRecord from "../../FlashMessage/record";
 
-export const saveTemplateEpic = (action$, store, {api}) =>
+export const saveTemplateEpic: Epic = (action$: ActionsObservable, store: Store, {api}: Options): ActionsObservable =>
     action$.ofType(SAVE)
         .switchMap(({template}) => api
             .saveTemplate$(template)

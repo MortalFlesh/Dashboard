@@ -1,3 +1,7 @@
+// @flow
+import type {Action} from "./../../flow/types";
+import type {Payload} from "./types";
+
 import {
     LOAD_TEMPLATE,
     RESIZE,
@@ -12,11 +16,12 @@ import {
 import {ITEM_SAVED} from "./../AddItemForm/constant";
 import {SELECT_TEMPLATE} from "./../Dashboard/constant";
 import TemplateRecord from "./record";
+import ItemRecord from "./../Item/record";
 import MovingRecord from "./../Item/record/movingRecord";
 
 const initialState = new TemplateRecord({name: 'Loading...'});
 
-export default (state = initialState, action) => {
+export default (state: TemplateRecord = initialState, action: Action): TemplateRecord => {
     switch (action.type) {
         case LOAD_TEMPLATE:
             return action.template;
@@ -39,7 +44,7 @@ export default (state = initialState, action) => {
             return state.set('items', mapItems(state, action));
 
         case SHOW_SAVE:
-            return state.set('items', mapItems(state, showSavePayload(action.payload, true)));
+            return state.set('items', mapItems(state, showSavePayload(action.id, true)));
 
         case SAVE:
             return state.set('items', mapItems(state, showSavePayload(action.item.id, false)));
@@ -52,11 +57,11 @@ export default (state = initialState, action) => {
     }
 };
 
-const mapItems = ({items}, {payload}, forOthers = (item) => item) =>
-    items.map((item) =>
+const mapItems = ({items}: TemplateRecord, {payload}: { payload: Payload }, forOthers: (ItemRecord) => Payload = (item) => item) =>
+    items.map((item: ItemRecord): ItemRecord =>
         item.merge(item.id === payload.id ? payload : forOthers(item))
     );
 
-const showSavePayload = (id, isShowSaveButton) => (
+const showSavePayload = (id: number, isShowSaveButton: boolean): { payload: Payload } => (
     {payload: {id, isShowSaveButton}}
 );

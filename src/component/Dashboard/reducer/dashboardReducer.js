@@ -1,3 +1,6 @@
+// @flow
+import type {Action} from './../../../flow/types';
+
 import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "./../constant";
 import {TEMPLATE_SAVED} from "./../../AddTemplateForm/constant";
 import {ITEM_SAVED} from "./../../AddItemForm/constant";
@@ -6,7 +9,7 @@ import DashboardState from "./../state";
 
 const initialState = new DashboardState();
 
-export default (state = initialState, action) => {
+export default (state: DashboardState = initialState, action: Action): DashboardState => {
     switch (action.type) {
         case SET_TEMPLATES:
             return state.set('templates', action.templates);

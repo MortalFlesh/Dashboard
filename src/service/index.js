@@ -1,10 +1,9 @@
+// @flow
 import {container} from "./container";
 import TYPES from "./types";
 
-export {
-    TYPES,
-};
+export {TYPES};
 
-export function getService(service) {
+export function getService<T>(service: Symbol): T {
     return container.get(service);
 }

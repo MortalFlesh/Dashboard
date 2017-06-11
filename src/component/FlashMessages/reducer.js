@@ -1,9 +1,13 @@
-import {List} from 'immutable';
+// @flow
+import type {Action} from "./../../flow/types";
+import type {State} from "./types";
+
+import {List} from "immutable";
 import {ADD, CLEAR} from "./constant";
 
-const initialState = new List();
+const initialState: State = new List();
 
-export default (state = initialState, action) => {
+export default (state: State = initialState, action: Action): State => {
     switch (action.type) {
         case ADD:
             return state.push(action.flashMessage);

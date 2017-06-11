@@ -1,9 +1,12 @@
+// @flow
+import type {Action} from "./../../flow/types";
+
 import AddItemState from "./state";
 import {ITEM_SAVED, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./constant";
 
 const initialState = new AddItemState();
 
-export default (state = initialState, action) => {
+export default (state: AddItemState = initialState, action: Action): AddItemState => {
     switch (action.type) {
         case SET_NAME:
             return state.setIn(['item', 'name'], action.name);

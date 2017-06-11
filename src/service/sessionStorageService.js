@@ -1,19 +1,22 @@
+// @flow
 import {number} from "./utils";
 
 export default class SessionStorageService {
-    constructor(sessionStorage) {
+    sessionStorage: Object;
+
+    constructor(sessionStorage: Object) {
         this.sessionStorage = sessionStorage;
     }
 
-    set(key, value) {
+    set(key: string, value: any): void {
         this.sessionStorage.setItem(key, value);
     }
 
-    get(key) {
+    get(key: string): any {
         return this.sessionStorage.getItem(key);
     }
 
-    getNumber(key) {
+    getNumber(key: string): number {
         return number(this.get(key));
     }
 }
