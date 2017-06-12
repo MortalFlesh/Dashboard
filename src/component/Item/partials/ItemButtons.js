@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ItemRecord from "./../record";
+import ItemRecord from "../record";
 
 class ItemButtons extends React.PureComponent {
     saveHandler() {

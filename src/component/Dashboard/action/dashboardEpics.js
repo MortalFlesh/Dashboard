@@ -1,14 +1,14 @@
 // @flow
 import type {ActionsObservable, Epic, Options} from "redux-observable";
-import type {Store} from "./../../../flow/types";
-import type {State} from "./../reducer";
+import type {Store} from "../../../flow/type";
+import type {State} from "../reducer";
 
 import {Observable} from "rxjs";
-import {LOAD, PRE_SELECT_TEMPLATE} from "./../constant";
-import {TEMPLATE_SAVED} from "./../../AddTemplateForm/constant";
+import {LOAD, PRE_SELECT_TEMPLATE} from "../constant";
+import {TEMPLATE_SAVED} from "../../AddTemplateForm/constant";
 import {preSelectTemplate, selectTemplate, setTemplates} from "./dashboardActions";
-import {loadTemplate} from "./../../Template/action";
-import TemplateRecord from "./../../Template/record";
+import {loadTemplate} from "../../Template/action";
+import TemplateRecord from "../../Template/record";
 
 export const loadEpic: Epic = (action$: ActionsObservable, store: Store, {api}: Options): ActionsObservable =>
     action$.ofType(LOAD)

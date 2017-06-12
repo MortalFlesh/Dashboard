@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FlashMessageRecord from "./record";
 
-import AlertSuccess from "./../bootstrap/AlertSuccess";
+import AlertSuccess from "../bootstrap/AlertSuccess";
 
 class FlashMessage extends React.PureComponent {
     render() {

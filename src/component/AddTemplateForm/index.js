@@ -6,9 +6,7 @@ import AddTemplateForm from "./AddTemplateForm";
 const mapStateToProps = ({addTemplate}) => {
     const {template} = addTemplate;
 
-    return {
-        template,
-    };
+    return {template};
 };
 
 export default connect(mapStateToProps, actions)(AddTemplateForm);

@@ -1,14 +1,14 @@
 import {applyMiddleware, createStore} from "redux";
 import {createEpicMiddleware} from "redux-observable";
-import {getService, TYPES} from "./../../service";
-import {rootEpic} from "./action";
-import rootReducer from "./reducer";
+import {getService, SERVICES} from "../../../service";
+import {rootEpic} from "../action";
+import rootReducer from "../reducer";
 
 export function configureStore(initialState) {
     const epicMiddleware = createEpicMiddleware(rootEpic, {
         dependencies: {
-            api: getService(TYPES.Api),
-            sessionStorage: getService(TYPES.SessionStorage),
+            api: getService(SERVICES.Api),
+            sessionStorage: getService(SERVICES.SessionStorage),
         }
     });
     const createStoreWithMiddleware = applyMiddleware(epicMiddleware)(createStore);

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {List} from "immutable";
 
-import FlashMessage from "./../FlashMessage";
+import FlashMessage from "../FlashMessage";
 
 class FlashMessages extends React.PureComponent {
     render() {

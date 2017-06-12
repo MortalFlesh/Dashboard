@@ -1,9 +1,9 @@
 // @flow
-import type {Action} from "./../../../flow/types";
-import type {ItemList} from "./../types";
+import type {Action} from "../../../flow/type";
+import type {ItemList} from "../type";
 
-import {LOAD_TEMPLATE, SET_ITEMS, SET_TEPLATE_NAME} from "./../constant";
-import TemplateRecord from "./../record";
+import {LOAD_TEMPLATE, SET_ITEMS, SET_TEPLATE_NAME} from "../constant";
+import TemplateRecord from "../record";
 
 export type TemplateAction = { type: string, template: TemplateRecord };
 

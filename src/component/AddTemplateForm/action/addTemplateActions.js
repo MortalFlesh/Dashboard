@@ -1,9 +1,9 @@
 // @flow
-import type {Action} from "./../../../flow/types";
-import type {TemplateAction} from "./../../Template/action";
+import type {Action} from "../../../flow/type";
+import type {TemplateAction} from "../../Template/action";
 
-import {SAVE, SET_NAME, TEMPLATE_SAVED} from "./../constant";
-import TemplateRecord from "./../../Template/record";
+import {SAVE, SET_NAME, TEMPLATE_SAVED} from "../constant";
+import TemplateRecord from "../../Template/record";
 
 export function setName(name: string): Action {
     return {

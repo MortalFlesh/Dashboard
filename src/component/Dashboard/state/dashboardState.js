@@ -1,5 +1,5 @@
 import {List, Record} from "immutable";
-import TemplateRecord from "../Template/record";
+import TemplateRecord from "../../Template/record";
 
 const defaultTemplate = new TemplateRecord({name: 'Loading...'});
 

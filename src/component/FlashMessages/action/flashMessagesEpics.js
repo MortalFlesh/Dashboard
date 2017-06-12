@@ -1,7 +1,7 @@
 // @flow
 import type {ActionsObservable, Epic} from "redux-observable";
 
-import {ADD} from "./../constant";
+import {ADD} from "../constant";
 import {clearFlashMessages} from "./flashMessagesActions";
 
 export const clearFlashmessagesEpic: Epic = (action$: ActionsObservable): ActionsObservable =>

@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import TemplateRecord from "../Template/record";
 
-import Form from "./../bootstrap/Form";
-import FormItem from "./../bootstrap/FormItem";
-import Input from "./../bootstrap/Input";
-import PrimaryButton from "./../bootstrap/PrimaryButton";
+import Form from "../bootstrap/Form";
+import FormItem from "../bootstrap/FormItem";
+import Input from "../bootstrap/Input";
+import PrimaryButton from "../bootstrap/PrimaryButton";
 
 class AddTemplateForm extends React.PureComponent {
     saveHandler() {

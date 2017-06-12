@@ -1,11 +1,11 @@
 // @flow
-import type {Action} from './../../../flow/types';
+import type {Action} from '../../../flow/type';
 
-import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "./../constant";
-import {TEMPLATE_SAVED} from "./../../AddTemplateForm/constant";
-import {ITEM_SAVED} from "./../../AddItemForm/constant";
-import {getService, TYPES} from "./../../../service";
-import DashboardState from "./../state";
+import {SELECT_TEMPLATE, SET_TEMPLATES, SHOW_ADD_ITEM, SHOW_ADD_TEMPLATE} from "../constant";
+import {TEMPLATE_SAVED} from "../../AddTemplateForm/constant";
+import {ITEM_SAVED} from "../../AddItemForm/constant";
+import {getService, SERVICES} from "../../../service";
+import DashboardState from "../state";
 
 const initialState = new DashboardState();
 
@@ -21,7 +21,7 @@ export default (state: DashboardState = initialState, action: Action): Dashboard
                 return state;
             }
 
-            getService(TYPES.SessionStorage).set('selectedTemplate', selectedTemplateId);
+            getService(SERVICES.SessionStorage).set('selectedTemplate', selectedTemplateId);
 
             return state.set('selectedTemplateId', selectedTemplateId);
         }

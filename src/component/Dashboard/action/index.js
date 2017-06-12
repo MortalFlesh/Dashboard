@@ -1,8 +1,8 @@
 import {combineEpics} from "redux-observable";
-import {flashMessagesEpic} from "./../../FlashMessages/action";
-import {templateEpics} from "./../../Template/action";
-import {addItemEpics} from "./../../AddItemForm/action";
-import {addTemplateEpics} from "./../../AddTemplateForm/action";
+import {flashMessagesEpic} from "../../FlashMessages/action";
+import {templateEpics} from "../../Template/action";
+import {addItemEpics} from "../../AddItemForm/action";
+import {addTemplateEpics} from "../../AddTemplateForm/action";
 import {loadEpic, preSelectTemplateEpic, selectSavedTemplateEpic} from "./dashboardEpics";
 export {
     load,

@@ -1,9 +1,9 @@
 // @flow
-import type {Action} from "./../../flow/types";
-import type {State} from "./types";
+import type {Action} from "../../../flow/type";
+import type {State} from "../state";
 
 import {List} from "immutable";
-import {ADD, CLEAR} from "./constant";
+import {ADD, CLEAR} from "../constant";
 
 const initialState: State = new List();
 

@@ -1,6 +1,6 @@
 // @flow
 import type {ActionsObservable, Epic, Options} from "redux-observable";
-import type {Store} from "./../../../flow/types";
+import type {Store} from "../../../flow/type";
 
 import {SAVE} from "../constant";
 import {templateSaved} from "../action";

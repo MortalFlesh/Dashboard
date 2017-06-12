@@ -6,9 +6,7 @@ import AddItemForm from "./AddItemForm";
 const mapStateToProps = ({addItem}) => {
     const {item} = addItem;
 
-    return {
-        item,
-    };
+    return {item};
 };
 
 export default connect(mapStateToProps, actions)(AddItemForm);

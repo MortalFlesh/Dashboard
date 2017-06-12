@@ -1,7 +1,7 @@
 // @flow
-import type {Action} from "./../../../flow/types";
+import type {Action} from "../../../flow/type";
 
-import {ITEM_SAVED, SAVE, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./../constant";
+import {ITEM_SAVED, SAVE, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "../constant";
 import ItemRecord from './../../Item/record';
 
 export function setName(name: string): Action {

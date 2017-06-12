@@ -1,13 +1,13 @@
 // @flow
-import type {Action} from "./../../../flow/types";
-import type {ItemAction, PayloadAction} from "./../types";
+import type {Action} from "../../../flow/type";
+import type {ItemAction, PayloadAction} from "../type";
 
-import {RESIZE, SAVE, SET_MOVING, SET_POSITION, SET_REFRESH_RATE, SHOW_SAVE} from "./../constant";
-import ItemRecord from "./../../Item/record";
-import MovingRecord from "./../../Item/record/movingRecord";
-import PositionRecord from "./../../Item/record/positionRecord";
-import RefreshRateRecord from "./../../Item/record/refreshRateRecord";
-import ResizeRecord from "./../../Item/record/resizeRecord";
+import {RESIZE, SAVE, SET_MOVING, SET_POSITION, SET_REFRESH_RATE, SHOW_SAVE} from "../constant";
+import ItemRecord from "../../Item/record";
+import MovingRecord from "../../Item/record/movingRecord";
+import PositionRecord from "../../Item/record/positionRecord";
+import RefreshRateRecord from "../../Item/record/refreshRateRecord";
+import ResizeRecord from "../../Item/record/resizeRecord";
 
 export function setMoving(moving: MovingRecord): PayloadAction {
     return {

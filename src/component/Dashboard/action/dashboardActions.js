@@ -1,6 +1,6 @@
 // @flow
-import type {Action} from "./../../../flow/types";
-import type {TemplateList} from "./../types";
+import type {Action} from "../../../flow/type";
+import type {TemplateList} from "../type";
 
 import {
     LOAD,
@@ -9,7 +9,7 @@ import {
     SET_TEMPLATES,
     SHOW_ADD_ITEM,
     SHOW_ADD_TEMPLATE
-} from "./../constant";
+} from "../constant";
 
 export function load(): Action {
     return {

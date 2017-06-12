@@ -1,10 +1,10 @@
 // @flow
 import {List} from "immutable";
-import ItemRecord from "./../Item/record";
-import MovingRecord from "./../Item/record/movingRecord";
-import PositionRecord from "./../Item/record/positionRecord";
-import RefreshRateRecord from "./../Item/record/refreshRateRecord";
-import ResizeRecord from "./../Item/record/resizeRecord";
+import ItemRecord from "../../Item/record";
+import MovingRecord from "../../Item/record/movingRecord";
+import PositionRecord from "../../Item/record/positionRecord";
+import RefreshRateRecord from "../../Item/record/refreshRateRecord";
+import ResizeRecord from "../../Item/record/resizeRecord";
 
 export type ItemList = List<ItemRecord>;
 export type ItemAction = { type: string, item: ItemRecord };

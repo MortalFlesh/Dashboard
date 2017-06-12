@@ -1,13 +1,13 @@
 // @flow
 import {Container} from "inversify";
 import {helpers} from "inversify-vanillajs-helpers";
-import TYPES from "./types";
+import SERVICES from "./services";
 import ConfigFactory from "./configFactory";
 import Loader from "./loader";
 import Api from "./api";
 import SessionStorageService from "./sessionStorageService";
 
-const PRIVATE = {
+const PRIVATE_SERVICES = {
     ConfigFactory: Symbol('ConfigFactory'),
     SessionStorage: Symbol('SessionStorage'),
 };
@@ -24,15 +24,15 @@ export function createContainer({sessionStorage}: Global): void {
     const registerFactory = helpers.registerFactory(container);
     const singletonScope = (bind) => bind.inSingletonScope();
 
-    registerConstantValue(PRIVATE.SessionStorage, sessionStorage);
+    registerConstantValue(PRIVATE_SERVICES.SessionStorage, sessionStorage);
 
-    register(PRIVATE.ConfigFactory, [], singletonScope)(ConfigFactory);
-    register(TYPES.Loader, [], singletonScope)(Loader);
-    register(TYPES.Api, [TYPES.Loader, TYPES.Config], singletonScope)(Api);
-    register(TYPES.SessionStorage, [PRIVATE.SessionStorage, TYPES.Config], singletonScope)(SessionStorageService);
+    register(PRIVATE_SERVICES.ConfigFactory, [], singletonScope)(ConfigFactory);
+    register(SERVICES.Loader, [], singletonScope)(Loader);
+    register(SERVICES.Api, [SERVICES.Loader, SERVICES.Config], singletonScope)(Api);
+    register(SERVICES.SessionStorage, [PRIVATE_SERVICES.SessionStorage, SERVICES.Config], singletonScope)(SessionStorageService);
 
-    registerFactory(TYPES.Config, (context) =>
-        context.container.get(PRIVATE.ConfigFactory).createConfig()
+    registerFactory(SERVICES.Config, (context) =>
+        context.container.get(PRIVATE_SERVICES.ConfigFactory).createConfig()
     );
 }
 

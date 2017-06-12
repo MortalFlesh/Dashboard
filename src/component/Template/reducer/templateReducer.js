@@ -1,6 +1,6 @@
 // @flow
-import type {Action} from "./../../flow/types";
-import type {Payload} from "./types";
+import type {Action} from "../../../flow/type";
+import type {Payload} from "../type";
 
 import {
     LOAD_TEMPLATE,
@@ -12,12 +12,12 @@ import {
     SET_REFRESH_RATE,
     SET_TEPLATE_NAME,
     SHOW_SAVE
-} from "./constant";
-import {ITEM_SAVED} from "./../AddItemForm/constant";
-import {SELECT_TEMPLATE} from "./../Dashboard/constant";
-import TemplateRecord from "./record";
-import ItemRecord from "./../Item/record";
-import MovingRecord from "./../Item/record/movingRecord";
+} from "../constant";
+import {ITEM_SAVED} from "../../AddItemForm/constant";
+import {SELECT_TEMPLATE} from "../../Dashboard/constant";
+import TemplateRecord from "../record";
+import ItemRecord from "../../Item/record";
+import MovingRecord from "../../Item/record/movingRecord";
 
 const initialState = new TemplateRecord({name: 'Loading...'});
 

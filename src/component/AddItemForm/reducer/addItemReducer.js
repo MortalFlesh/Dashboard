@@ -1,8 +1,8 @@
 // @flow
-import type {Action} from "./../../flow/types";
+import type {Action} from "../../../flow/type";
 
-import AddItemState from "./state";
-import {ITEM_SAVED, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "./constant";
+import AddItemState from "../state";
+import {ITEM_SAVED, SET_HEIGHT, SET_NAME, SET_REFRESH_RATE, SET_URL, SET_WIDTH} from "../constant";
 
 const initialState = new AddItemState();
 

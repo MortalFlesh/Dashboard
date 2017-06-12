@@ -1,11 +1,11 @@
 // @flow
 import type {ActionsObservable, Epic, Options} from "redux-observable";
-import type {Store} from "./../../../flow/types";
+import type {Store} from "../../../flow/type";
 
-import {SAVE} from "./../constant";
+import {SAVE} from "../constant";
 import {itemSaved} from "./addItemActions";
-import {addFlashMessage} from "./../../FlashMessages/action";
-import FlashMessageRecord from "./../../FlashMessage/record";
+import {addFlashMessage} from "../../FlashMessages/action";
+import FlashMessageRecord from "../../FlashMessage/record";
 
 export const saveEpic: Epic = (action$: ActionsObservable, {getState}: Store, {api}: Options): ActionsObservable =>
     action$.ofType(SAVE)

@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {number} from "./../../../service/utils";
-import ItemRecord from "./../record";
-import ResizeRecord from "./../record/resizeRecord";
-import RefreshRateRecord from "./../record/refreshRateRecord";
+import {number} from "../../../service/utils";
+import ItemRecord from "../record";
+import ResizeRecord from "../record/resizeRecord";
+import RefreshRateRecord from "../record/refreshRateRecord";
 
-import InlineForm from "./../../bootstrap/InlineForm";
-import FormItem from "./../../bootstrap/FormItem";
-import Input from "./../../bootstrap/Input";
+import InlineForm from "../../bootstrap/InlineForm";
+import FormItem from "../../bootstrap/FormItem";
+import Input from "../../bootstrap/Input";
 
 class ItemFooter extends React.PureComponent {
     refreshRateHandler(refreshRate) {

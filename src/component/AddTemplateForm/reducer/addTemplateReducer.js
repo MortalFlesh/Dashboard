@@ -1,8 +1,8 @@
 // @flow
-import type {Action} from "./../../flow/types";
+import type {Action} from "../../../flow/type";
 
-import AddTemplateState from "./state";
-import {SET_NAME, TEMPLATE_SAVED} from "./constant";
+import AddTemplateState from "../state";
+import {SET_NAME, TEMPLATE_SAVED} from "../constant";
 
 const initialState = new AddTemplateState();
 

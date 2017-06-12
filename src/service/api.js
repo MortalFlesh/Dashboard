@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import Loader from './loader';
 import Config from './config';
 import TemplateRecord from "../component/Template/record";
-import ItemRecord from "./../component/Item/record";
+import ItemRecord from "../component/Item/record";
 
 export default class Api {
     loader: Loader;
