@@ -6,9 +6,8 @@ import FlashMessage from "../FlashMessage";
 
 class FlashMessages extends React.PureComponent {
     render() {
-        const flashMessages = this.props.flashMessages.map((flashMessage, i) => {
-            return <FlashMessage key={i} flashMessage={flashMessage}/>;
-        });
+        const flashMessages = this.props.flashMessages
+            .map((flashMessage, i) => <FlashMessage key={i} flashMessage={flashMessage}/>);
 
         return (
             <div className="FlashMessages">
