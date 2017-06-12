@@ -1,31 +1,24 @@
-import Immutable from "immutable";
+// @flow
+import {fromJS} from "immutable";
 
-let config = {
-    apiUrl: 'http://dashboard-api',
-    apiVersion: 'dev',
-};
-let configLocal = {
-    apiUrl: 'http://dashboard-api/app_dev.php',
-};
+type tConfig = {apiUrl: string, apiVersion: string};
 
-/**
- * todo
- * - zkusit jeste nacitat config json (prevedeny z yml pri buildu) primo v index.html)
- * - jak vyresit, aby config_local.yml prepsal config ale nemusel existovat
- */
+export default class Config {
+    config: tConfig;
 
-class Config {
-    constructor(config, configLocal) {
-        this.config = config;
-        this.configLocal = configLocal;
+    constructor(config: tConfig, configLocal: Object = {}) {
+        this.config = fromJS(config)
+            .merge(configLocal)
+            .toJS();
     }
 
-    getConfig() {
-        return Immutable
-            .fromJS(this.config)
-            .merge(this.configLocal || {})
-            .toJS()
+    getConfig(): tConfig {
+        return this.config;
+    }
+
+    getApiUrl(): string {
+        const {apiUrl, apiVersion} = this.getConfig();
+
+        return `${apiUrl}/${apiVersion}`;
     }
 }
-
-export default new Config(config, configLocal);

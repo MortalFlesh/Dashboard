@@ -1,70 +1,51 @@
-import Loader from "./loader";
-import {getApiUrl, getApiVersion} from "./../dashboardApp/store";
+// @flow
+import {List} from "immutable";
+import {Observable} from "rxjs";
+import Loader from './loader';
+import Config from './config';
+import TemplateRecord from "../component/Template/record";
+import ItemRecord from "../component/Item/record";
 
-class Api {
-    constructor(loader, urlGetter, versionGetter) {
+export default class Api {
+    loader: Loader;
+    url: string;
+
+    constructor(loader: Loader, config: Config) {
         this.loader = loader;
-        this.urlGetter = urlGetter;
-        this.versionGetter = versionGetter;
-
-        this.url = null;
+        this.url = config.getApiUrl();
     }
 
-    loadTemplates() {
-        return this.getData('/template/list/')
-            .then(({templates}) => templates);
+    loadTemplates$(): Observable {
+        return this.getData$('/template/list/')
+            .map(({templates}) => /* todo new */List(templates.map((template) => new TemplateRecord(template))));
     }
 
-    /**
-     * @param path : string
-     * @returns {Promise}
-     * @private
-     */
-    getData(path) {
-        return this.loader.get(this.getUrl() + path);
+    /** @private */
+    getData$(path: string): Observable {
+        return this.loader.get$(this.url + path)
+            .map(({response}) => response);
     }
 
-    /**
-     * @returns {string}
-     * @private
-     */
-    getUrl() {
-        if (!this.url) {
-            this.url = `${this.urlGetter()}/${this.versionGetter()}`;
-        }
-
-        return this.url;
+    loadItems$(templateId: number): Observable {
+        return this.getData$(`/template/${templateId}/item/list/`)
+            .map(({items}) => /* todo new */List(items.map((item) => new ItemRecord(item))));
     }
 
-    loadTemplateName(templateId) {
-        return this.getData(`/template/${templateId}/name/`)
-            .then(({name}) => name);
+    saveItem$(templateId: number, item: ItemRecord): Observable {
+        return this.postData$(`/template/${templateId}/item/`, {item: item.toJSON()})
+            .map(({id}) => id);
     }
 
-    loadItems(templateId) {
-        return this.getData(`/template/${templateId}/item/list/`)
-            .then(({items}) => items);
+    /** @private */
+    postData$(path: string, data: any): Observable {
+        return this.loader.post$(this.url + path, JSON.stringify(data))
+            .map(({response}) => response);
     }
 
-    saveItem(templateId, item) {
-        return this.postData(`/template/${templateId}/item/`, {item: item.toJSON()})
-            .then(({id}) => id);
-    }
+    saveTemplate$(template: TemplateRecord): Observable {
+        const {name} = template;
 
-    /**
-     * @param path : string
-     * @param data : object
-     * @returns {Promise}
-     * @private
-     */
-    postData(path, data) {
-        return this.loader.post(this.getUrl() + path, data);
-    }
-
-    saveTemplate(template) {
-        return this.postData('/template/', {name: template.name})
-            .then(({id}) => id);
+        return this.postData$('/template/', {name})
+            .map(({id}) => id);
     }
 }
-
-export default new Api(Loader, getApiUrl, getApiVersion);

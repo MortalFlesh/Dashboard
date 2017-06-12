@@ -1,0 +1,3 @@
+export const SET_NAME = 'ADD_TEMPLATE_SET_NAME';
+export const SAVE = 'ADD_TEMPLATE_SAVE';
+export const TEMPLATE_SAVED = 'ADD_TEMPLATE_SAVED';

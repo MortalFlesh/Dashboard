@@ -1,38 +1,12 @@
-import jQuery from "jquery-browserify";
+// @flow
+import {Observable} from "rxjs";
 
-class Loader {
-    constructor(jQuery) {
-        this.jQuery = jQuery;
+export default class Loader {
+    get$(url: string): Observable {
+        return Observable.ajax({url, method: 'GET', responseType: 'json', crossDomain: true});
     }
 
-    /**
-     * @param url : string
-     * @returns {Promise}
-     */
-    get(url) {
-        return new Promise((resolve, reject) => {
-            this.jQuery.get(url)
-                .done(resolve)
-                .error((xhr, status, error) => {
-                    reject({status, error});
-                });
-        });
-    }
-
-    /**
-     * @param url : string
-     * @param data : object
-     * @returns {Promise}
-     */
-    post(url, data) {
-        return new Promise((resolve, reject) => {
-            this.jQuery.post(url, data)
-                .done(resolve)
-                .error((xhr, status, error) => {
-                    reject({status, error});
-                })
-        });
+    post$(url: string, body: any): Observable {
+        return Observable.ajax({url, body, method: 'POST', responseType: 'json', crossDomain: true});
     }
 }
-
-export default new Loader(jQuery);
