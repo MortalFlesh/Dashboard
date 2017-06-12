@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 class DropdownLink extends React.PureComponent {
     render() {
+        // todo make dropdown independent from jQuery (remove jQuery from index.html)
         return (
             <a href="#"
                className="dropdown-toggle"
