@@ -4,7 +4,7 @@ import PureRenderMixin from "react-addons-pure-render-mixin";
 import TemplateRecord from "./../template/templateRecord";
 import templateService from "./../service/templateService";
 
-import DropdownMenu from "./../bootstrap/dropdownMenu";
+import DropdownMenu from "../bootstrap/dropdownMenu";
 import DropdownLink from "./../bootstrap/dropdownLink";
 import DropdownItem from "./../bootstrap/dropdownItem";
 import PrimaryButton from "./../bootstrap/primaryButton";
